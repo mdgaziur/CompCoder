@@ -1,22 +1,27 @@
 <h1>Codebuddy</h1>
 <span>The robust and flexible online judge based on flask and python</span>
+<br>
 <hr/>
-* This is project is not released and will be available after completing at 
+* This is project is not released and will be available after releasing at 
 <a href="https://codebuddy.cc">https://codebuddy.cc</a> *
-
-
-<h1>How to set up this project for development</h1><br/>
-This project is created using pycharm. You can simply open this project in pycharm and start
-working on it. But if you don't have that, no problem. You can just work on project if you have 
-Python 3.5 or higher and venv(Virtual Environment) installed(to create venv for windows, in case of linux,
-it is not required). To set up a new venv just "Google"!
-To install all the required packages in the venv at first run the venv(go to env/scripts and execute "activate" or "activate.bat) and run "pip install -r 'requirements.txt'. That's all I have to say.
 <hr/>
+<br/>
+<br/>
 
-<h3 align="center">Credits</h3>
-Author: <a href="https://github.com/mdgaziur001">mdgaziur001</a><br/>
-Collaborators:<br/>
-<div align="center">
-    <a href="https://github.com/mdvirus">mdvirus</a><br/>
-    <a href="https://github.com/kazimahin">kazimahin</a>
-</div>
+**How to set up this project for development**
+
+<hr/>
+First download or clone the project. Then go to the project directory and run "npm i" to install all the necessary
+packages. The run the project in development mode by running "npm run devStart" 
+command line. This webapp runs on port 1233. To view the webpage, just go to 
+"http://localhost:1233" or "http://127.0.0.1".
+
+<br/>
+<br/>
+
+In case of any issues or bugs, just make a new issue in the repo.
+
+<h2>Collaborators</h3>
+Creator: <a href="https://github.com/mdgaziur">mdgaziur</a><br/>
+Collaborator: <a href="https://github.com/mdvirus">mdvirus</a><br/>
+Collaborator: <a href="https://github.com/kazimahin">kazimahin</a><br/>
