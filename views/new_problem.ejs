@@ -1,0 +1,71 @@
+{% extends 'template_drafts.html' %}
+{% block content %}
+<div class="flex-container">
+    <div class="center-flex flex-1">
+        <h1>Create A Problem</h1>
+        <form action="" method="POST" enctype="multipart/form-data">
+            <div class="flex-container flex-align-center">
+                Problem Type
+                <select name="problem_type" id="">
+                    <option>Standard</option>
+                    <option>Function Based</option>
+                </select>
+            </div>
+            <div class="flex-container flex-align-center">
+                Function Name(to call if the problem is function based):
+                <input class="text-input flex-1" type="text" name="function_name">
+            </div>
+            <div class="flex-container flex-align-center">
+                Problem Name
+                <input class="text-input flex-1" type="text" name="problem_name">
+            </div>
+            <div class="flex-container flex-align-center">
+                Problem Handle
+                <input class="text-input flex-1" type="text" name="problem_handle">
+            </div>
+            <div class="flex-container flex-align-center">
+                Memory Limit
+                <input class="text-input flex-1" type="text" name="memory_limit" placeholder="max.: 5000MB unit: Megabyte">
+            </div>
+            <div class="flex-container flex-align-center">
+                CPU Limit
+                <input class="text-input flex-1" type="text" name="cpu_limit" placeholder="max.: 300s unit: Milliseconds">
+            </div>
+            <textarea id="desc-editor" style="color: black!important;" name="editor1" data-sample-preservewhitespace>
+Type your description here!
+            </textarea>
+            <div class="vertical-flex margin-1">
+                Enter the explanation for sample testcase(wrap LaTeX with $):
+                <textarea class="textarea" type="text" name='st_explain'></textarea>
+            </div>
+            <!-- hidden input for problem description -->
+            <input style="display: none" type='text' name="problem-desc-html">
+            <div class="vertical-flex">
+                <div class="text-container padding-1 margin-1">
+                    <h3>Select Sample Testcase(Put your testcases inside a zip file and set their name according to their order. eg. 1.txt, 2.txt)(max 5)</h3>
+                    <input type="file" accept=".txt" multiple>
+                </div>
+                <div class="text-container padding-1 margin-1">
+                    <h3>Select Hidden Testcase(Put your testcases inside a zip file and set their name according to their order. eg. 1.txt, 2.txt)</h3>
+                    <input type="file" accept=".txt" multiple>
+                </div>
+            </div>
+            <div>
+                <button class="cb-btn">Create</button>
+                Your problem will be reviewed before it becomes available for solving.
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+const config = {
+    extraPlugins: ['codesnippet', 'base64image'],
+    codeSnippet_theme: 'github',
+    mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML',
+    contentsCss: '/static/plugins/ckeditor/contents.css',
+    height: 500
+}
+
+CKEDITOR.replace("desc-editor", config);
+</script>
+{% endblock content %}

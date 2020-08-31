@@ -1,0 +1,79 @@
+{% extends 'layout_main.html' %}
+{% block content %}
+
+<script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
+<div class="submission-verdict-container accepted">
+    <h1 class="submission-verdict" align="center">
+        Accepted
+    </h1>
+</div>
+<div class="flex-container">
+    <div class="elements-container">
+        <h1>Source Code</h1>
+        <div id="source-code">
+        </div>
+    </div>
+    <div class="elements-container" style="overflow-y: scroll;">
+        <h1>Test cases</h1>
+        <div class="testcases-container">
+            {% for x in range(10) %}
+                <div class="testcase" style="display: flex; align-content: center">
+                    <p><i class="fa fa-check-circle accepted-testcase"></i>  Testcase {{ x+1 }}</p>
+                    <p align="center" style="flex: 1;">Time: .5s Memory: 35MB</p>
+                    <div style="display: flex; justify-content: right;">
+                        <button class="codebuddy-button">View Testcase</button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="elements-container">
+    <h1 align="center">
+        More problems to try
+    </h1>
+    <h1 style="border-bottom: 1px solid #ccc;padding: 1%;"><a href="#">Problem 1</a></h1>
+    <h1 style="border-bottom: 1px solid #ccc;padding: 1%;"><a href="#">Problem 2</a></h1>
+    <h1 style="border-bottom: 1px solid #ccc;padding: 1%;"><a href="#">Problem 3</a></h1>
+</div>
+<div class="elements-container">
+    <h1 align="center">Share</h1>
+    <div align="center">
+        <button class="social-share facebook">
+            <i class="fa fa-stack fa-facebook"></i> | Facebook
+        </button>
+        <button class="social-share twitter">
+            <i class="fa fa-stack fa-twitter"></i> | Twitter
+        </button>
+        <button class="social-share email">
+            <i class="fa fa-stack fa-envelope"></i> | Email
+        </button>
+    </div>
+</div>
+<script>
+//Script for monaco
+
+require.config({ paths: { 'vs': 'https://unpkg.com/monaco-editor@latest/min/vs' }});
+window.MonacoEnvironment = { getWorkerUrl: () => proxy };
+
+let proxy = URL.createObjectURL(new Blob([`
+    self.MonacoEnvironment = {
+        baseUrl: 'https://unpkg.com/monaco-editor@latest/min/'
+    };
+    importScripts('https://unpkg.com/monaco-editor@latest/min/vs/base/worker/workerMain.js');
+`], { type: 'text/javascript' }));
+window.editor = ''
+//Script for highlighting Source code
+require(["vs/editor/editor.main"], function () {
+    window.editor = monaco.editor.create(document.getElementById('source-code'), {
+        value: [
+            "def solve(string):\r\n\tresult = ''\r\n\tfor x in range(len(string)):\r\n\t\tc = string[x]\r\n\t\tif (x+1)%2==0:\r\n\t\t\tprint(\"executed\")\r\n\t\t\tc = c.upper()\r\n\t\telse:\r\n\t\t\tc = c.lower()\r\n\t\tresult += c\r\n\treturn result\r\n\r\ns = \"the creator of this problem is upset right now.\"\r\nprint(solve(s))",
+        ].join('\n'),
+        language: 'python',
+        theme: 'vs-dark',
+        automaticLayout: true,
+        readOnly: true
+    });
+});
+</script>
+{% endblock content %}

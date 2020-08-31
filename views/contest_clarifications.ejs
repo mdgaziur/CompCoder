@@ -1,0 +1,43 @@
+{% extends 'contest_layout.html' %}
+{% block content %}
+<div class="header-flex">
+    <h1>
+        Clarifications
+    </h1>
+    <div style="flex: 1;" align="right">
+        <button class="cb-btn btn-dark">
+            Ask for clarification
+        </button>
+    </div>
+</div>
+<div>
+    {% for x in range(5) %}
+        <div class="text-container margin-1 padding-1">
+            <h1>Clarification {{ x + 1 }}</h1>
+            <div class="text-container padding-1 dark-bg">
+                <strong>Question:</strong>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusantium aliquam cum ea eius eum eveniet fuga neque nobis nulla obcaecati odit optio perspiciatis possimus rem sint, totam veritatis! Amet.</p>
+                <strong>Answer:</strong>
+                <p>Lorem ipsumjsd d  owoiewoei owppq</p>
+            </div>
+            <div class="tags-container padding-1">
+                <span class="tag">Problem A - Do it now!</span>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+<div align="center">
+    <button class="cb-btn btn-dark padding-1">
+        Previous
+    </button>
+    <button class="cb-btn btn-dark padding-1">
+        1
+    </button>
+    <button class="cb-btn btn-dark padding-1">
+        2
+    </button>
+    <button class="cb-btn btn-dark padding-1">
+        Next
+    </button>
+</div>
+{% endblock content %}

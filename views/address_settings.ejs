@@ -1,0 +1,22 @@
+{% extends 'layout_main.html' %}
+{% block content %}
+<div class="title-container" align="center">
+    <h1>Address Settings</h1>
+    <p>If you win something in any contest, the organizer may send gifts to the given address.</p>
+    <hr/>
+</div>
+<div class="padding-1" align="center">
+    <form action="" method="POST">
+        <div class="flex-container flex-align-center">
+            Country: <input type="text" class="text-input flex-1 extra-dark-bg">
+        </div>
+        <div class="flex-container flex-align-center">
+            Complete Address: <input type="text" class="text-input flex-1 extra-dark-bg">
+        </div>
+        <div class="flex-container flex-align-center">
+            Contact Number: <input type="text" class="text-input flex-1 extra-dark-bg">
+        </div>
+        <button class="cb-btn">Save</button>
+    </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,10 @@
+{% extends 'layout_main.html'  %}
+{% block content %}
+<h1 class="padding-5" align="center">Settings</h1>
+<div class="vertical-flex">
+    <button class="cb-btn" onclick="window.location.href='/settings/profile'">Profile Settings</button>
+    <button class="cb-btn" onclick="window.location.href='/settings/password'">Password Settings</button>
+    <button class="cb-btn" onclick="window.location.href='/settings/address'">Address</button>
+    <button class="cb-btn" onclick="window.location.href='/settings/account_delete'">Account Deletion</button>
+</div>
+{% endblock content %}

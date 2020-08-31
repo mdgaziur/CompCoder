@@ -1,0 +1,66 @@
+{% extends 'template_drafts.html' %}
+{% block content %}
+<div class="flex-container">
+    <div class="center-flex flex-1">
+        <h1>Create A Contest</h1>
+        <form action="" method="POST" enctype="multipart/form-data">
+            <div class="flex-container flex-align-center">
+                Contest Name: <input class="text-input padding-1 flex-1" type="text" name="contest_name">
+            </div>
+            <div class="text-container vertical-flex margin-tb-1 padding-1">
+                Set An Image For Contest(900x450 dimension)
+                <input type="file" accept="image/*" name="contest_image">
+            </div>
+            <div class="flex-container flex-align-center">
+                Starting Date And Time:
+                <input class="text-input padding-1 flex-1" style="max-width: 80px" align="center" name="cst_date" placeholder="Date">
+                <input class="text-input padding-1 flex-1" style="max-width: 80px" align="center" name="cst_month" placeholder="Month">
+                <input class="text-input padding-1 flex-1" style="max-width: 80px" align="center" name="cst_year" placeholder="Year">
+                <input class="text-input padding-1 flex-1" style="max-width: 80px" align="center" name="cst_hour" placeholder="Hour">
+                :
+                <input class="text-input padding-1 flex-1" style="max-width: 80px" align="center" name="cst_minute" placeholder="Minute">
+                <select class="select">
+                    <option>AM</option>
+                    <option>PM</option>
+                </select>
+            </div>
+            <div class="flex-container flex-align-center">
+                Ending Date And Time:
+                <input class="text-input padding-1 flex-1" style="max-width: 80px" align="center" name="cet_date" placeholder="Date">
+                <input class="text-input padding-1 flex-1" style="max-width: 80px" align="center" name="cet_month" placeholder="Month">
+                <input class="text-input padding-1 flex-1" style="max-width: 80px" align="center" name="cet_year" placeholder="Year">
+                <input class="text-input padding-1 flex-1" style="max-width: 80px" align="center" name="cet_hour" placeholder="Hour">
+                :
+                <input class="text-input padding-1 flex-1" style="max-width: 80px" align="center" name="cet_minute" placeholder="Minute">
+                <select class="select">
+                    <option>AM</option>
+                    <option>PM</option>
+                </select>
+            </div>
+            <textarea id="desc-editor" style="color: black!important;" name="editor1" data-sample-preservewhitespace>
+Type your description here!
+            </textarea>
+            <!-- hidden input for contest description -->
+            <input style="display: none" type='text' name="contest_desc">
+            <div>
+                <button class="cb-btn">Create</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+const config = {
+    extraPlugins: ['codesnippet', 'base64image'],
+    codeSnippet_theme: 'github',
+    mathJaxLib: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML',
+    contentsCss: '/static/plugins/ckeditor/contents.css',
+    height: 500
+}
+
+CKEDITOR.replace("desc-editor", config);
+
+editor = CKEDITOR.instances["desc-editor"];
+
+
+</script>
+{% endblock content %}

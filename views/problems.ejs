@@ -1,0 +1,21 @@
+{% extends 'layout_main.html' %}
+{% block content %}
+<h1 class="margin-1" align="center">
+    {{ category }}
+</h1>
+{% for x in range(len(category)) %}
+    <div class="text-container padding-1 margin-1">
+        <h1 class="cursor-pointer"><a href="/p/Problem {{ x + 1 }}">Problem {{ x + 1 }}</a></h1>
+        <p class="text-overflow-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis libero distinctio sequi obcaecati ipsam, iure odit molestiae magni aut consectetur deleniti nobis necessitatibus et inventore excepturi dolorem consequatur perspiciatis sint!</p>
+        <div class="tags-container">
+            <span class="tag margin-5px">Tag 1</span>
+            <span class="tag margin-5px">Tag 2</span>
+        </div>
+    </div>
+{% endfor %}
+<div class="margin-1" align="center">
+    <button class="cb-btn">Prev</button>
+    <button class="cb-btn">1</button>
+    <button class="cb-btn">Next</button>
+</div>
+{% endblock content %}

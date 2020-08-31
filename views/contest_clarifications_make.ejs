@@ -1,0 +1,22 @@
+{% extends 'contest_layout.html' %}
+{% block content %}
+<div>
+    <form action="" method="POST">
+        <h1>Ask for clarification</h1>
+        <div class='flex-container'>
+            <select class="select2-dropdown">
+                <option>Judging system</option>
+                <option>Contest</option>
+                <option>Problem - A: Do it Now!</option>
+                <option>Problem - B: Meme</option>
+                <option>Problem - C: #HappyCoding</option>
+            </select>
+        </div>
+        <textarea class="textarea" type="text" name="question"></textarea>
+        <button class="cb-btn">Submit Clarification</button>
+    </form>
+</div>
+<script>
+    $('.select2-dropdown').select2();
+</script>
+{% endblock content %}

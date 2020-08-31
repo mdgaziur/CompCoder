@@ -1,0 +1,47 @@
+{% extends 'contest_layout.html' %}
+{% block content %}
+<div>
+    <h1 align="center">Codebuddy Welcome Contest</h1>
+    <h2 align="center">Time Remaining: 2:50:23</h2>
+    <div class="flex-container justify-content-center">
+        <div class="text-container margin-1 padding-1" style="width: 350px;" align="center">
+            <h2>Rank</h2>
+            <h1>1/100</h1>
+            <button class="cb-btn btn-dark btn-width-100" style="text-align:center;">
+                See Leaderboard
+            </button>
+        </div>
+        <div class="text-container margin-1 padding-1" style="width: 350px;" align="center">
+            <h2>Problems Solved</h2>
+            <h1>3/3</h1>
+            <button class="cb-btn btn-dark btn-width-100" style="text-align:center;">
+                See Your Submissions
+            </button>
+        </div>
+        <div class="text-container margin-1 padding-1" style="width: 350px;" align="center">
+            <h2>Your Total Submissions</h2>
+            <h1>12</h1>
+            <button class="cb-btn btn-dark btn-width-100" style="text-align:center;">
+                See Your Submissions
+            </button>
+        </div>
+    </div>
+    <h1>Your Questions</h1>
+    <div class="text-container padding-1">
+        <div class="scrollable">
+            {% for x in range(5) %}
+                <div class="text-container extra-dark-bg padding-1 margin-1" align="left">
+                    <h2>Question {{x+1}}</h2>
+                    <div style="margin-left: 2%;">
+                        <p><strong>Question</strong>: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aut autem commodi error in, ipsam magni maxime mollitia nisi odit perferendis quasi reprehenderit, sapiente totam ut velit vero voluptatum?</p>
+                        <p><strong>Answer</strong>: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis dolor dolorum facilis laborum omnis optio provident quis.</p>
+                    </div>
+                    <div class="tags">
+                        <p class="tag">Problem - A</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
