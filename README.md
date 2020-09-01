@@ -14,7 +14,7 @@
 First download or clone the project. Then go to the project directory and run "npm i" to install all the necessary
 packages. The run the project in development mode by running "npm run devStart" 
 command line. This webapp runs on port 1233. To view the webpage, just go to 
-"http://localhost:1233" or "http://127.0.0.1".
+"http://localhost:1233" or "http://127.0.0.1:1233".
 
 <br/>
 <br/>
