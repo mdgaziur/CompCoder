@@ -11,10 +11,10 @@
 **How to set up this project for development**
 
 <hr/>
-First download or clone the project. Then go to the project directory and run "npm i" to install all the necessary
-packages. The run the project in development mode by running "npm run devStart" 
+First download or clone the project. Then go to the project directory and run <code>npm i</code> to install all the necessary
+packages. The run the project in development mode by running <code>npm run devStart`</code>
 command line. This webapp runs on port 1233. To view the webpage, just go to 
-"http://localhost:1233" or "http://127.0.0.1:1233".
+<code>http://localhost:1233</code> or <code>http://127.0.0.1:1233</code>.
 
 <br/>
 <br/>
