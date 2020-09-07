@@ -1,8 +1,8 @@
 const expressRouter = require('express').Router();
 
-const Login = expressRouter.all('/', async (req, res) => {
+const Logout = expressRouter.all('/', async (req, res) => {
     req.session.accessToken = null;
-    res.render('unregistered');
+    res.redirect('/');
 });
 
-module.exports = Login
+module.exports = Logout

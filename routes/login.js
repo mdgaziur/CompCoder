@@ -18,7 +18,7 @@ const Login = expressRouter.all('/', async (req, res) => {
         res.render('login');
     }
     else if(!email || !password) {
-        res.render('login', {Failed: "Fill in all the fields to proceed."})
+        res.render('login', {Failed: "Fill in all the fields to proceed."});
     }
     else {
         let user = await userSchema.findOne({ email: email });
@@ -30,8 +30,6 @@ const Login = expressRouter.all('/', async (req, res) => {
             await bcrypt.compare(password, salted_password, (err, passwordMatched) => {
                 if(err) res.render('login', { Failed: "Wrong Password!" });
                 if(passwordMatched) {
-                    console.log(req.body.remember);
-                    let accesstoken = null;
                     if(req.body.remember) {
                         accessToken = jwt.sign({ uuid : user.uuid }, process.env.JWT_SECRET_TOKEN);
                     }
@@ -41,7 +39,12 @@ const Login = expressRouter.all('/', async (req, res) => {
                         });
                     }
                     req.session.accessToken = accessToken;
-                    res.redirect('/');
+                    if(req.query.return) {
+                        res.redirect(req.query.return);
+                    }
+                    else {
+                        res.redirect('/');
+                    }
                 }
                 else {
                     res.render('login', { Failed: "Wrong Password!" });
@@ -51,4 +54,4 @@ const Login = expressRouter.all('/', async (req, res) => {
     }
 });
 
-module.exports = Login
+module.exports = Login;

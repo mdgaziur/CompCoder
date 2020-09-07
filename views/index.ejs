@@ -2,16 +2,24 @@
 <div class="flex-container">
     <div class="sidebar flex-1">
         <div class="sidebar-box">
-            <div style="height: 350px;" align="center">
+            <div align="center">
                 <img class="round-border-image margin-1" src="<%= user.profile_pic %>">
                 <h1 class="margin-1"><%= user.name %></h1>
+                <h2 class="margin-1"><%= user.handle %></h2>
             </div>
-            <h3 class="margin-1">About CodeBuddy</h3>
+            <h3 class="margin-1">About <%= user.name %></h3>
             <hr/>
-            <h3 class="margin-1">Admin at CodeBuddy</h3>
-            <h3 class="margin-1">Works At CodeBuddy</h3>
-            <h3 class="margin-1">Joined: 01/01/2021</h3>
-            <h3 class="margin-1">Last Active: Never</h3>
+            <h3 class="margin-1">Email: <%= user.email %></h3>
+            <% if(user.website) {%>
+                <h3 class="margin-1">Website: <a href="<%= user.website %>"><%= user.website %></a></h3>
+            <% } %> 
+            <% if(user.company) {%>
+                <h3 class="margin-1">Works at <%= user.company %></h3>
+            <% } %> 
+            <% if(user.institute) {%>
+                <h3 class="margin-1">Studied at <%= user.institute %></h3>
+            <% } %> 
+            <h3 class="margin-1">Joined: <%= user.joined %></h3>
         </div>
     </div>
     <div class="center-flex flex-1">

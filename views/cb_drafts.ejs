@@ -1,5 +1,4 @@
-{% extends 'template_drafts.html' %}
-{% block content %}
+<% layout('template_drafts.html') %>
 <div class="flex-container">
     <div class="center-flex flex-1">
         <h1>CodeBuddy Drafts</h1>
@@ -7,21 +6,7 @@
         <button class="cb-btn">Create Problem</button>
         <div class="text-container padding-1">
             <div class="max-height-500 overflow-y-scroll">
-                <h2 align="center">You've created no problems</h2>
-                {% for x in range(5) %}
-                    <div class="text-container padding-1 margin-1 extra-dark-bg">
-                        <h1 class="cursor-pointer"><a href="/p/Problem {{ x + 1 }}">Problem {{ x + 1 }}</a></h1>
-                        <button class="cb-btn btn-dark" type="button">Edit Problem</button>
-                        <button class="cb-btn btn-dark" type="button">Submissions</button>
-                        <p class="text-overflow-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis libero distinctio sequi obcaecati ipsam, iure odit molestiae magni aut consectetur deleniti nobis necessitatibus et inventore excepturi dolorem consequatur perspiciatis sint!</p>
-                        <div class="tags-container">
-                            <span class="tag margin-5px">Tag 1</span>
-                            <span class="tag margin-5px">Tag 2</span>
-                        </div>
-                    </div>
-                {% endfor %}
             </div>
         </div>
     </div>
 </div>
-{% endblock %}

@@ -5,14 +5,16 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" type="text/css" href="stylesheets/codebuddy.css">
-    <link rel="shortcut icon" type="image/x-icon" href="images/logo-min.png">
-    <link rel="stylesheet" href="plugins/icofont/icofont.min.css">
-    <link rel="stylesheet" href="fonts/GTWalsheimPro/GTWalsheimPro.css">
-    <script src="plugins/chartjs/Chart.min.js"></script>
-    <script src="plugins/jquery/jquery.min.js"></script>
-    <script src="plugins/select2-4.0.13/js/select2.full.min.js"></script>
-    <link rel="stylesheet" href="plugins/select2-4.0.13/css/select2.min.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/codebuddy.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/logo-min.png">
+    <link rel="stylesheet" href="/plugins/icofont/icofont.min.css">
+    <link rel="stylesheet" href="/fonts/GTWalsheimPro/GTWalsheimPro.css">
+    <script src="/plugins/chartjs/Chart.min.js"></script>
+    <script src="/plugins/jquery/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.7/cropper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.7/cropper.min.css">
+    <script src="/plugins/select2-4.0.13/js/select2.full.min.js"></script>
+    <link rel="stylesheet" href="/plugins/select2-4.0.13/css/select2.min.css">
     <script src="https://unpkg.com/monaco-editor@latest/min/vs/loader.js"></script>
     <title>CodeBuddy</title>
 </head>
@@ -23,7 +25,7 @@
             <div class="line2"></div>
             <div class="line3"></div>
         </div>
-        <img class="logo-image-mini" onclick="window.location.href = '/'" src="images/logo-min.png">
+        <img class="logo-image-mini" onclick="window.location.href = '/'" src="/images/logo-min.png">
         <div class="mobile-sidebar flex-container flex-1">
             <form class="searchform" action="/search" method="POST">
                 <input class="searchfield text-input" type="text" name="query" placeholder="Search for contests, problems etc.">

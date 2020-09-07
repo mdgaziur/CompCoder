@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const uuid = require('uuid');
 const default_profile_pic = require('../helper_functions/default_profile_pic');
+const getCurrentDate = require('../helper_functions/currentTime');
 
 const userSchema = new mongoose.Schema({
     uuid: {
@@ -23,6 +24,18 @@ const userSchema = new mongoose.Schema({
         type: String,
         require: true
     },
+    website: {
+        type: String,
+        default: '',
+    },
+    company: {
+        type: String,
+        default: '',
+    },
+    institute: {
+        type: String,
+        default: '',
+    },
     handle: {
         type: String,
         required: true,
@@ -32,7 +45,20 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 8
-    }
-})
+    },
+    joined: {
+        required: true,
+        type: String,
+        default: getCurrentDate,
+    },
+    user_submissions: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'USER_SUBMISSIONS'
+    }],
+    created_problems: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Problems'
+    }]
+});
 
 module.exports = mongoose.model('User', userSchema);

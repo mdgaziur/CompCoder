@@ -151,6 +151,12 @@ a:hover
 	padding: 10px;
 	font-size: 17px;
 }
+.success-flash
+{
+	background: rgb(0, 199, 17);
+	padding: 10px;
+	font-size: 17px;
+}
 /* CodeBuddy Dropdown */
 .dropdown-container
 {
@@ -827,6 +833,42 @@ footer
 .justify-content-right
 {
 	justify-content: right;
+}
+.cb-modal-fullscreen
+{
+	height: 100%;
+	width: 100%;
+	border-radius: 8px;
+	padding: 25px;
+	display: flex;
+	flex-direction: column;
+	z-index: 99999999;
+	background: #202020;
+}
+.cb-modal-container
+{
+	background: #32323280;
+	position: fixed;
+	top: -100%;
+	z-index: 9999998;
+	display: inline-block;
+	height: 100vh;
+	width: 100vw;
+	transition: 250ms;
+}
+.cb-modal-container-visible
+{
+	top: 0%;
+}
+@media only screen and (max-width: 1000px) {
+	.cb-modal
+	{
+		top: 0;
+		left: 0;
+		transform: translate(0,0);
+		height: 100%;
+		width: 100%;
+	}
 }
 /* End */
 
