@@ -36,15 +36,38 @@ const ProblemSchema = mongoose.Schema({
     },
     pythTimeMul: {
         type: Int32,
-        required: true
+        required: true,
+        default: 1
     },
     cTimeMul: {
         type: Int32,
-        required: true
+        required: true,
+        default: 1
     },
     cppTimeMul: {
         type: Int32,
-        requried: true
+        required: true,
+        default: 1
+    },
+    csTimeMul: {
+        type: Int32,
+        required: true,
+        default: 1
+    },
+    bashTimeMul: {
+        type: Int32,
+        required: true,
+        default: 1
+    },
+    jsTimeMul: {
+        type: Int32,
+        required: true,
+        default: 1
+    },
+    javaTimeMul: {
+        type: Int32,
+        required: true,
+        default: 1
     }
 });
 
