@@ -1,0 +1,80 @@
+<% layout('layout_main') %> 
+<div align="center">
+    <div class="margin-1">
+        <h1>
+            Profile Settings
+        </h1>
+        <p>These information will be used to generate your CodeBuddy profile</p>
+        <hr/>
+    </div>
+    <% if( typeof Failed != 'undefined' ) {%>
+        <span class="failed-flash" align="center"><%= Failed %></span>
+    <% } %> 
+    <h1><%= user.name %></h1>
+    <h2 class="padding-1" align="center"><%= user.handle %></h2>
+    <div class="flex-container justify-content-center extra-dark-bg padding-1 round-border-8px" style="margin: 5%; margin-bottom: 0;">
+        <img class="round-border-image" src="<%= user.profile_pic %>" alt="profile_picture">
+        <div class="margin-1" align="center">
+            <h1>Upload a new profile picture</h1>
+            <input type="file" accept="image/x-png, image/jpeg" onchange="getImage(this);" onload="this.value = null" autocomplete="off" name="profile_pic">
+        </div>
+    </div>
+    <form class="padding-5"  action="" method="POST">
+        <!-- Hidden field for base64 converted image -->
+        <input type="text" style="display:none;" id="base64Image" name = "image">
+        <div class="flex-container flex-align-center padding-1">
+            <label>Name: </label>
+            <input class="text-input flex-1 extra-dark-bg" name="name" type="text" value="<%= user.name %>">
+        </div>
+        <div class="flex-container flex-align-center padding-1">
+            <label>Email: </label>
+            <input class="text-input flex-1 extra-dark-bg" name="email" type="text" value="<%= user.email %>">
+        </div>
+        <div class="flex-container flex-align-center padding-1">
+            <label class="input-label">Website:</label>
+            <input class="text-input flex-1 extra-dark-bg" name="website" type="url" value="<%= user.website %>">
+        </div>
+        <div class="flex-container flex-align-center padding-1">
+            <label class="input-label">Company:</label>
+            <input class="text-input flex-1 extra-dark-bg" type="text" name="company" value="<%= user.company %>">
+        </div>
+        <div class="flex-container flex-align-center padding-1">
+            <label class="input-label">Institution:</label>
+            <input class="text-input flex-1 extra-dark-bg" type="text" name="institution" value="<%= user.institute %>">
+        </div>
+        <div>
+            <button class="cb-btn" type="submit">Save Changes</button>
+        </div>
+    </form>
+</div>
+<div class="cb-modal-container">
+    <div class="cb-modal-fullscreen">
+        <h1>Crop the profile picture</h1>
+        <image id="cropper-container" class="flex-1"></image>
+        <button class="cb-btn" onclick="cropImage();">Save</button>
+    </div>
+</div>
+<script>
+    const cropper_container = document.querySelector("#cropper-container");
+    let cropper = undefined;
+    function getImage(input) {
+        if ( input.files && input.files[0] ) {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                cropper_container.src = e.target.result;
+                cropper = new Cropper(cropper_container, {
+                    aspectRatio: 4/4
+                })
+                document.querySelector('.cb-modal-container').classList.toggle("cb-modal-container-visible");
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    function cropImage() {
+        let new_profile_pic = cropper.getCroppedCanvas();
+        let image_container = document.querySelector(".round-border-image");
+        image_container.src = new_profile_pic.toDataURL();
+        document.querySelector('#base64Image').value = new_profile_pic.toDataURL();
+        document.querySelector('.cb-modal-container').classList.toggle("cb-modal-container-visible");
+    }
+</script>
