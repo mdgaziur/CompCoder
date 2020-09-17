@@ -1,0 +1,70 @@
+{% extends 'layout_main.html' %}
+{% block content %}
+<div class="flex-container">
+    <div class="center-flex">
+        <h1>Submissions</h1>
+        <div class="overflow-y-scroll">
+            <table class="dt-table">
+                <thead>
+                    <tr>
+                        <td class="dt-table-td">ID</td>
+                        <td class="dt-table-td">Author</td>
+                        <td class="dt-table-td">Problem</td>
+                        <td class="dt-table-td">Language</td>
+                        <td class="dt-table-td">CPU</td>
+                        <td class="dt-table-td">Memory</td>
+                        <td class="dt-table-td">Time</td>
+                        <td class="dt-table-td">Verdict</td>
+                    </tr>
+                </thead>
+                {% for x in range(10) %}
+                    <tr class="dt-table-row">
+                        <td class="dt-table-td">18294{{ x+1 }}</td>
+                        <td class="dt-table-td"><a href="#">mdgaziur001</a></td>
+                        <td class="dt-table-td"><a href="#">Do it now!</a></td>
+                        <td class="dt-table-td">Python</td>
+                        <td class="dt-table-td">1s</td>
+                        <td class="dt-table-td">37MB</td>
+                        <td class="dt-table-td">12 August 2020 12:30PM</td>
+                        <td class="dt-table-td">
+                            {% if x%2==0 %}
+                                <span class="accepted-text">Accepted</span>
+                            {% else %}
+                                <span class="not-accepted-text">CPU limit exceeded</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="flex-container justify-content-center">
+            <button class="cb-btn margin-1">Previous</button>
+            <button class="cb-btn margin-1">1</button>
+            <button class="cb-btn margin-1">2</button>
+            <button class="cb-btn margin-1">Next</button>
+        </div>
+    </div>
+    <div class="flex-1 sidebar">
+        <div class="sidebar-box">
+            <h1>Filter</h1>
+            <form action="" method="POST">
+                <input class="text-input" type="text" name="submission_id" placeholder="Submission ID">
+                <input class="text-input" type="text" name="author" placeholder="Author">
+                <input class="text-input" type="text" name="problem_name" placeholder="Problem">
+                <input class="text-input" type="text" name="language" placeholder="Language">
+                <input class="text-input" type="text" name="contest" placeholder="Contest">
+                <select>
+                    <option>Verdict</option>
+                    <option>Accepted</option>
+                    <option>Wrong Answer</option>
+                    <option>CPU Limit Exceeded</option>
+                    <option>Memory Limit Exceeded</option>
+                    <option>Compilation Error</option>
+                    <option>Runtime Error</option>
+                </select>
+                <button class="cb-btn margin-1">Apply</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

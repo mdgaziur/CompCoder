@@ -1,0 +1,29 @@
+{% extends 'contest_layout.html' %}
+{% block content %}
+<div class="leaderboard">
+    <h1>Leaderboard</h1>
+    <div class="leaderboard-table">
+        <table align="center">
+            <tr align="center">
+                <td><p>Rank</p></td>
+                <td><p>Name</p></td>
+                <td><p>Points</p></td>
+                <td><p>Problem A</p></td>
+                <td><p>Problem B</p></td>
+                <td><p>Problem C</p></td>
+            </tr>
+            {% for x in range(1, 11) %}
+                <tr align="center">
+                    <td><p>{{ x }}</p></td>
+                    <td><a href="#">mdgaziur00{{ x }}</a></td>
+                    <td><p>110{{ x-1 }}</p></td>
+                    <td><p><i class="accepted icofont-tick-mark"></i></p></td>
+                    <td><p><i class="accepted icofont-tick-mark"></i></p></td>
+                    <td><p><i class="not-accepted icofont-close"></i></p></td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock content %}

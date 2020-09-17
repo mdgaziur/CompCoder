@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Register</title>
+        <link rel="stylesheet" href="/stylesheets/codebuddy.css">
+        <link rel="shortcut icon" type="image/x-icon" href="images/logo-min.png">
+    </head>
+    <body>
+        <form class="login-register" action="" method="POST">
+            <% if( typeof Failed != 'undefined' ) {%>
+                <span class="failed-flash" align="center"><%= Failed %></span>
+            <% } %> 
+            <div align="center">
+                <img class="login-register-logo" src="images/logo-big.png" alt="codebuddy-logo" onclick="window.location.href='/'">
+                <h1>Register</h1>
+            </div>
+            <div style="padding: 40px;display: grid;">
+                <input class="lg-field" type="text" name="name" placeholder="Full Name" required>
+                <input class="lg-field" type="text" name="handle" placeholder="Unique handle for your account. eg. johndoe10" required>
+                <input class="lg-field" type="email" name="email" placeholder="Email Address" required>
+                <input class="lg-field" type="password" name="password" placeholder="Password" id="user_password" required>
+                <input class="lg-field" type="password" name="confirm_password" placeholder="Confirm Password" for="user_password" required="">
+                <button class="lg-button">Register</button>
+            </div>
+            <div style="height: 100px;"></div>
+            <div class="lgf-bottom-text" align="center">
+                Already have an account? <a href="/login">Login now!</a>
+            </div>
+        </form>
+    </body>
+</html>

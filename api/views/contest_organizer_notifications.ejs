@@ -1,0 +1,75 @@
+{% extends 'layout_main.html' %}
+{% block content %}
+<div class="flex-container">
+    <div class="flex-1 sidebar">
+        <div class="sidebar-box vertical-flex">
+            <h1 align="center">Clarifications</h1>
+            <div class="flex-1 padding-2-0-2-0 max-height-500 overflow-y-scroll">
+                <h3 class="display-none" align="center">No new clarifications</h3>
+                {% for x in range(5) %}
+                    <div class="text-container padding-5 margin-tb-1">
+                        <h4>
+                            Question: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur dolores enim, et explicabo iusto minus molestias.
+                        </h4>
+                        <div class="tags-container">
+                            <span class="tag">Problem A - Do it now!</span>
+                        </div>
+                        <div class="width-100-btn">
+                            <button class="cb-btn btn-dark">Give Answer</button>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="width-100-btn">
+                <button class="cb-btn btn-dark">View All Clarifications</button>
+            </div>
+        </div>
+        <div class="sidebar-box vertical-flex">
+            <h1 align="center">Announcements</h1>
+            <div class="flex-1 padding-2-0-2-0 max-height-500 overflow-y-scroll">
+                <h3 class="display-none" align="center">No Announcements</h3>
+                {% for x in range(2) %}
+                    <div class="text-container padding-5 margin-tb-1">
+                        <h4>
+                            Problem statement has been updated.
+                        </h4>
+                        <div class="tags-container">
+                            <span class="tag">Problem A - Do it now!</span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="width-100-btn">
+                <button class="cb-btn btn-dark">Make an announcement</button>
+            </div>
+        </div>
+    </div>
+    <div class="center-flex">
+        <div class="flex-container space-between margin-1">
+            <button class="cb-btn"><i class="icofont-arrow-left"></i></button>
+            <h1 class="margin-1" align="center">
+                Contest Notifications
+            </h1>
+            <button class="cb-btn">Clear All Notifications</button>
+        </div>
+        <div class="text-container padding-1" align="center">
+            <h4 align="center">No notifications available</h4>
+            <!--if notification(s) are available-->
+            <div class="flex-container space-between text-container dark-bg padding-1 margin-1" align="left">
+                <h3>Free tier participants number is going to exceed any time soon. Upgrade the contest to get unlimited participants.</h3>
+                <button class="cb-btn">Upgrade to paid tier</button>
+            </div>
+            {% for x in range(6) %}
+                <div class="flex-container space-between text-container dark-bg padding-1 margin-1" align="left">
+                    <h3>New clarification request from team_psychopath{{ x+1 }}</h3>
+                    <button class="cb-btn">Give Answer</button>
+                </div>
+                <div class="flex-container space-between text-container dark-bg padding-1 margin-1" align="left">
+                    <h3>Contest is going to end!</h3>
+                    <button class="cb-btn">Increase time</button>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

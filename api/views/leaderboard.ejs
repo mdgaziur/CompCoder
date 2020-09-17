@@ -1,0 +1,33 @@
+{% extends 'layout_main.html' %}
+{% block content %}
+<div align="center">
+    <div class="text-container extra-dark-bg margin-1 padding-1">
+        <h1 class="margin-1">Leaderboard</h1>
+        <div class="overflow-y-scroll">
+            <table class="dt-table" align="center">
+                <tr class="dt-table-row" align="center">
+                    <td class="dt-table-td"><p>Rank</p></td>
+                    <td class="dt-table-td"><p>Name</p></td>
+                    <td class="dt-table-td"><p>Rating</p></td>
+                    <td class="dt-table-td"><p>Problems Solved this week</p></td>
+                    <td class="dt-table-td"><p>Total Problems Solved</p></td>
+                </tr>
+                {% for x in range(1, 11) %}
+                    <tr align="center" class="dt-table-row">
+                        <td class="dt-table-td"><p>{{ x }}</p></td>
+                        <td class="dt-table-td"><a href="#">mdgaziur00{{ x }}</a></td>
+                        <td class="dt-table-td"><p>110{{ x-1 }}</p></td>
+                        <td class="dt-table-td"><p>12</p></td>
+                        <td class="dt-table-td">
+                            <p>129</p>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <div align="center">
+                <button class="cb-btn padding-1 btn-dark">1</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

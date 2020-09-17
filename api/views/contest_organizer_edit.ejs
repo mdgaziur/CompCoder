@@ -1,0 +1,37 @@
+{% extends 'layout_main.html' %}
+{% block content %}
+<div class="padding-1">
+    <h1 class="padding-1" align="center">Contest Settings</h1>
+    <form action="" method="post">
+        <h2>Name: Codebuddy Welcome Contest</h2>
+        <div class="flex-container flex-align-center">
+            Contest Type: <select class="extra-dark-bg flex-1" name="contest-type">
+                <option>IOI</option>
+                <option>ICPC</option>
+            </select>
+        </div>
+        <div class="flex-container flex-align-center">Contest Starting Time: <input class="text-input flex-1 extra-dark-bg" type="datetime-local" name="contest-starting-time"></div>
+        <div class="flex-container flex-align-center">Contest Ending Time: <input class="text-input flex-1 extra-dark-bg" type="datetime-local" name="contest-ending-time"></div>
+        <h1 align="center">Problems Settings</h1>
+        <div class="overflow-y-scroll max-height-500">
+            {% for x in range(5) %}
+                <div class="text-container padding-1 margin-1">
+                    <h1 class="cursor-pointer"><a href="/p/Problem {{ x + 1 }}">Problem {{ x + 1 }}</a></h1>
+                    <button class="cb-btn btn-dark" type="button">Edit Problem</button>
+                    <p class="text-overflow-ellipsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis libero distinctio sequi obcaecati ipsam, iure odit molestiae magni aut consectetur deleniti nobis necessitatibus et inventore excepturi dolorem consequatur perspiciatis sint!</p>
+                    <div class="tags-container">
+                        <span class="tag margin-5px">Tag 1</span>
+                        <span class="tag margin-5px">Tag 2</span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </form>
+    <div class="danger-zone" align="center">
+        <h1 align="center">Danger Zone!!!</h1>
+        <p>Think twice before performing the following actions</p>
+        <button class="cb-btn red-btn">Delete Contest</button>
+        <button class="cb-btn red-btn">Make Invite Only</button>
+    </div>
+</div>
+{% endblock content %}

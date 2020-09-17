@@ -1,0 +1,48 @@
+{% extends 'layout_main.html' %}
+{% block content %}
+<div class="flex-container space-around extra-dark-bg" align="center">
+    <button class="cb-btn margin-1">
+        Past Contests
+    </button>
+    <button class="cb-btn margin-1">
+        Currently Running
+    </button>
+    <button class="cb-btn margin-1">
+        Upcoming
+    </button>
+    <button class="cb-btn margin-1">
+        All Contests
+    </button>
+</div>
+<h1 class="padding-5" align="center" style="color: white;padding-bottom:0px;">
+    Current Contests
+</h1>
+<div class="padding-5 mobile-size-padding-0">
+    {% for x in range(len('contests')) %}
+        <div class="text-container margin-5px padding-1 flex-container" id="highlightable">
+            <div class="margin-5px">
+                <h1>Contest {{ x + 1 }}</h1>
+            </div>
+            <div class="flex-1" align="right">
+                <button class="cb-btn btn-dark">
+                    Problems
+                </button>
+                <button class="cb-btn btn-dark">
+                    Statistics
+                </button>
+                <button class="cb-btn btn-dark">
+                    Leaderboard
+                </button>
+                <button class="cb-btn btn-dark" onclick="window.location.href='/c/cwc_{{ x+1 }}'">
+                    Sign Up/Access
+                </button>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="padding-1" align="center">
+        <button class="cb-btn">Prev</button>
+        <button class="cb-btn">1</button>
+        <button class="cb-btn">Next</button>
+    </div>
+</div>
+{% endblock content %}
