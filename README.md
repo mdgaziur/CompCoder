@@ -11,11 +11,7 @@
 **How to set up this project for development**
 
 <hr/>
-**Install node.js and mongodb first.**
-First download or clone the project. Then go to the project directory and run <code>npm i</code> to install all the necessary
-packages. The run the project in development mode by running <code>npm run devStart</code>
-command line. This webapp runs on port 1233. To view the webpage, just go to 
-<code>http://localhost:1233</code> or <code>http://127.0.0.1:1233</code>.
+<h1>This project is going under major reconstruction. Further details for testing will be provided later.</h1>
 
 <br/>
 <br/>
