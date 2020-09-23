@@ -1,0 +1,9 @@
+post http://localhost:1233/auth/register
+Content-Type: application/json
+
+{
+    "name" : "John doe",
+    "username" : "jd123",
+    "email" : "jd123@example.com",
+    "password" : "aaaa...."
+}

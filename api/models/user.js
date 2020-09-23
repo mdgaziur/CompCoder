@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const uuid = require('uuid');
-const default_profile_pic = require('../helper_functions/default_profile_pic');
-const getCurrentDate = require('../helper_functions/currentTime');
+const default_profile_pic = require('../assets/default_profile_pic');
+const getCurrentDate = require('../utils/currentTime');
 
 const userSchema = new mongoose.Schema({
     uuid: {
@@ -58,7 +58,10 @@ const userSchema = new mongoose.Schema({
     created_problems: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Problems'
-    }]
+    }],
+    resetPin: {
+        type: String
+    }
 });
 
 module.exports = mongoose.model('User', userSchema);
