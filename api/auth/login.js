@@ -1,6 +1,6 @@
 const expressRouter = require('express').Router();
 const userModel = require('../models/user');
-const jwt_verify = require('./middlewares/jwt_verify');
+const jwt_verify = require('../middlewares/jwt_verify');
 const cb_errorcodes = require('../errorcodes');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -55,7 +55,7 @@ const Login = expressRouter.post('/', async (req, res, next) => {
                     else if (isValidPassword) {
                         let accessToken = await jwt.sign({
                             uuid: user.uuid
-                        }, process.env.SECRET_KEY);
+                        }, process.env.JWT_SECRET_TOKEN);
                         res.status(200).json({
                             accessToken: accessToken
                         });

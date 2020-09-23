@@ -1,6 +1,6 @@
 const expressRouter = require('express').Router();
 const userModel = require('../models/user');
-const jwt_verify = require('./middlewares/jwt_verify');
+const jwt_verify = require('../middlewares/jwt_verify');
 const cb_errorcodes = require('../errorcodes');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');

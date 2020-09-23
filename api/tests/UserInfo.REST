@@ -1,0 +1,4 @@
+post http://localhost:1233/userInfo/jd123
+Content-Type: application/json
+
+{}
