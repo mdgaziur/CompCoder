@@ -6,7 +6,7 @@ This api handles all the requests from client. The client can send requests to s
 
 ## Instructions for setting up for development/testing
 
-Here are the steps required to be done before starting CodeBuddy API: \
+Here are the steps required to be done before starting CodeBuddy API:
 <ol>
     <li> Download and install nodejs for your operating system.</li>
     <li> Download and install and Configure MongoDB for you operating system.</li>
