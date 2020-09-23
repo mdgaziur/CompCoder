@@ -30,7 +30,7 @@ This project is created and maintained by mdgaziur.
 <table align="center">
     <tr>
         <td align="center">
-            <img alt="mdgaziur" src="https://avatars3.githubusercontent.com/u/40351881?s=460&u=0ad39184848d1cded30734eccaaf563ed2920154&v=4">
+            <img height="100px" alt="mdgaziur" src="https://avatars3.githubusercontent.com/u/40351881?s=460&u=0ad39184848d1cded30734eccaaf563ed2920154&v=4">
         </td>
     </tr>
     <tr>
@@ -47,9 +47,9 @@ Thanks to the collaborators for helping me creating this project!
 <br/>
 <table align="center">
     <tr>
-        <td align="center"><img alt="mdvirus" src="https://avatars0.githubusercontent.com/u/56973036?s=460&v=4"></a></td>
+        <td align="center"><img height="100px" alt="mdvirus" src="https://avatars0.githubusercontent.com/u/56973036?s=460&v=4"></a></td>
         <td align="center">
-            <img alt="kazimahin" src="https://avatars2.githubusercontent.com/u/44231614?s=460&v=4">
+            <img height="100px" alt="kazimahin" src="https://avatars2.githubusercontent.com/u/44231614?s=460&v=4">
         </td>
     </tr>
     <tr>
