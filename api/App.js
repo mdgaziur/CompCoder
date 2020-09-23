@@ -10,6 +10,7 @@ require('dotenv').config();
 
 //Import all the routes
 const auth = require('./auth/auth');
+const user = require('./user/user');
 
 //Connect to database
 mongoose.connect('mongodb://localhost/CodeBuddy', {
@@ -28,11 +29,14 @@ app.use(body_parser.urlencoded({
     extended: false
 }))
 
+
 app.use('/auth/login', auth.login);
 app.use('/auth/register', auth.register);
 app.use('/auth/password_reset', auth.password_reset.resetPassword);
 app.use('/auth/password_reset', auth.password_reset.isValidResetToken);
 app.use('/auth/password_reset', auth.password_reset.sendPasswordResetEmail);
+app.use('/userInfo', user.userInfo);
+app.use('/userProfilePicture', user.userProfilePicture);
 
 //The api will run at port 1233
 app.listen(1233);
