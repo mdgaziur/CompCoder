@@ -27,8 +27,7 @@ app.use(express.json());
 app.use(body_parser.urlencoded({
     limit: '100mb',
     extended: false
-}))
-
+}));
 
 app.use('/auth/login', auth.login);
 app.use('/auth/register', auth.register);
@@ -37,6 +36,7 @@ app.use('/auth/password_reset', auth.password_reset.isValidResetToken);
 app.use('/auth/password_reset', auth.password_reset.sendPasswordResetEmail);
 app.use('/userInfo', user.userInfo);
 app.use('/userProfilePicture', user.userProfilePicture);
+app.use('/userSettings', user.userSettings);
 
 //The api will run at port 1233
 app.listen(1233);
