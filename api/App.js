@@ -37,6 +37,7 @@ app.use('/auth/password_reset', auth.password_reset.sendPasswordResetEmail);
 app.use('/userInfo', user.userInfo);
 app.use('/userProfilePicture', user.userProfilePicture);
 app.use('/userSettings', user.userSettings);
+app.use('/userProfilePicUpdate', user.userProfilePicUpdate);
 
 //The api will run at port 1233
 app.listen(1233);
