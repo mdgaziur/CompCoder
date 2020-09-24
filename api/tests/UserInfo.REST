@@ -1,4 +1,2 @@
-post http://localhost:1233/userInfo/jd123
+post http://localhost:1233/userInfo/mdgaziur001
 Content-Type: application/json
-
-{}
