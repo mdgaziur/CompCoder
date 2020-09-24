@@ -5,7 +5,7 @@ const isNotUniqueField = async ( field, currentUser, fieldname ) => {
     query[fieldname] = field;
     let user = await userModel.findOne(query);
     if(user) {
-        if(user.name == currentUser.name) {
+        if(user.uuid == currentUser.uuid) {
             return false;
         }
         return true;
