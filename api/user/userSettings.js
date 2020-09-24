@@ -35,7 +35,7 @@ const userSettings = expressRouter.post('/', async (req, res, next) => {
             user.email = email;
         }
     }
-    if(typeof website !== undefined) {
+    if(typeof website !== 'undefined') {
         if(website === "https://google.com" || website === "https://facebook.com" || website === "https://twitter.com") {
             res.status(400).json({
                 error: "Are you kidding me? The real owners would never create account here!"
@@ -47,10 +47,10 @@ const userSettings = expressRouter.post('/', async (req, res, next) => {
             user.website = website;
         }
     }
-    if(typeof company !== undefined) {
+    if(typeof company !== 'undefined') {
         user.company = company;
     }
-    if(typeof institute !== undefined) {
+    if(typeof institute !== 'undefined') {
         user.institute = institute;
     }
     user.save();
