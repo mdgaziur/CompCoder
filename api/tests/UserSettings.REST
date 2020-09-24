@@ -3,9 +3,9 @@ Content-Type: application/json
 
 {
   "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYjhiMjJlZjctMDk5OS00NzJiLWFhOGEtN2ZkYzVmMmI1OWRmIiwiaWF0IjoxNjAwOTM2Nzc3fQ._ndQW0cE0vn1j3cZtaZhdWWOF8XTdMsob5zh8zCiwdk",
-  "email": "mdgaziurrahmannoor@outlook.com",
-  "name": "Md Gaziur Rahman",
-  "company": "",
-  "institute": "",
+  "email": "mdgaziurrahmannoor@gmail.com",
+  "name": "MD Gaziur Rahman Noor",
+  "company": "Unify LLC",
+  "institute": "Border Guard Public School and College, Sylhet",
   "website": "https://github.com/mdgaziur"
 }
