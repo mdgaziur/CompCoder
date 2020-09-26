@@ -11,6 +11,8 @@ require('dotenv').config();
 //Import all the routes
 const auth = require('./auth/auth');
 const user = require('./user/user');
+const drafts = require('./drafts/drafts');
+const problem = require('./problem/problem');
 
 //Connect to database
 mongoose.connect('mongodb://localhost/CodeBuddy', {
@@ -38,6 +40,11 @@ app.use('/userInfo', user.userInfo);
 app.use('/userProfilePicture', user.userProfilePicture);
 app.use('/userSettings', user.userSettings);
 app.use('/userProfilePicUpdate', user.userProfilePicUpdate);
+app.use('/drafts', drafts.getUserDrafts);
+app.use('/drafts', drafts.create_problem);
+app.use('/drafts', drafts.editProblem);
+app.use('/problem', problem.getProblemById);
+app.use('/problem', problem.getProblemBySlug);
 
 //The api will run at port 1233
 app.listen(1233);

@@ -14,6 +14,7 @@
   "author": "MD Gaziur Rahman Noor",
   "license": "ISC",
   "dependencies": {
+    "adm-zip": "^0.4.16",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
@@ -25,6 +26,8 @@
     "mongoose": "^5.10.6",
     "nodemailer": "^6.4.11",
     "nodemon": "^2.0.4",
-    "randomstring": "^1.1.5"
+    "randomstring": "^1.1.5",
+    "uuid": "^8.3.0",
+    "yauzl": "^2.10.0"
   }
 }

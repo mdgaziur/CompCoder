@@ -11,7 +11,7 @@ const ProblemSchema = mongoose.Schema({
         required: true
     },
     desc: {
-        type: String,
+        type: Object,
         required: true,
     },
     submissions: [{
@@ -26,23 +26,53 @@ const ProblemSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    mle: {
+    ml: {
         type: Number,
         required: true
     },
-    cle: {
+    cl: {
         type: Number,
         required: true
+    },
+    allowedLanguages: {
+        type: Array,
+        required: true,
+        default: [1, 1, 1, 1, 1, 1]
+    },
+    pythMemMul: {
+        type: Number,
+        required: true,
+        default: 5
+    },
+    cppMemMul: {
+        type: Number,
+        required: true,
+        defualt: 1
+    },
+    csMemMul: {
+        type: Number,
+        required: true,
+        defualt: 1
+    },
+    bashMemMul: {
+        type: Number,
+        required: true,
+        defualt: 1
+    },
+    javaMemMul: {
+        type: Number,
+        required: true,
+        defualt: 1
+    },
+    jsMemMul: {
+        type: Number,
+        required: true,
+        defualt: 1
     },
     pythTimeMul: {
         type: Number,
         required: true,
         default: 5
-    },
-    cTimeMul: {
-        type: Number,
-        required: true,
-        default: 1
     },
     cppTimeMul: {
         type: Number,

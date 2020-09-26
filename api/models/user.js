@@ -59,6 +59,10 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Problems'
     }],
+    created_contests: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Contest'
+    }],
     resetPin: {
         type: String
     }
