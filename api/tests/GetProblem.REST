@@ -1,0 +1,15 @@
+post http://localhost:1233/problem/getProblemById
+Content-Type: application/json
+
+{
+    "problem_id": "5f6dcccedcc07dd900fcb268"
+}
+
+###
+
+post http://localhost:1233/problem/getProblemBySlug
+Content-Type: application/json
+
+{
+    "problem_slug": "hello_world"
+}
