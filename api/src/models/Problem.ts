@@ -1,62 +1,71 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import { User } from './User';
+import { Ref, prop, Typegoose } from 'typegoose';
+import { Field, ObjectType } from 'type-graphql';
+import GraphQLJSON from 'graphql-type-json';
 
-type AvailableLangs = "C" | "C++" | "Java" | "CoffeScript" | "Go" | "Python" | "CSharp" | "TypeScript" | "Haskell";
-
-declare interface IProblem extends Document {
-    Title: string,
-    Description: Object,
-    Submissions: Array<Schema.Types.ObjectId>,
-    Author: Schema.Types.ObjectId,
-    Approved: Boolean,
-    AvailableLangs: AvailableLangs[],
-    dateCreated: Date,
-    TestCasesID: Array<string>,
-    SampleTestCasesID: Array<string>
+export enum AvailableLangs {
+    C = "C",
+    CPP = "C++",
+    Java = "Java",
+    CoffeScript = "CoffeScript",
+    Go = "Go",
+    Python = "Python",
+    CSharp = "CSharp",
+    TypeScript = "TypeScript",
+    Haskell = "Haskell",
 }
 
-const ProblemSchema: Schema = new Schema({
-    Title: {
-        type: String,
+@ObjectType()
+export class Problem extends Typegoose {
+    @prop({
         required: true,
         trim: true,
-        minLength: 3,
-        maxLength: 50
-    },
-    Description: {
-        type: Object,
+        minlength: 3,
+        maxlength: 50
+    })
+    @Field()
+    public title: string;
+
+    @prop({
         required: true
-    },
-    Submissions: [{
-        type: Schema.Types.ObjectId,
-        ref: 'submissions'
-    }],
-    Author: {
-        type: Schema.Types.ObjectId,
-        ref: 'author'
-    },
-    Approved: {
-        type: Boolean,
+    })
+    @Field(() => GraphQLJSON)
+    public description: Object;
+
+    @prop({
+        ref: User
+    })
+    @Field(() => User)
+    public author: Ref<User>;
+
+    @prop({
         required: true,
         default: false
-    },
-    AvailableLangs: [{
-        type: String,
-        enum: ['C', 'C++', 'Java', 'Javascript', 'CoffeeScript', 'Go', 'Python', 'CSharp', 'TypeScript', 'Haskell'],
+    })
+    @Field()
+    public approved: Boolean;
+
+    @prop({
+        enum: AvailableLangs,
         required: true
-    }],
-    dateCreated: {
-        type: Date,
+    })
+    @Field()
+    public availableLangs: AvailableLangs;
+    
+    @prop({
         required: true,
         default: new Date()
-    },
-    TestCasesID: [{
-        type: String,
-        required: true,
-    }],
-    SampleTestCasesID: [{
-        type: String,
-        required: true
-    }]
-});
+    })
+    @Field()
+    public dateCreated: Date;
 
-export default mongoose.model<IProblem>('Problem', ProblemSchema);
+    @prop({
+        required: true
+    })
+    public testcasesID: Array<string>;
+
+    @prop({
+        required: true
+    })
+    public sampleTestcasesID: Array<string>;
+}

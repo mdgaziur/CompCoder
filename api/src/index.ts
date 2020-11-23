@@ -13,7 +13,7 @@ import connect from './db_connect';
     const app = express();
 
     // Connect to database based on environment
-    if(process.env.NODE_ENV === 'development') {
+    if(process.env.NODE_ENV !== 'production') {
         connect({ db: 'mongodb://localhost/codebuddy' });
     }
 

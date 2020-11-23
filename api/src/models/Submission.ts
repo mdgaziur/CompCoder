@@ -1,35 +1,47 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import { User } from './User';
+import { prop, Ref, Typegoose } from 'typegoose';
+import { Problem } from './Problem';
+import { ObjectType, Field } from 'type-graphql';
 
-declare interface ISubmission extends Document {
-    problem: Schema.Types.ObjectId,
-    author: Schema.Types.ObjectId,
-    sourceFileID: string,
-    verdict: "AC" | "CLE" | "WA" | "MLE" | "CE" | "RE",
-    testcasesVerdict: Map<string, string>
+export enum verdict {
+    AC = 'AC',
+    WA = 'WA',
+    CLE = 'CLE',
+    MLE = 'MLE',
+    CE = 'CE',
+    RE = 'RE'
 }
 
-const SubmissionSchema: Schema = new Schema({
-    problem: {
-        type: Schema.Types.ObjectId,
-        required: true,
-    },
-    author: {
-        type: Schema.Types.ObjectId,
+@ObjectType()
+export class Submission extends Typegoose {
+    @prop({
+        ref: Problem,
         required: true
-    },
-    sourceFileID: {
-        type: String,
-        required: true
-    },
-    verdict: {
-        type: String,
-        enum: ["AC", "CLE", "WA", "MLE", "CE", "RE"],
-        required: true
-    },
-    testcasesVerdict: {
-        type: Map,
-        required: true
-    }
-});
+    })
+    @Field(() => Problem)
+    public problem: Ref<Problem>;
 
-export default mongoose.model<ISubmission>('Submission', SubmissionSchema);
+    @prop({
+        ref: User,
+        required: true
+    })
+    @Field(() => User)
+    public author: Ref<User>;
+
+    @prop({
+        required: true
+    })
+    public sourceFileID: string;
+
+    @prop({
+        enum: verdict,
+        required: true
+    })
+    @Field()
+    public verdict: verdict;
+
+    @prop({
+        required: true
+    })
+    public testcasesVerdict: Map<string, verdict>;
+};

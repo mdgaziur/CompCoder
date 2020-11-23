@@ -1,106 +1,126 @@
-import mongoose, { Schema, Document } from 'mongoose';
+import { prop, Ref, Typegoose } from 'typegoose';
+import { Field, ObjectType } from 'type-graphql';
+import { Submission } from './Submission';
+import { Problem } from './Problem';
 
-declare interface IUser extends Document {
-    firstName: string,
-    lastName: string,
-    username: string,
-    company?: string,
-    email: string,
-    userType: "admin" | "moderator" | "member",
-    address?: string,
-    profilePicID?: string,
-    dateJoined: Date,
-    rank: number,
-    rating: string,
-    contributionPoints: number,
-    submissions: Array<Schema.Types.ObjectId>,
-    createdProblems: Array<Schema.Types.ObjectId>,
-    password: string,
-    accessTokens?: Array<string>,
-    passwordResetToken?: string
+export enum userTypes {
+    admin = 'admin',
+    moderator = 'moderator',
+    member = 'member'
 }
 
-const UserSchema: Schema = new Schema({
-    firstName: {
-        type: String,
+@ObjectType()
+export class User extends Typegoose {
+    @prop({
         required: true,
         minlength: 3,
-        maxLength: 50,
+        maxlength: 50,
         unique: true,
         trim: true
-    },
-    lastName: {
-        type: String,
+    })
+    @Field()
+    public firstName: string;
+
+    @prop({
         required: true,
         minlength: 3,
-        maxLength: 15,
+        maxlength: 15,
         trim: true
-    },
-    username: {
-        type: String,
+    })
+    @Field()
+    public lastName: string;
+
+    @prop({
         required: true,
         trim: true
-    },
-    company: {
-        type: String,
+    })
+    @Field()
+    public username: string
+
+    @prop({
         trim: true
-    },
-    email: {
-        type: String,
+    })
+    @Field()
+    public company?: string;
+
+    @prop({
         required: true,
-        trim: true
-    },
-    userType: {
-        type: String,
-        enum: ['admin', 'moderator', 'member'],
+        trim: true,
+        validate: email => {
+            return new Promise(res => {
+                res(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email));
+            })
+        }
+    })
+    @Field()
+    public email: string;
+
+    @prop({
+        enum: userTypes,
         required: true,
-        defualt: 'member'
-    },
-    address: {
-        type: String,
+        default: 'member'
+    })
+    @Field()
+    public userType: userTypes;
+
+    @prop({
         trim: true
-    },
-    profilePicID: {
-        type: String
-    },
-    dateJoined: {
-        type: Date,
+    })
+    @Field()
+    public address: string;
+
+    @prop()
+    @Field()
+    public profilePicID: string;
+
+    @prop({
         required: true,
         default: new Date()
-    },
-    rank: {
-        type: Number,
+    })
+    @Field()
+    public dateJoined: Date;
+
+    @prop({
         required: true,
         default: -1
-    },
-    rating: {
-        type: String,
+    })
+    @Field()
+    public rank: number;
+
+    @prop({
         required: true,
         default: "0 D"
-    },
-    contributionPoints: {
-        type: Number,
-        required: true,
-        defualt: 0
-    },
-    submissions: [{
-        type: Schema.Types.ObjectId,
-        ref: 'submissions'
-    }],
-    createdProblems: [{
-        type: Schema.Types.ObjectId,
-        ref: 'problems'
-    }],
-    password: {
-        type: String,
-        required: true
-    },
-    accessTokens: [{
-        type: String
-    }],
-    passwordResetToken: {
-        type: String
-    }
-});
+    })
+    @Field()
+    public rating: string;
 
-export default mongoose.model<IUser>('User', UserSchema);
+    @prop({
+        required: true,
+        default: 0
+    })
+    @Field()
+    public contributionPoints: number;
+
+    @prop({
+        ref: Submission 
+    })
+    @Field(() => [Submission])
+    public Submissions: Ref<Submission>[];
+
+    @prop({
+        ref: Problem
+    })
+    @Field(() => [Problem])
+    public createdProblems: Ref<Problem>[];
+
+    @prop({
+        required: true
+    })
+    public password: string;
+
+    @prop()
+    public accessTokens: string[];
+
+    @prop()
+    passwordResetToken: string;
+};
