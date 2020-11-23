@@ -6,7 +6,7 @@ declare interface IUser extends Document {
     username: string,
     company?: string,
     email: string,
-    userType: string,
+    userType: "admin" | "moderator" | "member",
     address?: string,
     profilePicID?: string,
     dateJoined: Date,
