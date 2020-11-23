@@ -1,3 +1,2 @@
-/node_modules
-/problem/testcases
-.VSCodeCounter
+node_modules
+package-lock.json

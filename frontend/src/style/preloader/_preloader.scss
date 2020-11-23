@@ -1,0 +1,32 @@
+#preloader {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: rgb(19, 19, 19);
+    z-index: 99999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .loader-spinner {
+        height: 100px;
+        width: 100px;
+        border: 15px solid transparent;
+        border-left-color: white;
+        border-right-color: white;
+        border-radius: 50%;
+        animation: rotate 1000ms ease-in-out infinite;
+        @keyframes rotate {
+            from{transform: rotate(0deg);}
+            to{transform: rotate(360deg);}
+        }
+    }
+    h1 {
+        font-size: 2rem;
+        text-transform: uppercase;
+        color: white;
+        font-weight: 800;
+    }
+}

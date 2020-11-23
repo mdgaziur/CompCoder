@@ -1,4 +1,0 @@
-post http://localhost:1233/userProfilePicture/mdgaziur001
-Content-Type: application/json
-
-{}

@@ -1,8 +1,0 @@
-post http://localhost:1233/drafts/edit_problem
-Content-Type: application/json
-
-{
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiYjhiMjJlZjctMDk5OS00NzJiLWFhOGEtN2ZkYzVmMmI1OWRmIiwiaWF0IjoxNjAxMTA4NzQ4fQ.Q-QEb0h9hqD1vlQoK_4Eh42md43DOUU_BHyLjLzYTr8",
-    "problem_slug": "hello_world",
-    "problem_name": "This is new title"
-}
