@@ -1,12 +1,14 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
+type AvailableLangs = "C" | "C++" | "Java" | "CoffeScript" | "Go" | "Python" | "CSharp" | "TypeScript" | "Haskell";
+
 declare interface IProblem extends Document {
     Title: string,
     Description: Object,
     Submissions: Array<Schema.Types.ObjectId>,
     Author: Schema.Types.ObjectId,
     Approved: Boolean,
-    AvailableLangs: Array<string>,
+    AvailableLangs: AvailableLangs[],
     dateCreated: Date,
     TestCasesID: Array<string>,
     SampleTestCasesID: Array<string>
