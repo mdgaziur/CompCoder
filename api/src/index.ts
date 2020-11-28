@@ -18,7 +18,7 @@ import { ResetPassword } from './Resolvers/Auth/ResetPassword';
 import { VerifyPasswordResetToken } from './Resolvers/Auth/VerifyPasswordResetToken';
 
 // Utility
-import { getUser } from './User/getUser';
+import { getUser } from './utils/User/getUser';
 
 //Get data from .env file
 loadDotEnv();
