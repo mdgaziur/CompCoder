@@ -3,22 +3,23 @@ import { config as loadDotEnv } from 'dotenv';
 import express from 'express';
 import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
-
 // DB connector
 import connect from './db_connect';
-
-// ✔ - Resolvers
-import { Test } from './Resolvers/TestResolver';
-
 // Authentication
 import { Login } from './Resolvers/Auth/LoginResolver';
 import { Logout } from './Resolvers/Auth/LogoutResolver';
 import { Register } from './Resolvers/Auth/RegisterResolver';
 import { ResetPassword } from './Resolvers/Auth/ResetPassword';
 import { VerifyPasswordResetToken } from './Resolvers/Auth/VerifyPasswordResetToken';
-
+// ✔ - Resolvers
+import { Test } from './Resolvers/TestResolver';
+import { getUserResolver } from './Resolvers/User/getUser';
 // Utility
 import { getUser } from './utils/User/getUser';
+
+
+
+
 
 //Get data from .env file
 loadDotEnv();
@@ -42,7 +43,8 @@ loadDotEnv();
                 Register,
                 Logout,
                 ResetPassword,
-                VerifyPasswordResetToken
+                VerifyPasswordResetToken,
+                getUserResolver
             ]
         }),
         context: async ({ req }) => {
