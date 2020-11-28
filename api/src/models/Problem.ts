@@ -1,5 +1,6 @@
+import { Submission } from './Submission';
 import { User } from './User';
-import { Ref, prop, Typegoose } from 'typegoose';
+import { Ref, prop } from '@typegoose/typegoose';
 import { Field, ObjectType } from 'type-graphql';
 import GraphQLJSON from 'graphql-type-json';
 
@@ -16,7 +17,7 @@ export enum AvailableLangs {
 }
 
 @ObjectType()
-export class Problem extends Typegoose {
+export class Problem {
     @prop({
         required: true,
         trim: true,
@@ -33,7 +34,8 @@ export class Problem extends Typegoose {
     public description: Object;
 
     @prop({
-        ref: User
+        ref: User,
+        required: true
     })
     @Field(() => User)
     public author: Ref<User>;
@@ -68,4 +70,9 @@ export class Problem extends Typegoose {
         required: true
     })
     public sampleTestcasesID: Array<string>;
+    @prop({
+        ref: Submission,
+        required: true
+    })
+    public Submissions?: Ref<Submission>;
 }

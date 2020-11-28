@@ -1,4 +1,4 @@
-import { prop, Ref, Typegoose } from 'typegoose';
+import { prop, Ref } from '@typegoose/typegoose';
 import { Field, ObjectType } from 'type-graphql';
 import { Submission } from './Submission';
 import { Problem } from './Problem';
@@ -10,7 +10,7 @@ export enum userTypes {
 }
 
 @ObjectType()
-export class User extends Typegoose {
+export class User {
     @prop({
         required: true,
         minlength: 3,
@@ -40,7 +40,7 @@ export class User extends Typegoose {
     @prop({
         trim: true
     })
-    @Field()
+    @Field({ nullable: true })
     public company?: string;
 
     @prop({
@@ -61,57 +61,59 @@ export class User extends Typegoose {
         default: 'member'
     })
     @Field()
-    public userType: userTypes;
+    public userType?: userTypes;
 
     @prop({
         trim: true
     })
-    @Field()
-    public address: string;
+    @Field({ nullable: true })
+    public address?: string;
 
     @prop()
     @Field()
-    public profilePicID: string;
+    public profilePicID?: string;
 
     @prop({
         required: true,
         default: new Date()
     })
     @Field()
-    public dateJoined: Date;
+    public dateJoined?: Date;
 
     @prop({
         required: true,
         default: -1
     })
     @Field()
-    public rank: number;
+    public rank?: number;
 
     @prop({
         required: true,
         default: "0 D"
     })
     @Field()
-    public rating: string;
+    public rating?: string;
 
     @prop({
         required: true,
         default: 0
     })
     @Field()
-    public contributionPoints: number;
+    public contributionPoints?: number;
 
     @prop({
-        ref: Submission 
+        ref: Submission,
+        required: true
     })
-    @Field(() => [Submission])
-    public Submissions: Ref<Submission>[];
+    @Field(() => [Submission], { nullable: true })
+    public Submissions?: Ref<Submission>[];
 
     @prop({
-        ref: Problem
+        ref: Problem,
+        required: true
     })
-    @Field(() => [Problem])
-    public createdProblems: Ref<Problem>[];
+    @Field(() => [Problem], { nullable: true })
+    public createdProblems?: Ref<Problem>[];
 
     @prop({
         required: true
@@ -119,8 +121,8 @@ export class User extends Typegoose {
     public password: string;
 
     @prop()
-    public accessTokens: string[];
+    public accessTokens?: string[];
 
     @prop()
-    passwordResetToken: string;
+    public passwordResetToken?: string;
 };

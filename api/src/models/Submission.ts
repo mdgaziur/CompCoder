@@ -1,5 +1,5 @@
 import { User } from './User';
-import { prop, Ref, Typegoose } from 'typegoose';
+import { prop, Ref } from '@typegoose/typegoose';
 import { Problem } from './Problem';
 import { ObjectType, Field } from 'type-graphql';
 
@@ -13,7 +13,7 @@ export enum verdict {
 }
 
 @ObjectType()
-export class Submission extends Typegoose {
+export class Submission {
     @prop({
         ref: Problem,
         required: true
