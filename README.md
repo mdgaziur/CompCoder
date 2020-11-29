@@ -4,7 +4,6 @@
 #### ```Note: Currently the judge is mostly unusable. The online judge is in heavy development. You can make contributions by making a pull request```<br/>
 
 ## How to start on localhost?
------------------------------
 
 - Clone this repository
 - ### To start the api:
@@ -19,16 +18,13 @@
   - Go to the link displayed in the terminal
 
 ## When it will be released?
-----------------------------
 Day unknown
 
 ## How to contribute?
----------------------
 
 To contribute to the project, first test your code before making a pull request. Currently the project does not have any predefined tests. So you have to do it manually.
 
 ## Credits
-----------
 
 |Profile Picture|Name|Github Profile| Role
 |---|---|---|---|
