@@ -1,4 +1,4 @@
-import { sign } from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 import { User } from './../../models/User';
 import { DocumentType, getModelForClass } from '@typegoose/typegoose';
 import { UserInputError } from 'apollo-server';
@@ -101,6 +101,41 @@ export class userSettings {
             expiresIn: "300s"
         });
 
+        user.emailChangeToken = emailChangeToken;
+        await user.save();
+
         return await sendEmailChangeMail(emailChangeToken, newEmailAddress, user.email) === "SUCCESS" ? true : false;
+    }
+
+    @Mutation(() => Boolean)
+    async confirmChangeEmail(
+        @Arg('token', () => String) token: string
+    ) {
+        try {
+            let userModel = getModelForClass(User);
+            let payload: any = verify(token, process.env.JWT_SECRET_KEY || '');
+
+            let userId = payload.uuid;
+            let newEmailAddress = payload.changedEmail;
+
+            let user = await userModel.findOne({
+                _id: userId
+            });
+
+            if(!user) {
+                return false;
+            } else {
+                if(user.emailChangeToken !== token) {
+                    return false;
+                }
+                user.email = newEmailAddress;
+                user.emailChangeToken = '';
+                await user.save();
+
+                return true;
+            }
+        } catch (e) {
+            return false;
+        }
     }
 }
