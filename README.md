@@ -1,3 +1,9 @@
+<center>
+
+![CodeBuddy Logo](./logo.png)
+
+</center>
+
 # CodeBuddy
 #### The feature rich online judge with better reliability<br/>
 
