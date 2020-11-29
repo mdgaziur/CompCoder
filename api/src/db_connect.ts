@@ -11,7 +11,8 @@ export default ({ db }: UType) => {
                 db,
                 {
                     useNewUrlParser: true,
-                    useUnifiedTopology: true
+                    useUnifiedTopology: true,
+                    useCreateIndex: true
                 }
             )
             .then(() => {

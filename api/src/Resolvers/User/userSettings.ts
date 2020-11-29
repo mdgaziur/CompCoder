@@ -67,9 +67,9 @@ export class userSettings {
     @Authorized()
     @Mutation(() => Boolean)
     async miscUserSettings(
-        @Arg('address', () => String) address: string,
-        @Arg('company', () => String) company: string,
-        @Ctx() context: any
+        @Ctx() context: any,
+        @Arg('address', () => String, { nullable: true }) address?: string,
+        @Arg('company', () => String, { nullable: true }) company?: string
     ) {
         let user: DocumentType<User> = context.user;
         if(address) {
