@@ -1,7 +1,7 @@
 import { UserInputError } from 'apollo-server';
 import { getModelForClass } from '@typegoose/typegoose';
 import { User } from './../../models/User';
-import { Arg, Resolver, Query } from 'type-graphql';
+import { Arg, Resolver, Query, Authorized, Ctx } from 'type-graphql';
 
 @Resolver()
 export class getUserResolver {
@@ -20,5 +20,13 @@ export class getUserResolver {
         } else {
             return user;
         }
+    }
+
+    @Authorized()
+    @Query(() => User)
+    async getUserWithoutId(
+        @Ctx() context: any
+    ) {
+        return context.user;
     }
 }
