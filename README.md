@@ -1,7 +1,5 @@
 <p align="center">
-
-![Codebuddy Logo](./logo.png)
-
+  <img src="./logo.png" style="background: black">
 </p>
 
 
