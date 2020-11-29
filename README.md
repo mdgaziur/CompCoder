@@ -1,8 +1,9 @@
-<center>
+<p align="center">
 
-![CodeBuddy Logo](./logo.png)
+![Codebuddy Logo](./logo.png)
 
-</center>
+</p>
+
 
 # CodeBuddy
 #### The feature rich online judge with better reliability<br/>
