@@ -1,3 +1,4 @@
+import { sign } from 'jsonwebtoken';
 import { User } from './../../models/User';
 import { DocumentType, getModelForClass } from '@typegoose/typegoose';
 import { UserInputError } from 'apollo-server';
@@ -6,6 +7,7 @@ import { Arg, Authorized, Ctx, Mutation } from 'type-graphql';
 import { Resolver } from 'type-graphql';
 import 'reflect-metadata';
 import { isUniqueField } from '../../utils/isUniqueField';
+import { sendEmailChangeMail } from './email-transporter/email-transporter';
 
 @Resolver()
 export class userSettings {
@@ -89,8 +91,16 @@ export class userSettings {
         @Ctx() context: any,
         @Arg('email', () => String) email: string
     ) {
-        // TODO: Fully implement this mutation
-        console.log(context);
-        console.log(email);
+        let newEmailAddress = email;
+        let user: DocumentType<User> = context.user;
+
+        let emailChangeToken = sign({
+            changedEmail: newEmailAddress,
+            uuid: user._id
+        }, process.env.JWT_SECRET_KEY || '', {
+            expiresIn: "300s"
+        });
+
+        return await sendEmailChangeMail(emailChangeToken, newEmailAddress, user.email) === "SUCCESS" ? true : false;
     }
 }
