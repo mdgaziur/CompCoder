@@ -1,24 +1,37 @@
-<h1>Codebuddy</h1>
-<span>The robust and flexible online judge based on flask and python</span>
-<br>
-<hr/>
-* This is project is not released and will be available after releasing at 
-<a href="https://codebuddy.cc">https://codebuddy.cc</a> *
-<hr/>
-<br/>
-<br/>
+# CodeBuddy
+#### The feature rich online judge with better reliability<br/>
 
-**How to set up this project for development**
+#### ```Note: Currently the judge is mostly unusable. The online judge is in heavy development. You can make contributions by making a pull request```<br/>
 
-<hr/>
-<h1>This project is going under major reconstruction. Further details for testing will be provided later.</h1>
+## How to start on localhost?
+-----------------------------
 
-<br/>
-<br/>
+- Clone this repository
+- ### To start the api:
+  - cd into the api directory
+  - Run ```npm i``` to install all dependencies
+  - Run ```npm start``` to start the server
+  - To access the GraphQL playground(Not available when in production mode), go to ```http://localhost:4000/graphql```.
+- ### To start the frontend server
+  - cd into the frontend directory
+  - Run ```npm i``` to install all dependecies
+  - Run ```npm start``` to start the react server
+  - Go to the link displayed in the terminal
 
-In case of any issues or bugs, just make a new issue in the repo.
+## When it will be released?
+----------------------------
+Day unknown
 
-<h2>Collaborators</h3>
-Creator: <a href="https://github.com/mdgaziur">mdgaziur</a><br/>
-Collaborator: <a href="https://github.com/mdvirus">mdvirus</a><br/>
-Collaborator: <a href="https://github.com/kazimahin">kazimahin</a><br/>
+## How to contribute?
+---------------------
+
+To contribute to the project, first test your code before making a pull request. Currently the project does not have any predefined tests. So you have to do it manually.
+
+## Credits
+----------
+
+|Profile Picture|Name|Github Profile| Role
+|---|---|---|---|
+|<img src="https://github.com/mdgaziur.png" width="50px">|MD Gaziur Rahman Noor|[mdgaziur](https://github.com/mdgaziur)|Creator and maintainer|
+|<img src="https://github.com/mdvirus.png" width="50px">|mdvirus|[mdvirus](https://github.com/mdvirus)|Collaborator|
+|<img src="https://github.com/kazimahin.png" width="50px">|kazimahin|[kazimahin](https://github.com/kazimahin)|Collaborator|
