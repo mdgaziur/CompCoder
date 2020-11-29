@@ -15,8 +15,10 @@ export class Register {
         @Arg('username', () => String) username: string,
         @Arg('email', () => String) email: string,
         @Arg('password', () => String) password: string,
+        @Arg('confirmPassword', () => String) confirmPassword: string,
         @Ctx() context: any
-    ) {;
+    ) {
+        ;
         let userModel = getModelForClass(User);
         let isFirstNameUnique = await isUniqueField(firstName, 'firstName', userModel);
         let isEmailUnique = await isUniqueField(email, 'email', userModel);
@@ -35,14 +37,18 @@ export class Register {
             })
         }
 
-        
+
         if (!isusernameUnique) {
             throw new UserInputError("Username is not unique", {
                 invalidArgs: ['username']
             })
         }
 
-        
+        if (confirmPassword !== password) {
+            throw new UserInputError("Both passwords must be same!", {
+                invalidArgs: ['password', 'passwordConfirm']
+            });
+        }
 
         let saltedPassword = hashSync(password, 10);
 
