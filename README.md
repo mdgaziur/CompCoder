@@ -33,6 +33,6 @@ To contribute to the project, first test your code before making a pull request.
 
 |Profile Picture|Name|Github Profile| Role
 |---|---|---|---|
-|<img src="https://github.com/mdgaziur.png" width="50px">|MD Gaziur Rahman Noor|[mdgaziur](https://github.com/mdgaziur)|Creator and maintainer|
-|<img src="https://github.com/mdvirus.png" width="50px">|mdvirus|[mdvirus](https://github.com/mdvirus)|Collaborator|
-|<img src="https://github.com/kazimahin.png" width="50px">|kazimahin|[kazimahin](https://github.com/kazimahin)|Collaborator|
+|<img src="https://github.com/mdgaziur.png" width="100px">|MD Gaziur Rahman Noor|[mdgaziur](https://github.com/mdgaziur)|Creator and maintainer|
+|<img src="https://github.com/mdvirus.png" width="100px">|mdvirus|[mdvirus](https://github.com/mdvirus)|Collaborator|
+|<img src="https://github.com/kazimahin.png" width="100px">|kazimahin|[kazimahin](https://github.com/kazimahin)|Collaborator|
