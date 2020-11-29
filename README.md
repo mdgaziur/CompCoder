@@ -31,7 +31,7 @@ To contribute to the project, first test your code before making a pull request.
 
 ## Credits
 
-|Profile Picture|Name|Github Profile| Role
+|Profile Picture|Name|Github Profile|Role|
 |---|---|---|---|
 |<img src="https://github.com/mdgaziur.png" width="100px">|MD Gaziur Rahman Noor|[mdgaziur](https://github.com/mdgaziur)|Creator and maintainer|
 |<img src="https://github.com/mdvirus.png" width="100px">|mdvirus|[mdvirus](https://github.com/mdvirus)|Collaborator|
