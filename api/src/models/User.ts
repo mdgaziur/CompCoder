@@ -2,6 +2,7 @@ import { prop, Ref } from '@typegoose/typegoose';
 import { Field, ObjectType } from 'type-graphql';
 import { Submission } from './Submission';
 import { Problem } from './Problem';
+import { MaxLength, MinLength } from 'class-validator';
 
 export enum userTypes {
     admin = 'admin',
@@ -19,6 +20,8 @@ export class User {
         trim: true
     })
     @Field()
+    @MaxLength(50)
+    @MinLength(3)
     public firstName: string;
 
     @prop({
@@ -28,6 +31,8 @@ export class User {
         trim: true
     })
     @Field()
+    @MaxLength(10)
+    @MinLength(3)
     public lastName: string;
 
     @prop({
