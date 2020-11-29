@@ -1,3 +1,4 @@
+import { userSettings } from './Resolvers/User/userSettings';
 import { ApolloServer } from 'apollo-server-express';
 import { config as loadDotEnv } from 'dotenv';
 import express from 'express';
@@ -44,8 +45,16 @@ loadDotEnv();
                 Logout,
                 ResetPassword,
                 VerifyPasswordResetToken,
-                getUserResolver
-            ]
+                getUserResolver,
+                userSettings
+            ],
+            authChecker: ({ context: { user } }) => {
+                if (!user) {
+                    return false;
+                } else {
+                    return true;
+                }
+            }
         }),
         context: async ({ req }) => {
             const auth_header = req.headers.authorization || '';
@@ -53,7 +62,11 @@ loadDotEnv();
             if (auth_header) {
                 let token = <string>auth_header.split(' ')[1];
                 const user = await getUser(token);
-                return { ...ctxObj, user };
+                if (!user) {
+                    return { ...ctxObj };
+                } else {
+                    return { ...ctxObj, user };
+                }
             } else {
                 return ctxObj;
             }
