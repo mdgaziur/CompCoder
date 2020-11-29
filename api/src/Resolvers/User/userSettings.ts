@@ -82,4 +82,15 @@ export class userSettings {
         }
         return true; //Success!
     }
+
+    @Authorized()
+    @Mutation(() => Boolean)
+    async changeEmail(
+        @Ctx() context: any,
+        @Arg('email', () => String) email: string
+    ) {
+        // TODO: Fully implement this mutation
+        console.log(context);
+        console.log(email);
+    }
 }
