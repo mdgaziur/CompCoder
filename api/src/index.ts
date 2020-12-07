@@ -4,6 +4,7 @@ import { config as loadDotEnv } from 'dotenv';
 import express from 'express';
 import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
+import fileUpload from 'express-fileupload';
 // DB connector
 import connect from './db_connect';
 // Authentication
@@ -15,26 +16,17 @@ import { VerifyPasswordResetToken } from './Resolvers/Auth/VerifyPasswordResetTo
 // ✔ - Resolvers
 import { Test } from './Resolvers/TestResolver';
 import { getUserResolver } from './Resolvers/User/getUser';
+import { ProblemResolver } from './Resolvers/Draft/Problem/Problem';
 // Utility
 import { getUser } from './utils/User/getUser';
-
-
-
-
+// REST routes
+import { testcaseUpload } from './REST/testcaseUpload/testcaseUpload';
 
 //Get data from .env file
 loadDotEnv();
 
-
-
-
 (async () => {
     const app = express();
-
-    // Connect to database based on environment
-    if (process.env.NODE_ENV !== 'production') {
-        connect({ db: 'mongodb://localhost/codebuddy' });
-    }
 
     const server = new ApolloServer({
         schema: await buildSchema({
@@ -46,7 +38,8 @@ loadDotEnv();
                 ResetPassword,
                 VerifyPasswordResetToken,
                 getUserResolver,
-                userSettings
+                userSettings,
+                ProblemResolver
             ],
             authChecker: ({ context: { user } }) => {
                 if (!user) {
@@ -78,7 +71,19 @@ loadDotEnv();
         cors: false
     });
 
+    // REST middlewares
+    app.use(fileUpload());
+
+    //REST routes
+    app.use('/uploadTestCase', testcaseUpload);
+
     app.listen(4000, () => {
         console.log("🚀 Server is running on port 4000");
+        // Connect to database based on environment
+        if (process.env.NODE_ENV !== 'production') {
+            connect({ db: 'mongodb://localhost/codebuddy' });
+        } else {
+            connect({ db: 'mongodb://localhost/codebuddy' });
+        }
     })
 })()
