@@ -108,17 +108,19 @@ export class User {
     public contributionPoints?: number;
 
     @prop({
-        ref: Submission,
-        required: true
+        ref: 'Submission',
+        required: true,
+        defualt: []
     })
-    @Field(() => [Submission], { nullable: true })
+    @Field(() => [String], { nullable: true })
     public Submissions?: Ref<Submission>[];
 
     @prop({
-        ref: Problem,
-        required: true
+        ref: 'Problem',
+        required: true,
+        default: []
     })
-    @Field(() => [Problem], { nullable: true })
+    @Field(() => [String], { nullable: true })
     public createdProblems?: Ref<Problem>[];
 
     @prop({
