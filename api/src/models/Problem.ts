@@ -2,19 +2,7 @@ import { Submission } from './Submission';
 import { User } from './User';
 import { Ref, prop } from '@typegoose/typegoose';
 import { Field, ObjectType } from 'type-graphql';
-import GraphQLJSON from 'graphql-type-json';
 
-export enum AvailableLangs {
-    C = "C",
-    CPP = "C++",
-    Java = "Java",
-    CoffeScript = "CoffeScript",
-    Go = "Go",
-    Python = "Python",
-    CSharp = "CSharp",
-    TypeScript = "TypeScript",
-    Haskell = "Haskell",
-}
 
 @ObjectType()
 export class Problem {
@@ -30,14 +18,14 @@ export class Problem {
     @prop({
         required: true
     })
-    @Field(() => GraphQLJSON)
-    public description: Object;
+    @Field(() => String)
+    public description: String;
 
     @prop({
-        ref: User,
+        ref: 'User',
         required: true
     })
-    @Field(() => User)
+    @Field(() => String)
     public author: Ref<User>;
 
     @prop({
@@ -45,34 +33,35 @@ export class Problem {
         default: false
     })
     @Field()
-    public approved: Boolean;
+    public approved?: Boolean;
 
     @prop({
-        enum: AvailableLangs,
         required: true
     })
-    @Field()
-    public availableLangs: AvailableLangs;
+    @Field(() => [String])
+    public availableLangs: string[]
     
     @prop({
         required: true,
         default: new Date()
     })
     @Field()
-    public dateCreated: Date;
+    public dateCreated?: Date;
 
     @prop({
-        required: true
+        required: true,
+        default: Object
     })
-    public testcasesID: Array<string>;
+    public sampleTestcasesMeta?: object;
 
     @prop({
-        required: true
+        required: true,
+        default: Object
     })
-    public sampleTestcasesID: Array<string>;
+    public testcasesMeta?: object;
+
     @prop({
-        ref: Submission,
-        required: true
+        ref: 'Submission'
     })
     public Submissions?: Ref<Submission>;
 }
