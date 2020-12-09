@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./branding/CompCoder Black Background.svg">
+  <img src="./branding/CompCoder Black Background.png">
 </p>
 
 
