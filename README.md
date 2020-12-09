@@ -3,7 +3,7 @@
 </p>
 
 
-# CodeBuddy
+# CompCoder
 #### The feature rich online judge with better reliability<br/>
 
 ## Techonologies Used
