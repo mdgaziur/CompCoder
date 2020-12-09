@@ -24,7 +24,7 @@ async function sendMailWrapper(mailOptions:Object):Promise<Boolean> {
 
 export async function sendResetMail(resetToken: string, receiver: string):Promise<string> {
     const mailOptions = {
-        from: 'codebuddy@codebuddy.cc',
+        from: 'intellect-judge@intellect-judge.cc',
         to: receiver,
         subject: 'Password Recovery',
         html: `
@@ -40,7 +40,7 @@ export async function sendResetMail(resetToken: string, receiver: string):Promis
                                     style="background: rgb(49, 49, 49); color: white;padding:1rem;">
                                     <tr style="margin: 0;">
                                         <td align="center" style="background: rgb(34, 34, 34);padding:1rem">
-                                            <h1>CodeBuddy</h1>
+                                            <h1>intellect-judge</h1>
                                             <h3>Password Reset</h3>
                                         </td>
                                     </tr>
@@ -57,7 +57,7 @@ export async function sendResetMail(resetToken: string, receiver: string):Promis
                                     </tr>
                                     <tr style="margin: 0;">
                                         <td align="center" style="width:350px;background: rgb(34, 34, 34);padding:1rem">
-                                            <a href="${"https://codebuddy.cc/password_reset?token="+resetToken}">
+                                            <a href="${"https://intellect-judge.cc/password_reset?token="+resetToken}">
                                                 <button
                                                     style="background: white; color: black;border: none;padding: 1rem; font-size: 1rem; cursor: pointer;">Click
                                                     here to reset the password
@@ -66,7 +66,7 @@ export async function sendResetMail(resetToken: string, receiver: string):Promis
                                             <br />
                                             or<br />
                                             Copy this link<br />
-                                            <p>https://codebuddy.cc/password_reset?token=${resetToken}
+                                            <p>https://intellect-judge.cc/password_reset?token=${resetToken}
                                             </p>
                                         </td>
                                     </tr>

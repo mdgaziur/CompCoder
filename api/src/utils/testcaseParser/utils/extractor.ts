@@ -64,10 +64,10 @@ export async function extractZip(zip: Buffer, problemID: string): Promise<return
 
             let testcaseData = await testCaseFile.async("string");
             try {
-                await createTextFile("codebuddy-testcases-data", `${problemID}/`+file, testcaseData, cos);
+                await createTextFile("intellect-judge-testcases-data", `${problemID}/`+file, testcaseData, cos);
             } catch {
                 for(let f of files) {
-                    await removeTextFile("codebuddy-testcases-data", `${problemID}/`+f, cos);
+                    await removeTextFile("intellect-judge-testcases-data", `${problemID}/`+f, cos);
                 }
             }
         }

@@ -1,7 +1,7 @@
 {
-  "name": "codebuddy-api",
+  "name": "intellect-judge-api",
   "version": "1.0.0",
-  "description": "The CodeBuddy API. This thing handles requests such as authorization, creating problems, evaluating solutions etc.",
+  "description": "The Intellect Judge API. This thing handles requests such as authorization, creating problems, evaluating solutions etc.",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mdgaziur/codebuddy.git"
+    "url": "git+https://github.com/mdgaziur/intellect-judge.git"
   },
   "keywords": [
     "CRUD",
@@ -22,9 +22,9 @@
   "author": "MD Gaziur Rahman Noor",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mdgaziur/codebuddy/issues"
+    "url": "https://github.com/mdgaziur/intellect-judge/issues"
   },
-  "homepage": "https://github.com/mdgaziur/codebuddy#readme",
+  "homepage": "https://github.com/mdgaziur/intellect-judge#readme",
   "dependencies": {
     "@typegoose/typegoose": "^7.4.2",
     "@types/bcrypt": "^3.0.0",
