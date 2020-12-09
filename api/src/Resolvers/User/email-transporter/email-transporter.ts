@@ -24,7 +24,7 @@ async function sendMailWrapper(mailOptions:Object):Promise<Boolean> {
 
 export async function sendEmailChangeMail(token: string, newEmailAddress: string, receiver: string):Promise<string> {
     const mailOptions = {
-        from: 'intellect-judge@intellect-judge.cc',
+        from: 'compcoder@compcoder.cc',
         to: receiver,
         subject: 'Change Email Address',
         html: `
@@ -40,7 +40,7 @@ export async function sendEmailChangeMail(token: string, newEmailAddress: string
                             style="background: rgb(49, 49, 49); color: white;padding:1rem;">
                             <tr style="margin: 0;">
                                 <td align="center" style="background: rgb(34, 34, 34);padding:1rem">
-                                    <h1>intellect-judge</h1>
+                                    <h1>compcoder</h1>
                                     <h3>Email Change Confirmation</h3>
                                 </td>
                             </tr>
@@ -54,7 +54,7 @@ export async function sendEmailChangeMail(token: string, newEmailAddress: string
                             </tr>
                             <tr style="margin: 0;">
                                 <td align="center" style="width:350px;background: rgb(34, 34, 34);padding:1rem">
-                                    <a href="https://intellect-judge.cc/change_email?token=${token}">
+                                    <a href="https://compcoder.cc/change_email?token=${token}">
                                         <button
                                             style="background: white; color: black;border: none;padding: 1rem; font-size: 1rem; cursor: pointer;">
                                             Click here to change email
@@ -63,7 +63,7 @@ export async function sendEmailChangeMail(token: string, newEmailAddress: string
                                     <br />
                                     or<br />
                                     Copy this link<br />
-                                    <p>https://intellect-judge.cc/change_email?token=${token}
+                                    <p>https://compcoder.cc/change_email?token=${token}
                                     </p>
                                 </td>
                             </tr>

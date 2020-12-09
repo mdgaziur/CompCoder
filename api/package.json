@@ -1,5 +1,5 @@
 {
-  "name": "intellect-judge-api",
+  "name": "compcoder-api",
   "version": "1.0.0",
   "description": "The CompCoder API. This thing handles requests such as authorization, creating problems, evaluating solutions etc.",
   "main": "index.ts",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mdgaziur/intellect-judge.git"
+    "url": "git+https://github.com/mdgaziur/compcoder.git"
   },
   "keywords": [
     "CRUD",
@@ -22,9 +22,9 @@
   "author": "MD Gaziur Rahman Noor",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mdgaziur/intellect-judge/issues"
+    "url": "https://github.com/mdgaziur/compcoder/issues"
   },
-  "homepage": "https://github.com/mdgaziur/intellect-judge#readme",
+  "homepage": "https://github.com/mdgaziur/compcoder#readme",
   "dependencies": {
     "@typegoose/typegoose": "^7.4.2",
     "@types/bcrypt": "^3.0.0",

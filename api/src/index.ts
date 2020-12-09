@@ -81,9 +81,9 @@ loadDotEnv();
         console.log("🚀 Server is running on port 4000");
         // Connect to database based on environment
         if (process.env.NODE_ENV !== 'production') {
-            connect({ db: 'mongodb://localhost/intellect-judge' });
+            connect({ db: 'mongodb://localhost/compcoder' });
         } else {
-            connect({ db: 'mongodb://localhost/intellect-judge' });
+            connect({ db: 'mongodb://localhost/compcoder' });
         }
     })
 })()
