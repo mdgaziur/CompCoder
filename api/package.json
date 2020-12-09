@@ -1,7 +1,7 @@
 {
   "name": "intellect-judge-api",
   "version": "1.0.0",
-  "description": "The Intellect Judge API. This thing handles requests such as authorization, creating problems, evaluating solutions etc.",
+  "description": "The CompCoder API. This thing handles requests such as authorization, creating problems, evaluating solutions etc.",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
