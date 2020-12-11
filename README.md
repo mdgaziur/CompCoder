@@ -23,7 +23,11 @@
 #### ```Note: Currently the judge is mostly unusable. The online judge is in heavy development. You can make contributions by making a pull request```<br/>
 
 ## How to start on localhost?
-
+- ### Create a .env file
+  - Add a variable JWT_SECRET_KEY and set the value to a randomly generated string
+  - Add a variable CC_EMAIL and set an email address as the value of that variable
+  - Add a variable CC_EMAIL_PASSWORD and set the password of that email as the value of that variable
+  - Add a variable IBM_CLOUD_TESTCASES_BUCKET_API_KEY and set api key of the bucket you've created in IBM cloud as the value
 - Clone this repository
 - ### To start the api:
   - cd into the api directory
