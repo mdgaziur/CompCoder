@@ -1,11 +1,11 @@
-import { Problem } from './../../models/Problem';
-import { getModelForClass } from '@typegoose/typegoose';
+import { Problem } from "./../../models/Problem";
+import { getModelForClass } from "@typegoose/typegoose";
 
 export async function problemShouldExist(problemId: string): Promise<Boolean> {
-    let problemModel = getModelForClass(Problem);
-    let problem = await problemModel.findOne({
-        _id: problemId
-    });
+  let problemModel = getModelForClass(Problem);
+  let problem = await problemModel.findOne({
+    problemId: problemId,
+  });
 
-    return problem ? true : false;
+  return problem ? true : false;
 }

@@ -1,28 +1,35 @@
-import { returnType } from './types';
-import { extractZip } from './utils/extractor';
-import { validateTestcasesFile } from './utils/validator';
+import { returnType } from "./types";
+import { extractZip } from "./utils/extractor";
+import { validateTestcasesFile } from "./utils/validator";
 
-export async function validateAndExtractTestcaseZipFile(fileBuffer: Buffer, problemID: string):Promise<returnType> {
+export async function validateAndExtractTestcaseZipFile(
+  fileBuffer: Buffer,
+  problemID: string,
+  testcaseType: number
+): Promise<returnType> {
+  let { success, reason, meta } = await validateTestcasesFile(fileBuffer);
 
-    let { success, reason, meta } = await validateTestcasesFile(fileBuffer);
-
-    if(!success) {
-        return {
-            success: false,
-            reason: reason
-        }
+  if (!success) {
+    return {
+      success: false,
+      reason: reason,
+    };
+  } else {
+    let { success, reason } = await extractZip(
+      fileBuffer,
+      problemID,
+      testcaseType
+    );
+    if (!success) {
+      return {
+        success,
+        reason,
+      };
     } else {
-        let { success, reason } = await extractZip(fileBuffer, problemID);
-        if(!success) {
-            return {
-                success,
-                reason
-            }
-        } else {
-            return {
-                success: true,
-                meta: meta
-            }
-        }
+      return {
+        success: true,
+        meta: meta,
+      };
     }
+  }
 }

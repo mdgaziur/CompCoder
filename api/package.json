@@ -27,6 +27,7 @@
   "homepage": "https://github.com/mdgaziur/compcoder#readme",
   "dependencies": {
     "@typegoose/typegoose": "^7.4.2",
+    "@types/uuid": "^8.3.0",
     "apollo-server": "^2.19.0",
     "bcrypt": "^5.0.0",
     "class-validator": "^0.12.2",
@@ -42,6 +43,7 @@
     "reflect-metadata": "^0.1.13",
     "request-promise": "^4.2.6",
     "type-graphql": "^1.1.1",
+    "uuid": "^8.3.2",
     "validator": "^13.0.0"
   },
   "devDependencies": {

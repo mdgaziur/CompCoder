@@ -1,33 +1,37 @@
 import { createTransport } from "nodemailer";
 import Mail from "nodemailer/lib/mailer";
 
-async function sendMailWrapper(mailOptions:Object):Promise<Boolean> {
-    return new Promise((res) => {
-        let transporter: Mail = createTransport({
-            service: 'gmail',
-            auth: {
-                user: process.env.CB_EMAIL,
-                pass: process.env.CB_EMAIL_PASSWORD
-            }
-        });
+async function sendMailWrapper(mailOptions: Object): Promise<Boolean> {
+  return new Promise((res) => {
+    let transporter: Mail = createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.CC_EMAIL,
+        pass: process.env.CC_EMAIL_PASSWORD,
+      },
+    });
 
-        transporter.sendMail(mailOptions, (err) => {
-            if(err) {
-                console.log(err);
-                res(false);
-            } else {
-                res(true);
-            }
-        });
-    })
+    transporter.sendMail(mailOptions, (err) => {
+      if (err) {
+        console.log(err);
+        res(false);
+      } else {
+        res(true);
+      }
+    });
+  });
 }
 
-export async function sendEmailChangeMail(token: string, newEmailAddress: string, receiver: string):Promise<string> {
-    const mailOptions = {
-        from: 'compcoder@compcoder.cc',
-        to: receiver,
-        subject: 'Change Email Address',
-        html: `
+export async function sendEmailChangeMail(
+  token: string,
+  newEmailAddress: string,
+  receiver: string
+): Promise<string> {
+  const mailOptions = {
+    from: "compcoder@compcoder.cc",
+    to: receiver,
+    subject: "Change Email Address",
+    html: `
         <!Doctype html>
 
 <body style="height: 100%;">
@@ -75,13 +79,13 @@ export async function sendEmailChangeMail(token: string, newEmailAddress: string
     </center>
 </body>
 
-</html>`
-    }
+</html>`,
+  };
 
-    let mailStatus = await sendMailWrapper(mailOptions);
-    if(mailStatus) {
-        return 'SUCCESS';
-    } else {
-        return 'FAILED';
-    }
+  let mailStatus = await sendMailWrapper(mailOptions);
+  if (mailStatus) {
+    return "SUCCESS";
+  } else {
+    return "FAILED";
+  }
 }

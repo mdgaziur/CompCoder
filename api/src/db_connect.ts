@@ -1,30 +1,27 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 type UType = {
-    db: string
-}
+  db: string;
+};
 
 export default ({ db }: UType) => {
-    const connect = () => {
-        mongoose
-            .connect(
-                db,
-                {
-                    useNewUrlParser: true,
-                    useUnifiedTopology: true,
-                    useCreateIndex: true
-                }
-            )
-            .then(() => {
-                console.log(`🆗 Connected to database at ${db}`);
-            })
-            .catch(error => {
-                console.error(`❌ Failed to connect to database: ${error}`);
-                return process.exit(1);
-            });
-    }
+  const connect = () => {
+    mongoose
+      .connect(db, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        useCreateIndex: true,
+      })
+      .then(() => {
+        console.log(`🆗 Connected to database at ${db}`);
+      })
+      .catch((error) => {
+        console.error(`❌ Failed to connect to database: ${error}`);
+        return process.exit(1);
+      });
+  };
 
-    connect();
+  connect();
 
-    mongoose.connection.on('disconnect', connect);
-}
+  mongoose.connection.on("disconnect", connect);
+};

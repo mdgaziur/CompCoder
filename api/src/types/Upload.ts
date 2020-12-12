@@ -1,8 +1,8 @@
-import { Stream } from 'stream';
+import { Stream } from "stream";
 
 export interface Upload {
-    filename: string,
-    mimetype: string,
-    encoding: string,
-    createReadStream: () => Stream
+  filename: string;
+  mimetype: string;
+  encoding: string;
+  createReadStream: () => Stream;
 }
