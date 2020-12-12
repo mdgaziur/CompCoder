@@ -1,0 +1,28 @@
+{
+  "name": "compcoder",
+  "version": "1.0.0",
+  "description": "Online judge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-api-dev": "cd api && nodemon --exec ts-node src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdgaziur/CompCoder.git"
+  },
+  "keywords": [
+    "React",
+    "Typescript",
+    "GraphQL",
+    "REST",
+    "IBM",
+    "Cloud"
+  ],
+  "author": "MD Gaziur Rahman Noor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdgaziur/CompCoder/issues"
+  },
+  "homepage": "https://github.com/mdgaziur/CompCoder#readme"
+}
