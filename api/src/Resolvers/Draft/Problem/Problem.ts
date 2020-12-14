@@ -17,7 +17,7 @@ export class ProblemResolver {
     @Arg("description", () => String) description: String,
     @Arg("memoryLimit", () => Number) memoryLimit: number,
     @Arg("cpuLimit", () => Number) cpuLimit: number,
-    @Arg("availableLangs", () => [String]) availableLangs: string[]
+    @Arg("availableLangs", () => [Number]) availableLangs: number[]
   ) {
     let user: DocumentType<User> = context.user;
     let problemModel = getModelForClass(Problem);
@@ -38,6 +38,20 @@ export class ProblemResolver {
     if (cpuLimit < 100 || cpuLimit > 5000) {
       throw new UserInputError("CPU limit out of range!", {
         inputArgs: ["cpuLimit"],
+      });
+    }
+
+    for(let langID of availableLangs) {
+      if(langID < 1 || langID > 7) {
+        throw new UserInputError("Invalid language id!", {
+          inputArgs: ["availableLangs"]
+        });
+      }
+    }
+
+    if(availableLangs.length < 1 || availableLangs.length > 7) {
+      throw new UserInputError("Too many or too few language ids", {
+        inputArgs: ["availableLangs"]
       });
     }
 
