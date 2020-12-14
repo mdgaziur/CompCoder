@@ -55,6 +55,18 @@ export class Problem {
 
   @prop({
     required: true,
+  })
+  @Field()
+  public memoryLimit: number;
+
+  @prop({
+    required: true,
+  })
+  @Field()
+  public cpuLimit: number;
+
+  @prop({
+    required: true,
     default: Object,
   })
   public sampleTestcasesMeta?: object;

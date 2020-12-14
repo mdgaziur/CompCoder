@@ -15,6 +15,8 @@ export class ProblemResolver {
     @Ctx() context: any,
     @Arg("title", () => String) title: string,
     @Arg("description", () => String) description: String,
+    @Arg("memoryLimit", () => Number) memoryLimit: number,
+    @Arg("cpuLimit", () => Number) cpuLimit: number,
     @Arg("availableLangs", () => [String]) availableLangs: string[]
   ) {
     let user: DocumentType<User> = context.user;
@@ -26,21 +28,34 @@ export class ProblemResolver {
       throw new UserInputError("Problem title must be unique!", {
         inputArgs: ["title"],
       });
-    } else {
-      let problem = await problemModel.create({
-        problemId: v4().toString(),
-        title: title,
-        description: description,
-        availableLangs: availableLangs,
-        author: user._id,
-      });
-      if (!user.createdProblems) {
-        user.createdProblems = [problem._id];
-      } else {
-        user.createdProblems.push(problem._id);
-      }
-      user.save();
-      return problem;
     }
+    if (memoryLimit < 100 || memoryLimit > 1024) {
+      throw new UserInputError("Memory limit out of range!", {
+        inputArgs: ["memoryLimit"],
+      });
+    }
+
+    if (cpuLimit < 100 || cpuLimit > 5000) {
+      throw new UserInputError("CPU limit out of range!", {
+        inputArgs: ["cpuLimit"],
+      });
+    }
+
+    let problem = await problemModel.create({
+      problemId: v4().toString(),
+      title: title,
+      description: description,
+      availableLangs: availableLangs,
+      author: user._id,
+      cpuLimit: cpuLimit,
+      memoryLimit: memoryLimit,
+    });
+    if (!user.createdProblems) {
+      user.createdProblems = [problem._id];
+    } else {
+      user.createdProblems.push(problem._id);
+    }
+    user.save();
+    return problem;
   }
 }
