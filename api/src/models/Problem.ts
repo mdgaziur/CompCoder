@@ -43,8 +43,8 @@ export class Problem {
   @prop({
     required: true,
   })
-  @Field(() => [String])
-  public availableLangs: string[];
+  @Field(() => [Number])
+  public availableLangs: number[];
 
   @prop({
     required: true,
