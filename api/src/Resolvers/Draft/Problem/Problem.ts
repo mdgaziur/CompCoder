@@ -41,17 +41,17 @@ export class ProblemResolver {
       });
     }
 
-    for(let langID of availableLangs) {
-      if(langID < 1 || langID > 7) {
+    for (let langID of availableLangs) {
+      if (langID < 1 || langID > 7) {
         throw new UserInputError("Invalid language id!", {
-          inputArgs: ["availableLangs"]
+          inputArgs: ["availableLangs"],
         });
       }
     }
 
-    if(availableLangs.length < 1 || availableLangs.length > 7) {
+    if (availableLangs.length < 1 || availableLangs.length > 7) {
       throw new UserInputError("Too many or too few language ids", {
-        inputArgs: ["availableLangs"]
+        inputArgs: ["availableLangs"],
       });
     }
 
