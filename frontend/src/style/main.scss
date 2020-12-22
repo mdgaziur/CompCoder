@@ -1,71 +1,65 @@
-@import './problem/problem';
-@import 'margins';
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import './sidebar/sidebar';
-@import './preloader/preloader';
-@import './language/language';
-@import './dropdown/dropdown';
+@import "./problem/problem";
+@import "margins";
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import "./sidebar/sidebar";
+@import "./preloader/preloader";
+@import "./language/language";
+@import "./dropdown/dropdown";
 
-.cb
-{
-	color: white;
+.cb {
+  color: white;
 }
-html, body, #root, .App
-{
-	min-height: 100vh;
-}
-
-.App
-{
-	display: flex;
-	background: #141414;
-	z-index: -1;
+html,
+body,
+#root,
+.App {
+  min-height: 100vh;
 }
 
-.title
-{
-	margin: 1rem;
-	font-size: 2rem;
+.App {
+  display: flex;
+  background: #141414;
+  z-index: -1;
 }
 
-.title-big
-{
-	margin: 1rem;
-	font-size: 3rem;
-	font-weight: 800;
-	letter-spacing: -2px;
-	text-align: center;
+.title {
+  margin: 1rem;
+  font-size: 2rem;
 }
 
-.h-container
-{
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-}
-.h-card
-{
-	justify-self: center;
-	padding: 2rem;
-	margin: 1rem;
-	background: #272727;
-	min-width: 250px;
-	-webkit-box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.5);
-	-moz-box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.5);
-	box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.5);
-}
-.body-container
-{
-	flex: 1;
+.title-big {
+  margin: 1rem;
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -2px;
+  text-align: center;
 }
 
-.container
-{
-	margin: 2rem
+.h-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.h-card {
+  justify-self: center;
+  padding: 2rem;
+  margin: 1rem;
+  background: #272727;
+  min-width: 250px;
+  -webkit-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.5);
+}
+.body-container {
+  flex: 1;
+}
+
+.container {
+  margin: 2rem;
 }
 
 @media only screen and (max-width: 800px) {
-	.h-container {
-		display: unset;
-	}
+  .h-container {
+    display: unset;
+  }
 }

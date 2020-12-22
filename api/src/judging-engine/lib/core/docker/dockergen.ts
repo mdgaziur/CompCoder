@@ -15,11 +15,11 @@ export function dockergen(
     let compile = `RUN ${languageObj.getCompileCommand(fileName)}`;
     let run = `CMD ['${languageObj.getRunCommand(fileName)}']`;
 
-    let dockerFileContent = from + "\n" + workdir + "\n" + copy + "\n" + compile + "\n" + run;
-    
+    let dockerFileContent =
+      from + "\n" + workdir + "\n" + copy + "\n" + compile + "\n" + run;
+
     return dockerFileContent;
-  }
-  else {
+  } else {
     let run = `CMD ['${languageObj.getRunCommand(fileName)}']`;
 
     let dockerFileContent = from + "\n" + workdir + "\n" + copy + "\n" + run;

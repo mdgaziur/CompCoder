@@ -1,11 +1,11 @@
 export interface language {
-    name: string;
-    id: number;
-    compiled: boolean;
-    dockerContainer: string;
-    getCompileCommand?: (fileName: string) => string;
-    getRunCommand: (fileName: string) => string;
-    extension: string;
+  name: string;
+  id: number;
+  compiled: boolean;
+  dockerContainer: string;
+  getCompileCommand?: (fileName: string) => string;
+  getRunCommand: (fileName: string) => string;
+  extension: string;
 }
 
 export const languages = [
@@ -20,7 +20,7 @@ export const languages = [
     getRunCommand: (fileName: string) => {
       return `./${fileName}`;
     },
-    extension: '.c'
+    extension: ".c",
   },
   {
     name: "C++",
@@ -33,7 +33,7 @@ export const languages = [
     getRunCommand: (fileName: string) => {
       return `./${fileName}`;
     },
-    extension: '.cpp'
+    extension: ".cpp",
   },
   {
     name: "Python",
@@ -43,7 +43,7 @@ export const languages = [
     getRunCommand: (fileName: string) => {
       return `python ${fileName}.py`;
     },
-    extension: '.py'
+    extension: ".py",
   },
   {
     name: "Java",
@@ -53,7 +53,7 @@ export const languages = [
     getRunCommand: (fileName: string) => {
       return `java ${fileName}.java 2> /dev/null`;
     },
-    extension: '.java'
+    extension: ".java",
   },
   {
     name: "Javascript",
@@ -63,7 +63,7 @@ export const languages = [
     getRunCommand: (fileName: string) => {
       return `node ${fileName}.js`;
     },
-    extension: '.js'
+    extension: ".js",
   },
   {
     name: "Typescript",
@@ -71,12 +71,12 @@ export const languages = [
     compiled: true,
     dockerContainer: "node",
     getCompileCommand: (fileName: string) => {
-      return `npm i -g typescript && tsc ${fileName}.ts`
+      return `npm i -g typescript && tsc ${fileName}.ts`;
     },
     getRunCommand: (fileName: string) => {
-      return `node ${fileName}.js`
+      return `node ${fileName}.js`;
     },
-    extension: '.ts'
+    extension: ".ts",
   },
   {
     name: "Go",
@@ -86,6 +86,6 @@ export const languages = [
     getRunCommand: (fileName: string) => {
       return `go run ${fileName}.go`;
     },
-    extension: '.go'
+    extension: ".go",
   },
 ];

@@ -16,7 +16,7 @@ export function downloadTestcase(
       .then((val) => {
         res(val);
       })
-      .catch(err => {
+      .catch((err) => {
         rej(err);
       });
   });
