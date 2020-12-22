@@ -75,7 +75,8 @@ export const languages = [
     },
     getRunCommand: (fileName: string) => {
       return `node ${fileName}.js`
-    }
+    },
+    extension: '.ts'
   },
   {
     name: "Go",
