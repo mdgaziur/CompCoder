@@ -66,8 +66,20 @@ export const languages = [
     extension: '.js'
   },
   {
-    name: "Go",
+    name: "Typescript",
     id: 6,
+    compiled: true,
+    dockerContainer: "node",
+    getCompileCommand: (fileName: string) => {
+      return `npm i -g typescript && tsc ${fileName}.ts`
+    },
+    getRunCommand: (fileName: string) => {
+      return `node ${fileName}.js`
+    }
+  },
+  {
+    name: "Go",
+    id: 7,
     compiled: false,
     dockerContainer: "golang",
     getRunCommand: (fileName: string) => {
