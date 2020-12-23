@@ -54,7 +54,7 @@ export class User {
     validate: (email) => {
       return new Promise((res) => {
         res(
-          /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(
+          /^[a-zA-Z0-9.!#$%&’*+/=^_`{|}~-]+@[a-zA-Z0-9-]+(:\.[a-zA-Z0-9-]+)*$/.test(
             email
           )
         );

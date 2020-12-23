@@ -51,7 +51,12 @@ loadDotEnv();
     }),
     context: async ({ req }) => {
       const auth_header = req.headers.authorization || "";
-      const ctxObj = { ip: req?.connection?.remoteAddress?.split(`:`)?.pop() }; // Fix object is possibly undefined
+      let ctxObj: any;
+      if (req.socket.remoteAddress) {
+        ctxObj = { ip: req.socket.remoteAddress.split(`:`).pop() }; // Fix object is possibly undefined
+      } else {
+        ctxObj = {};
+      }
       if (auth_header) {
         let token = <string>auth_header.split(" ")[1];
         const user = await getUser(token);

@@ -61,7 +61,7 @@ export async function sendResetMail(
                                     <tr style="margin: 0;">
                                         <td align="center" style="width:350px;background: rgb(34, 34, 34);padding:1rem">
                                             <a href="${
-                                              "https://compcoder.cc/password_reset?token=" +
+                                              "https://compcoder.cc/password_resettoken=" +
                                               resetToken
                                             }">
                                                 <button
@@ -72,7 +72,7 @@ export async function sendResetMail(
                                             <br />
                                             or<br />
                                             Copy this link<br />
-                                            <p>https://compcoder.cc/password_reset?token=${resetToken}
+                                            <p>https://compcoder.cc/password_resettoken=${resetToken}
                                             </p>
                                         </td>
                                     </tr>

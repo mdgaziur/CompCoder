@@ -58,7 +58,7 @@ export async function sendEmailChangeMail(
                             </tr>
                             <tr style="margin: 0;">
                                 <td align="center" style="width:350px;background: rgb(34, 34, 34);padding:1rem">
-                                    <a href="https://compcoder.cc/change_email?token=${token}">
+                                    <a href="https://compcoder.cc/change_emailtoken=${token}">
                                         <button
                                             style="background: white; color: black;border: none;padding: 1rem; font-size: 1rem; cursor: pointer;">
                                             Click here to change email
@@ -67,7 +67,7 @@ export async function sendEmailChangeMail(
                                     <br />
                                     or<br />
                                     Copy this link<br />
-                                    <p>https://compcoder.cc/change_email?token=${token}
+                                    <p>https://compcoder.cc/change_emailtoken=${token}
                                     </p>
                                 </td>
                             </tr>

@@ -21,7 +21,7 @@ export class Logout {
       if (!user) {
         return true;
       } else {
-        user.accessTokens = user?.accessTokens?.filter((token) => {
+        user.accessTokens = user.accessTokens?.filter((token) => {
           if (token === accessToken) {
             return false;
           }
