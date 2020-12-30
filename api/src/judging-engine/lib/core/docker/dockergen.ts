@@ -9,7 +9,7 @@ export function dockergen(
 
   let from = `FROM ${languageDockerContainer}`;
   let workdir = `WORKDIR ${workDir}`;
-  let copy = `COPY ${fileName} ${workDir}`;
+  let copy = `COPY ${fileName}${languageObj.extension} ${workDir}`;
 
   if (languageObj.compiled && languageObj.getCompileCommand) {
     let compile = `RUN ${languageObj.getCompileCommand(fileName)}`;

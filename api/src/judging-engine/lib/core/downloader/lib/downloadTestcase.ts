@@ -6,6 +6,7 @@ export function downloadTestcase(
   testcaseId: string,
   cos: S3
 ) {
+  console.log(`${problemId}/${type}/${testcaseId}`);
   return new Promise((res, rej) => {
     cos
       .getObject({

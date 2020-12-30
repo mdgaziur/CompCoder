@@ -1,13 +1,13 @@
 import { join } from "path";
 import { DocumentType, getModelForClass } from "@typegoose/typegoose";
 import { tmpdir } from "os";
-import { Problem } from "src/models/Problem";
-import { Submission } from "src/models/Submission";
+import { Problem } from "../../../../src/models/Problem";
+import { Submission } from "../../../../src/models/Submission";
 import { Judging_Job } from "./classes/job";
 import { downloader } from "./downloader/downloader";
 import { verdicts } from "./verdicts";
 import { v4 } from "uuid";
-import { mkdtempSync, readFileSync, writeFileSync } from "fs";
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "fs";
 import { dockergen } from "./docker/dockergen";
 import { exec, execSync } from "child_process";
 
@@ -49,6 +49,10 @@ export class compcoderJudge {
     this.submission = submission;
   }
 
+  getSubmission() {
+    return this.submission;
+  }
+
   async downloadTestcases() {
     let problem = await getModelForClass(Problem).findOne({
       problemId: this.job.problemId,
@@ -56,7 +60,7 @@ export class compcoderJudge {
     if (!problem) {
       throw new Error("Problem does not exists!");
     }
-    let rval = await downloader(problem);
+    let rval = await downloader(problem, this.containerDir);
 
     if (rval.success && rval.dir) {
       this.testcasesFolder = rval.dir;
@@ -67,11 +71,18 @@ export class compcoderJudge {
 
   createContainer() {
     let tworkdir = mkdtempSync(join(tmpdir(), v4()));
+    // create folders for testcases
+    mkdirSync(join(tworkdir, "sample"));
+    mkdirSync(join(tworkdir, "hidden"));
 
     // save the code in a file
     try {
-      writeFileSync(join(tworkdir, this.job.fileName), this.job.code);
-    } catch {
+      writeFileSync(
+        join(tworkdir, this.job.fileName + this.job.languageObj.extension),
+        this.job.code
+      );
+    } catch (e) {
+      console.log(e, e.stack);
       throw new Error(`Unknown error!`);
     }
 
@@ -92,15 +103,18 @@ export class compcoderJudge {
   }
 
   buildContainer() {
-    let command = `docker build ${join(this.containerDir, "Dockerfile")}`;
+    let command = `docker build ${this.containerDir}`;
     try {
       let output = execSync(command).toString();
+      console.log(output);
 
       let lines = output.split("\n");
-      let containerIdLine = lines[lines.length - 2];
+      let containerIdLine = lines[lines.length - 2].split(" ");
       let containerId = containerIdLine[containerIdLine.length - 1];
 
       this.containerId = containerId;
+      console.log(this.submission);
+      console.log(output);
     } catch {
       this.job.verdict = verdicts.JUDGE_COMPILE_ERROR;
       this.submission.verdict = verdicts.JUDGE_COMPILE_ERROR;
@@ -110,13 +124,20 @@ export class compcoderJudge {
     return true;
   }
 
-  runContainer(testcaseID: string) {
-    let command = `docker run -it --memory=${this.job.memoryLimit}m ${this.containerId}`;
+  runContainer(
+    inputFile: string,
+    outputFile: string,
+    testcasesPrefix: "sample" | "hidden"
+  ) {
+    let command = `docker run --memory=${this.job.memoryLimit}m ${
+      this.containerId
+    } ${this.job.languageObj.getRunCommand(this.job.fileName)}`;
 
     this.submission.verdict = verdicts.JUDGE_TESTING;
     this.job.verdict = verdicts.JUDGE_TESTING;
-
+    console.log(command);
     let process = exec(command, (err, stdout, stderr) => {
+      console.log(stdout, err, stderr);
       if (err) {
         if (err.code === 137) {
           this.submission.verdict = verdicts.JUDGE_MEMORY_LIMIT_EXCEEDED;
@@ -132,7 +153,7 @@ export class compcoderJudge {
         }
       } else {
         let testcaseData = readFileSync(
-          join(this.testcasesFolder, testcaseID + ".out")
+          join(this.testcasesFolder, testcasesPrefix, outputFile)
         ).toString();
 
         if (testcaseData === stdout) {
@@ -147,22 +168,28 @@ export class compcoderJudge {
       this.submission.save();
     });
     let inputData = readFileSync(
-      join(this.testcasesFolder, testcaseID + ".in")
+      join(this.testcasesFolder, testcasesPrefix, inputFile)
     );
     process.stdin?.write(inputData);
 
-    let timeout = setTimeout(() => {
-      process.kill();
-      this.submission.verdict = verdicts.JUDGE_CPU_LIMIT_EXCEEDED;
-      this.job.verdict = verdicts.JUDGE_CPU_LIMIT_EXCEEDED;
-      this.submission.save();
-    }, this.job.timeLimit);
+    // let timeout = setTimeout(() => {
+    //   process.kill();
+    //   this.submission.verdict = verdicts.JUDGE_CPU_LIMIT_EXCEEDED;
+    //   this.job.verdict = verdicts.JUDGE_CPU_LIMIT_EXCEEDED;
+    //   this.submission.save();
+    // }, this.job.timeLimit);
 
-    process.on("exit", () => {
-      clearTimeout(timeout);
-    });
-    process.on("error", () => {
-      clearTimeout(timeout);
-    });
+    // process.on("exit", () => {
+    //   clearTimeout(timeout);
+    //   console.log("stopping killer...");
+    // });
+    // process.on("error", () => {
+    //   clearTimeout(timeout);
+    //   console.log("stopping killer...");
+    // });
+    // process.on("close", () => {
+    //   clearTimeout(timeout);
+    //   console.log("stopping killer...");
+    // });
   }
 }

@@ -1,4 +1,3 @@
-import { userSettings } from "./Resolvers/User/userSettings";
 import { ApolloServer } from "apollo-server-express";
 import { config as loadDotEnv } from "dotenv";
 import express from "express";
@@ -17,6 +16,8 @@ import { VerifyPasswordResetToken } from "./Resolvers/Auth/VerifyPasswordResetTo
 import { Test } from "./Resolvers/TestResolver";
 import { getUserResolver } from "./Resolvers/User/getUser";
 import { ProblemResolver } from "./Resolvers/Draft/Problem/Problem";
+import { createSubmission } from "./Resolvers/Submission/createSubmission";
+import { userSettings } from "./Resolvers/User/userSettings";
 // Utility
 import { getUser } from "./utils/User/getUser";
 // REST routes
@@ -40,6 +41,7 @@ loadDotEnv();
         getUserResolver,
         userSettings,
         ProblemResolver,
+        createSubmission,
       ],
       authChecker: ({ context: { user } }) => {
         if (!user) {

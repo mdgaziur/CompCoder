@@ -1,14 +1,15 @@
 import { Problem } from "src/models/Problem";
 import { DocumentType } from "@typegoose/typegoose";
 import { S3 } from "ibm-cos-sdk";
-import { mkdtempSync, writeFileSync } from "fs";
-import { tmpdir } from "os";
+import { writeFileSync } from "fs";
 import { join } from "path";
-import { v4 } from "uuid";
 import { downloadTestcase } from "./lib/downloadTestcase";
-import { errorCodes } from "src/errorCodes";
+import { errorCodes } from "../../../../../src/errorCodes";
 
-export async function downloader(problem: DocumentType<Problem>) {
+export async function downloader(
+  problem: DocumentType<Problem>,
+  tmpDir: string
+) {
   let cos = new S3({
     endpoint: "s3.eu-gb.cloud-object-storage.appdomain.cloud",
     apiKeyId: process.env.IBM_CLOUD_TESTCASES_BUCKET_API_KEY,
@@ -18,22 +19,40 @@ export async function downloader(problem: DocumentType<Problem>) {
   let testcasesMeta: any = problem.testcasesMeta;
   let sampleTestcasesMeta: any = problem.testcasesMeta;
 
-  // create a temp directory
-  let tmpDir = mkdtempSync(join(tmpdir(), v4()));
-
   // download all the hidden testcase files
   let hTestcasesCount = Object.keys(testcasesMeta).length;
   while (hTestcasesCount--) {
+    if (!testcasesMeta[hTestcasesCount + 1]) {
+      break;
+    }
     try {
+      // download input
       let testcaseData: any = await downloadTestcase(
         "hidden",
         problem.problemId,
-        testcasesMeta[hTestcasesCount],
+        testcasesMeta[hTestcasesCount + 1].input,
         cos
       );
 
-      writeFileSync(tmpDir, testcaseData);
-    } catch {
+      writeFileSync(
+        join(tmpDir, "hidden", testcasesMeta[hTestcasesCount + 1].input),
+        testcaseData
+      );
+
+      // download output
+      testcaseData = await downloadTestcase(
+        "hidden",
+        problem.problemId,
+        testcasesMeta[hTestcasesCount + 1].output,
+        cos
+      );
+
+      writeFileSync(
+        join(tmpDir, "hidden", testcasesMeta[hTestcasesCount + 1].output),
+        testcaseData
+      );
+    } catch (e) {
+      console.log(e, e.stack);
       return {
         success: false,
         reason: errorCodes.JUDGE_TESTCASE_DOWNLOAD_FAILED,
@@ -44,15 +63,35 @@ export async function downloader(problem: DocumentType<Problem>) {
   // download all the sample testcases
   let sTestcasesCount = Object.keys(sampleTestcasesMeta).length;
   while (sTestcasesCount--) {
+    if (!sampleTestcasesMeta[sTestcasesCount + 1]) {
+      break;
+    }
     try {
+      // download input
       let testcaseData: any = await downloadTestcase(
-        "hidden",
+        "sample",
         problem.problemId,
-        testcasesMeta[sTestcasesCount],
+        sampleTestcasesMeta[sTestcasesCount + 1].input,
         cos
       );
 
-      writeFileSync(tmpDir, testcaseData);
+      writeFileSync(
+        join(tmpDir, "sample", sampleTestcasesMeta[sTestcasesCount + 1].input),
+        testcaseData
+      );
+
+      // download output
+      testcaseData = await downloadTestcase(
+        "sample",
+        problem.problemId,
+        sampleTestcasesMeta[sTestcasesCount + 1].output,
+        cos
+      );
+
+      writeFileSync(
+        join(tmpDir, "sample", sampleTestcasesMeta[sTestcasesCount + 1].output),
+        testcaseData
+      );
     } catch (e) {
       console.log(e, e.stack);
       return {

@@ -6,6 +6,9 @@
     "sourceMap": true,
     "outDir": "./dist",
     "moduleResolution": "node",
+    "paths": {
+      "src": ["./src/*"]
+    },
     "removeComments": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -20,8 +23,8 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
-    "baseUrl": "."
+    "baseUrl": ".",
   },
   "exclude": ["node_modules"],
-  "include": ["./src/**/*.ts"]
+  "include": ["src/**/*"]
 }

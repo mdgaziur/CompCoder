@@ -1,22 +1,20 @@
 import { User } from "./User";
 import { prop, Ref } from "@typegoose/typegoose";
-import { Problem } from "./Problem";
 import { ObjectType, Field } from "type-graphql";
 
 @ObjectType()
 export class Submission {
   @prop({
-    ref: Problem,
     required: true,
   })
-  @Field(() => Problem)
-  public problem: Ref<Problem>;
+  @Field()
+  public problem: string;
 
   @prop({
     ref: User,
     required: true,
   })
-  @Field(() => User)
+  @Field(() => User, { nullable: true })
   public author: Ref<User>;
 
   @prop({
@@ -33,15 +31,15 @@ export class Submission {
   @prop({
     required: true,
   })
-  @Field()
+  @Field({ nullable: true })
   public verdict: number;
 
   @prop({
-    required: true,
+    required: false,
   })
   public testcasesVerdict?: Map<string, number>;
 
   @prop()
-  @Field()
-  public runtimeOutputs?: Array<string>;
+  @Field(() => [String], { nullable: true })
+  public runtimeOutputs?: string[];
 }

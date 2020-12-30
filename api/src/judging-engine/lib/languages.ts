@@ -15,7 +15,7 @@ export const languages = [
     compiled: true,
     dockerContainer: "gcc",
     getCompileCommand: (fileName: string) => {
-      return `gcc ${fileName}.c`;
+      return `gcc ${fileName}.c -o ${fileName}`;
     },
     getRunCommand: (fileName: string) => {
       return `./${fileName}`;
@@ -28,7 +28,7 @@ export const languages = [
     compiled: true,
     dockerContainer: "gcc",
     getCompileCommand: (fileName: string) => {
-      return `g++ ${fileName}.cpp`;
+      return `g++ ${fileName}.cpp -o ${fileName}`;
     },
     getRunCommand: (fileName: string) => {
       return `./${fileName}`;
