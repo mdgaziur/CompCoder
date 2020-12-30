@@ -3,15 +3,6 @@ import { prop, Ref } from "@typegoose/typegoose";
 import { Problem } from "./Problem";
 import { ObjectType, Field } from "type-graphql";
 
-export enum verdict {
-  AC = "AC",
-  WA = "WA",
-  CLE = "CLE",
-  MLE = "MLE",
-  CE = "CE",
-  RE = "RE",
-}
-
 @ObjectType()
 export class Submission {
   @prop({
@@ -31,17 +22,26 @@ export class Submission {
   @prop({
     required: true,
   })
-  public sourceFileID: string;
+  public sourceFileData: string;
 
   @prop({
-    enum: verdict,
+    required: true,
+    default: new Date(),
+  })
+  public timeCreated?: Date;
+
+  @prop({
     required: true,
   })
   @Field()
-  public verdict: verdict;
+  public verdict: number;
 
   @prop({
     required: true,
   })
-  public testcasesVerdict: Map<string, verdict>;
+  public testcasesVerdict?: Map<string, number>;
+
+  @prop()
+  @Field()
+  public runtimeOutputs?: Array<string>;
 }

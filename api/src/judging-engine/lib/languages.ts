@@ -3,7 +3,7 @@ export interface language {
   id: number;
   compiled: boolean;
   dockerContainer: string;
-  getCompileCommand: (fileName: string) => string;
+  getCompileCommand?: (fileName: string) => string;
   getRunCommand: (fileName: string) => string;
   extension: string;
 }
