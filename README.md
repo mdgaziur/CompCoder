@@ -32,8 +32,8 @@
 - Clone this repository
 - ### To start the api:
   - cd into the api directory
-  - Run `npm i` to install all dependencies
-  - Run `npm start` to start the server
+  - Run `yarn install` to install all dependencies
+  - Run `yarn start` to start the server
   - To access the GraphQL playground(Not available when in production mode), go to `http://localhost:4000/graphql`.
 - ### To start the frontend server
   - cd into the frontend directory
