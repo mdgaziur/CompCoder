@@ -39,13 +39,13 @@ export async function judge(
       }
 
       let testcaseIds = Object.keys(sampleTestcases);
-      testcaseIds.forEach((id) => {
-        engine.runContainer(
-          sampleTestcases[id].input,
-          sampleTestcases[id].output,
+      for (let idx = 0; idx < testcaseIds.length; idx++) {
+        await engine.runContainer(
+          sampleTestcases[testcaseIds[idx]].input,
+          sampleTestcases[testcaseIds[idx]].output,
           "sample"
         );
-      });
+      }
     } else if (testcaseType === "full") {
       let sampleTestcases: any = problem.sampleTestcasesMeta;
       if (!sampleTestcases) {
@@ -53,29 +53,26 @@ export async function judge(
       }
 
       let sTestcaseIds = Object.keys(sampleTestcases);
-      console.log(sTestcaseIds);
-      sTestcaseIds.forEach((id) => {
-        engine.runContainer(
-          sampleTestcases[id].input,
-          sampleTestcases[id].output,
+      for (let idx = 0; idx < sTestcaseIds.length; idx++) {
+        await engine.runContainer(
+          sampleTestcases[sTestcaseIds[idx]].input,
+          sampleTestcases[sTestcaseIds[idx]].output,
           "sample"
         );
-      });
-
+      }
       let hiddenTestcases: any = problem.testcasesMeta;
       if (!hiddenTestcases) {
         throw new Error("Problem does not have any hidden testcase!");
       }
 
       let hTestcaseIds = Object.keys(hiddenTestcases);
-      console.log(hTestcaseIds);
-      hTestcaseIds.forEach((id: any) => {
-        engine.runContainer(
-          hiddenTestcases[id].input,
-          hiddenTestcases[id].output,
+      for (let idx = 0; idx < hTestcaseIds.length; idx++) {
+        await engine.runContainer(
+          hiddenTestcases[hTestcaseIds[idx]].input,
+          hiddenTestcases[hTestcaseIds[idx]].output,
           "hidden"
         );
-      });
+      }
     }
     return engine.getSubmission();
   } else {

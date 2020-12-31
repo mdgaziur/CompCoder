@@ -7,7 +7,14 @@ import { Judging_Job } from "./classes/job";
 import { downloader } from "./downloader/downloader";
 import { verdicts } from "./verdicts";
 import { v4 } from "uuid";
-import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "fs";
+import {
+  copyFileSync,
+  mkdirSync,
+  mkdtempSync,
+  readdirSync,
+  readFileSync,
+  writeFileSync,
+} from "fs";
 import { dockergen } from "./docker/dockergen";
 import { exec, execSync } from "child_process";
 
@@ -60,6 +67,29 @@ export class compcoderJudge {
     if (!problem) {
       throw new Error("Problem does not exists!");
     }
+    if (process.env.NODE_ENV !== "production") {
+      this.testcasesFolder = `files/${problem.problemId}/`;
+      let files = readdirSync(join(this.testcasesFolder, "sample"));
+      files.forEach((file) => {
+        console.log(
+          readFileSync(join(this.testcasesFolder, "sample/" + file)).toString()
+        );
+        copyFileSync(
+          join(this.testcasesFolder, "sample/" + file),
+          join(this.containerDir, "sample/" + file)
+        );
+      });
+
+      files = readdirSync(join(this.testcasesFolder, "hidden"));
+      files.forEach((file) => {
+        copyFileSync(
+          join(this.testcasesFolder, "hidden/" + file),
+          join(this.containerDir, "hidden/" + file)
+        );
+      });
+
+      return;
+    }
     let rval = await downloader(problem, this.containerDir);
 
     if (rval.success && rval.dir) {
@@ -106,15 +136,12 @@ export class compcoderJudge {
     let command = `docker build ${this.containerDir}`;
     try {
       let output = execSync(command).toString();
-      console.log(output);
 
       let lines = output.split("\n");
       let containerIdLine = lines[lines.length - 2].split(" ");
       let containerId = containerIdLine[containerIdLine.length - 1];
 
       this.containerId = containerId;
-      console.log(this.submission);
-      console.log(output);
     } catch {
       this.job.verdict = verdicts.JUDGE_COMPILE_ERROR;
       this.submission.verdict = verdicts.JUDGE_COMPILE_ERROR;
@@ -129,67 +156,69 @@ export class compcoderJudge {
     outputFile: string,
     testcasesPrefix: "sample" | "hidden"
   ) {
-    let command = `docker run --memory=${this.job.memoryLimit}m ${
-      this.containerId
-    } ${this.job.languageObj.getRunCommand(this.job.fileName)}`;
+    return new Promise((res) => {
+      let command = `docker run -i --memory=${this.job.memoryLimit}m ${
+        this.containerId
+      } ${this.job.languageObj.getRunCommand(this.job.fileName)}`;
 
-    this.submission.verdict = verdicts.JUDGE_TESTING;
-    this.job.verdict = verdicts.JUDGE_TESTING;
-    console.log(command);
-    let process = exec(command, (err, stdout, stderr) => {
-      console.log(stdout, err, stderr);
-      if (err) {
-        if (err.code === 137) {
-          this.submission.verdict = verdicts.JUDGE_MEMORY_LIMIT_EXCEEDED;
-          this.job.verdict = verdicts.JUDGE_MEMORY_LIMIT_EXCEEDED;
-        } else {
-          this.submission.verdict = verdicts.JUDGE_RUNTIME_ERROR;
-          this.job.verdict = verdicts.JUDGE_RUNTIME_ERROR;
-          if (this.submission.runtimeOutputs) {
-            this.submission.runtimeOutputs.push(stderr);
+      this.submission.verdict = verdicts.JUDGE_TESTING;
+      this.job.verdict = verdicts.JUDGE_TESTING;
+      let proc = exec(command, async (err, stdout, stderr) => {
+        if (err) {
+          if (err.code === 137) {
+            this.submission.verdict = verdicts.JUDGE_MEMORY_LIMIT_EXCEEDED;
+            this.job.verdict = verdicts.JUDGE_MEMORY_LIMIT_EXCEEDED;
           } else {
-            this.submission.runtimeOutputs = [stderr];
+            this.submission.verdict = verdicts.JUDGE_RUNTIME_ERROR;
+            this.job.verdict = verdicts.JUDGE_RUNTIME_ERROR;
+            if (this.submission.runtimeOutputs) {
+              this.submission.runtimeOutputs.push(stderr);
+            } else {
+              this.submission.runtimeOutputs = [stderr];
+            }
+          }
+        } else {
+          let testcaseData = readFileSync(
+            join(this.testcasesFolder, testcasesPrefix, outputFile)
+          ).toString();
+
+          if (testcaseData === stdout) {
+            this.submission.verdict = verdicts.JUDGE_ACCEPTED;
+            this.job.verdict = verdicts.JUDGE_ACCEPTED;
+          } else {
+            this.submission.verdict = verdicts.JUDGE_WRONG_ANSWER;
+            this.job.verdict = verdicts.JUDGE_ACCEPTED;
           }
         }
-      } else {
-        let testcaseData = readFileSync(
-          join(this.testcasesFolder, testcasesPrefix, outputFile)
-        ).toString();
 
-        if (testcaseData === stdout) {
-          this.submission.verdict = verdicts.JUDGE_ACCEPTED;
-          this.job.verdict = verdicts.JUDGE_ACCEPTED;
-        } else {
-          this.submission.verdict = verdicts.JUDGE_WRONG_ANSWER;
-          this.job.verdict = verdicts.JUDGE_ACCEPTED;
-        }
-      }
+        await this.submission.save();
+        res("complete");
+      });
+      let inputData = readFileSync(
+        join(this.testcasesFolder, testcasesPrefix, inputFile)
+      );
+      proc.stdin?.write(inputData + "\n");
+      proc.stdin?.end();
 
-      this.submission.save();
+      // let timeout = setTimeout(() => {
+      //   process.kill();
+      //   this.submission.verdict = verdicts.JUDGE_CPU_LIMIT_EXCEEDED;
+      //   this.job.verdict = verdicts.JUDGE_CPU_LIMIT_EXCEEDED;
+      //   this.submission.save();
+      // }, this.job.timeLimit);
+
+      // process.on("exit", () => {
+      //   clearTimeout(timeout);
+      //   console.log("stopping killer...");
+      // });
+      // process.on("error", () => {
+      //   clearTimeout(timeout);
+      //   console.log("stopping killer...");
+      // });
+      // process.on("close", () => {
+      //   clearTimeout(timeout);
+      //   console.log("stopping killer...");
+      // });
     });
-    let inputData = readFileSync(
-      join(this.testcasesFolder, testcasesPrefix, inputFile)
-    );
-    process.stdin?.write(inputData);
-
-    // let timeout = setTimeout(() => {
-    //   process.kill();
-    //   this.submission.verdict = verdicts.JUDGE_CPU_LIMIT_EXCEEDED;
-    //   this.job.verdict = verdicts.JUDGE_CPU_LIMIT_EXCEEDED;
-    //   this.submission.save();
-    // }, this.job.timeLimit);
-
-    // process.on("exit", () => {
-    //   clearTimeout(timeout);
-    //   console.log("stopping killer...");
-    // });
-    // process.on("error", () => {
-    //   clearTimeout(timeout);
-    //   console.log("stopping killer...");
-    // });
-    // process.on("close", () => {
-    //   clearTimeout(timeout);
-    //   console.log("stopping killer...");
-    // });
   }
 }
