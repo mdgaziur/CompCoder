@@ -115,6 +115,11 @@ export async function extractZip(
     }
     try {
       mkdirSync(`files/${problemID}/`);
+    } catch (e) {
+      console.log(e, e.stack);
+    }
+
+    try {
       mkdirSync(`files/${problemID}/${prefix}`);
     } catch (e) {
       console.log(e, e.stack);
@@ -128,10 +133,10 @@ export async function extractZip(
       );
     }
     return {
-      success: false,
+      success: true,
     };
   }
   return {
-    success: true,
+    success: false,
   };
 }
