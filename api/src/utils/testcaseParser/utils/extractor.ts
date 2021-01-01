@@ -2,7 +2,7 @@ import { errorCodes } from "../../../errorCodes";
 import JSZip from "jszip";
 import { returnType } from "./../types";
 import { S3 } from "ibm-cos-sdk";
-import { mkdirSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, writeFileSync } from "fs";
 
 function createTextFile(
   bucketName: string,
@@ -108,21 +108,14 @@ export async function extractZip(
     }
   } else {
     let prefix = testcaseType === 0 ? "sample" : "hidden";
-    try {
+    if (!existsSync(`files`)) {
       mkdirSync(`files`);
-    } catch (e) {
-      console.log(e, e.stack);
     }
-    try {
+    if (!existsSync(`files${problemID}`)) {
       mkdirSync(`files/${problemID}/`);
-    } catch (e) {
-      console.log(e, e.stack);
     }
-
-    try {
+    if (!existsSync(`files/${problemID}/${prefix}`)) {
       mkdirSync(`files/${problemID}/${prefix}`);
-    } catch (e) {
-      console.log(e, e.stack);
     }
 
     for (let file of files) {
