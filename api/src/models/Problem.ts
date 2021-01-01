@@ -80,5 +80,6 @@ export class Problem {
   @prop({
     ref: "Submission",
   })
-  public Submissions?: Ref<Submission>;
+  @Field(() => String)
+  public Submissions?: Ref<Submission>[];
 }

@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="./branding/CompCoder Black Background.png">
-</p>
+![CompCoder Logo](media/CompCoder%20Black%20Background.png)
 
 # CompCoder
 

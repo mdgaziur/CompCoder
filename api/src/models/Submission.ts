@@ -37,7 +37,8 @@ export class Submission {
   @prop({
     required: false,
   })
-  public testcasesVerdict?: Map<string, number>;
+  @Field(() => [Number])
+  public testcasesVerdict?: number[];
 
   @prop()
   @Field(() => [String], { nullable: true })

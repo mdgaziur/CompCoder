@@ -1,5 +1,5 @@
 import { problemShouldExist } from "../../REST/validators/problemShouldExist";
-import { judge } from "../../judging-engine/index";
+// import { judge } from "../../judging-engine/index";
 import { Arg, Authorized, Ctx, Mutation, Resolver } from "type-graphql";
 import { Submission } from "../../models/Submission";
 
@@ -29,6 +29,8 @@ export class createSubmission {
     if (inputErrors.length > 0) {
       return inputErrors;
     }
-    return await judge(problemId, code, context.user.id, languageId, "full");
+    // return await judge(problemId, code, context.user.id, languageId, "full");
+    console.log(code, context);
+    return new Submission();
   }
 }
