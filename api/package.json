@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec ts-node src/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "generateDoc": "typedoc --media ../media --exclude **/node_modules/** --out docs ./"
   },
   "repository": {
     "type": "git",
@@ -41,7 +42,7 @@
     "ibm-cos-sdk": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "jszip": "^3.5.0",
-    "mongoose": "^5.11.9",
+    "mongoose": "5.10.18",
     "nodemailer": "^6.4.16",
     "reflect-metadata": "^0.1.13",
     "request-promise": "^4.2.6",
