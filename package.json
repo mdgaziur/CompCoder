@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-api-dev": "cd api && nodemon --exec ts-node src/index.ts",
-    "generate-doc-api": "typedoc --out ./apiDoc --exclude \"**/node_modules/**\" ./api/src"
+    "doc-api": "cd api && yarn doc"
   },
   "repository": {
     "type": "git",
