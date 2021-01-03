@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec ts-node src/index.ts",
+    "doc": "typedoc --out ./docs --exclude \"**/node_modules/**\" ./ ",
     "build": "tsc"
   },
   "repository": {
@@ -41,11 +42,12 @@
     "ibm-cos-sdk": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "jszip": "^3.5.0",
-    "mongoose": "^5.11.9",
+    "mongoose": "5.10.18",
     "nodemailer": "^6.4.16",
     "reflect-metadata": "^0.1.13",
     "request-promise": "^4.2.6",
     "type-graphql": "^1.1.1",
+    "typegoose": "^5.9.1",
     "uuid": "^8.3.2",
     "validator": "^13.0.0"
   },
@@ -55,7 +57,6 @@
     "@types/express-fileupload": "^1.1.5",
     "@types/express-validator": "^3.0.0",
     "@types/jsonwebtoken": "^8.5.0",
-    "@types/mongoose": "^5.10.1",
     "@types/node": "^14.14.9",
     "@types/nodemailer": "^6.4.0",
     "@types/validator": "^13.0.0",

@@ -42,7 +42,7 @@ export class createSubmission {
       });
     }
     let problemModel = getModelForClass(Problem);
-    let problem: DocumentType<Problem> = await problemModel.findOne({
+    let problem = await problemModel.findOne({
       problemId: problemId,
     });
     let submissionModel = getModelForClass(Submission);
@@ -64,7 +64,7 @@ export class createSubmission {
         isSampleSubmission: false,
       });
     }
-    if (!problem.testcasesMeta || !problem.sampleTestcasesMeta) {
+    if (!problem?.testcasesMeta || !problem?.sampleTestcasesMeta) {
       throw new UserInputError(
         "Problem does not have sample or hidden testcase!",
         {
@@ -72,8 +72,8 @@ export class createSubmission {
         }
       );
     } else if (
-      problem.testcasesMeta.length === 0 ||
-      problem.sampleTestcasesMeta.length === 0
+      problem?.testcasesMeta.length === 0 ||
+      problem?.sampleTestcasesMeta.length === 0
     ) {
       throw new UserInputError(
         "Problem does not have sample or hidden testcase!",
@@ -93,7 +93,7 @@ export class createSubmission {
               problemId,
               "sample",
               testcasesDir,
-              problem.testcasesMeta
+              problem?.testcasesMeta
             );
             if (!isSuccess) {
               return "Unknown Server Error";
@@ -102,7 +102,7 @@ export class createSubmission {
               problemId,
               "hidden",
               testcasesDir,
-              problem.testcasesMeta
+              problem?.testcasesMeta
             );
             if (!isSuccessH) {
               return "Unknown Server Error";
@@ -114,13 +114,13 @@ export class createSubmission {
             problemId,
             "sample",
             testcasesDir,
-            problem.sampleTestcasesMeta
+            problem?.sampleTestcasesMeta
           );
           let y = await downloadTestcases(
             problemId,
             "hidden",
             testcasesDir,
-            problem.testcasesMeta
+            problem?.testcasesMeta
           );
 
           if (!s || !y) {
@@ -131,11 +131,11 @@ export class createSubmission {
         testcasesDir = join("files", problemId);
       }
       let judger = new judgeEngine(
-        problem.testcasesMeta,
-        problem.sampleTestcasesMeta,
+        problem?.testcasesMeta,
+        problem?.sampleTestcasesMeta,
         testcasesDir,
-        problem.memoryLimit,
-        problem.timeLimit,
+        problem?.memoryLimit,
+        problem?.timeLimit,
         submission,
         languageId,
         code,
@@ -143,7 +143,7 @@ export class createSubmission {
       );
       judger.start();
 
-      problem.Submissions?.push(submission._id);
+      problem?.Submissions?.push(submission._id);
       return submission;
     }
   }

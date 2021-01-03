@@ -15,7 +15,7 @@ export default ({ db }: UType) => {
       .then(() => {
         console.log(`🆗 Connected to database at ${db}`);
       })
-      .catch((error) => {
+      .catch((error: string) => {
         console.error(`❌ Failed to connect to database: ${error}`);
         return process.exit(1);
       });

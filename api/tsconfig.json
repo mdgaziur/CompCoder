@@ -10,7 +10,6 @@
       "src": ["./src/*"]
     },
     "removeComments": true,
-    "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "noImplicitThis": true,
@@ -25,6 +24,6 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
   },
-  "exclude": ["**/node_modules/**"],
+  "exclude": ["node_modules"],
   "include": ["src/**/*"]
 }
