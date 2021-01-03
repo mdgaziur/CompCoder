@@ -1,5 +1,6 @@
+import { testcaseMetaType } from "./../../../judging-engine/types";
 import { errorCodes } from "./../../../errorCodes";
-import { metaType, returnType } from "./../types";
+import { returnType } from "./../types";
 import JSZip from "jszip";
 
 // https://stackoverflow.com/questions/10225399/check-if-a-file-is-binary-or-ascii-with-node-js
@@ -56,7 +57,7 @@ export async function validateTestcasesFile(file: Buffer): Promise<returnType> {
   // Make sure all the files have valid index and there is one output file for an input file
   let idx = 1;
   let requiredMatches = fileNames.length / 2;
-  let testcasesMeta: metaType = {};
+  let testcasesMeta: testcaseMetaType[] = [];
 
   while (idx <= requiredMatches) {
     let inputFileRegex = new RegExp(`${idx}\\.(\\w+)\\.in`);
@@ -81,13 +82,12 @@ export async function validateTestcasesFile(file: Buffer): Promise<returnType> {
           reason: errorCodes.INVALID_FILE_TYPE,
         };
       }
-
-      testcasesMeta[idx] = {
-        input: inputFile,
-        output: outputFile,
-      };
     }
     idx++;
+    testcasesMeta.push({
+      input: inputFile,
+      output: outputFile,
+    });
   }
   return {
     success: true,

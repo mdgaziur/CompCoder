@@ -3,6 +3,7 @@ import JSZip from "jszip";
 import { returnType } from "./../types";
 import { S3 } from "ibm-cos-sdk";
 import { existsSync, mkdirSync, writeFileSync } from "fs";
+import { v4 } from "uuid";
 
 function createTextFile(
   bucketName: string,
@@ -73,6 +74,14 @@ export async function extractZip(
 
     cos = new S3(config);
 
+    // create a file containing an uuid to identify changes to testcases
+    await createTextFile(
+      "compcoder-testcases",
+      `${problemID}/uuid.txt`,
+      v4(),
+      cos
+    );
+
     for (let file of files) {
       let testCaseFile = zipFile.file(file);
       if (!testCaseFile) {
@@ -111,7 +120,7 @@ export async function extractZip(
     if (!existsSync(`files`)) {
       mkdirSync(`files`);
     }
-    if (!existsSync(`files${problemID}`)) {
+    if (!existsSync(`files/${problemID}`)) {
       mkdirSync(`files/${problemID}/`);
     }
     if (!existsSync(`files/${problemID}/${prefix}`)) {

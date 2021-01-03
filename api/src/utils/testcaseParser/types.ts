@@ -1,12 +1,7 @@
-export type metaType = {
-  [key: number]: {
-    input: string;
-    output: string;
-  };
-};
+import { testcaseMetaType } from "./../../judging-engine/types";
 
 export type returnType = {
   success: Boolean;
-  meta?: metaType;
+  meta?: testcaseMetaType[];
   reason?: number;
 };
