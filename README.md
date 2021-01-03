@@ -21,6 +21,14 @@
 
 ## How to start on localhost?
 
+- ### How to generate docs for the api?
+
+  - Run `yarn doc-api` to generate docs
+  - The docs for api will be at the directory called "api-docs"
+  - To view the docs, open the index.html file in that directory. You'll find all the docs in that webpage.
+
+- ### How to generate docs for the frontend?
+  - Not available at this time
 - ### Create a .env file in /api
   - Add a variable JWT_SECRET_KEY and set the value to a randomly generated string
   - Add a variable CC_EMAIL and set an email address as the value of that variable
