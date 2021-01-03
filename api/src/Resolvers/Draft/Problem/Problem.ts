@@ -16,7 +16,7 @@ export class ProblemResolver {
     @Arg("title", () => String) title: string,
     @Arg("description", () => String) description: String,
     @Arg("memoryLimit", () => Number) memoryLimit: number,
-    @Arg("cpuLimit", () => Number) cpuLimit: number,
+    @Arg("timeLimit", () => Number) timeLimit: number,
     @Arg("availableLangs", () => [Number]) availableLangs: number[]
   ) {
     let user: DocumentType<User> = context.user;
@@ -35,9 +35,9 @@ export class ProblemResolver {
       });
     }
 
-    if (cpuLimit < 100 || cpuLimit > 5000) {
+    if (timeLimit < 100 || timeLimit > 5000) {
       throw new UserInputError("CPU limit out of range!", {
-        inputArgs: ["cpuLimit"],
+        inputArgs: ["timeLimit"],
       });
     }
 
@@ -61,7 +61,7 @@ export class ProblemResolver {
       description: description,
       availableLangs: availableLangs,
       author: user._id,
-      cpuLimit: cpuLimit,
+      timeLimit: timeLimit,
       memoryLimit: memoryLimit,
     });
     if (!user.createdProblems) {
