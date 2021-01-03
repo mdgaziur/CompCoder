@@ -2,7 +2,7 @@ import { prop, Ref } from "@typegoose/typegoose";
 import { Field, ObjectType } from "type-graphql";
 import { Submission } from "./Submission";
 import { Problem } from "./Problem";
-import { IsEmail, MaxLength, MinLength } from "class-validator";
+import { MaxLength, MinLength } from "class-validator";
 
 export enum userTypes {
   admin = "admin",
@@ -62,7 +62,6 @@ export class User {
     },
   })
   @Field()
-  @IsEmail()
   public email: string;
 
   @prop({

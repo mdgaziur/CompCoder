@@ -1,3 +1,4 @@
+import { testcaseMetaType } from "./../judging-engine/types";
 import { Submission } from "./Submission";
 import { User } from "./User";
 import { Ref, prop } from "@typegoose/typegoose";
@@ -63,19 +64,15 @@ export class Problem {
     required: true,
   })
   @Field()
-  public cpuLimit: number;
+  public timeLimit: number;
 
   @prop({
     required: true,
-    default: Object,
   })
-  public sampleTestcasesMeta?: object;
+  public sampleTestcasesMeta?: testcaseMetaType[];
 
-  @prop({
-    required: true,
-    default: Object,
-  })
-  public testcasesMeta?: object;
+  @prop()
+  public testcasesMeta?: testcaseMetaType[];
 
   @prop({
     ref: "Submission",

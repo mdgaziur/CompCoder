@@ -43,4 +43,14 @@ export class Submission {
   @prop()
   @Field(() => [String], { nullable: true })
   public runtimeOutputs?: string[];
+
+  @prop()
+  @Field(() => [Number])
+  public sampleTestcasesVerdict?: number[];
+
+  @prop({
+    required: true,
+  })
+  @Field(() => Boolean)
+  public isSampleSubmission: Boolean;
 }
