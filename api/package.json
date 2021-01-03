@@ -42,7 +42,7 @@
     "ibm-cos-sdk": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
     "jszip": "^3.5.0",
-    "mongoose": "5.10.18",
+    "mongoose": "5.10.19",
     "nodemailer": "^6.4.16",
     "reflect-metadata": "^0.1.13",
     "request-promise": "^4.2.6",
