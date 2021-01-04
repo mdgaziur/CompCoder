@@ -34,7 +34,7 @@ export const testcaseUpload = expressRouter.post(
       res.end();
     } else {
       let problem = await getModelForClass(Problem).findOne({
-        problemId: req.body.problemId,
+        _id: req.body.problemId,
       });
       if (!problem) {
         res.status(404);
@@ -58,7 +58,7 @@ export const testcaseUpload = expressRouter.post(
               reason,
             } = await validateAndExtractTestcaseZipFile(
               zipFile.data,
-              problem.problemId,
+              problem._id,
               parseInt(req.body.testcaseType)
             );
             if (!success) {
