@@ -2,7 +2,7 @@ import { errorCodes } from "../../../errorCodes";
 import JSZip from "jszip";
 import { returnType } from "./../types";
 import { S3 } from "ibm-cos-sdk";
-import { existsSync, mkdirSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, rmdirSync, writeFileSync } from "fs";
 import { v4 } from "uuid";
 
 function createTextFile(
@@ -124,6 +124,7 @@ export async function extractZip(
       mkdirSync(`files/${problemID}/`);
     }
     if (!existsSync(`files/${problemID}/${prefix}`)) {
+      rmdirSync(`files/${problemID}/${prefix}`);
       mkdirSync(`files/${problemID}/${prefix}`);
     }
 

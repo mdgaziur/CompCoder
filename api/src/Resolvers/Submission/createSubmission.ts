@@ -143,7 +143,8 @@ export class createSubmission {
       );
       judger.start();
 
-      problem?.Submissions?.push(submission._id);
+      problem.Submissions.push(submission._id);
+      await problem.save();
       return submission;
     }
   }
