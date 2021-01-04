@@ -22,6 +22,7 @@ import { userSettings } from "./Resolvers/User/userSettings";
 import { getUser } from "./utils/User/getUser";
 // REST routes
 import { testcaseUpload } from "./REST/testcaseUpload/testcaseUpload";
+import { getters } from "./Resolvers/Getters/getters";
 
 //Get data from .env file
 loadDotEnv();
@@ -42,6 +43,7 @@ loadDotEnv();
         userSettings,
         ProblemResolver,
         createSubmission,
+        getters,
       ],
       authChecker: ({ context: { user } }) => {
         if (!user) {
