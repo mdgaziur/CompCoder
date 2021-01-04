@@ -2,7 +2,8 @@ import { prop, Ref } from "@typegoose/typegoose";
 import { Field, ObjectType } from "type-graphql";
 import { Submission } from "./Submission";
 import { Problem } from "./Problem";
-import { MaxLength, MinLength } from "class-validator";
+import { IsEmail, MaxLength, MinLength } from "class-validator";
+import { ObjectId } from "mongodb";
 
 export enum userTypes {
   admin = "admin",
@@ -12,6 +13,9 @@ export enum userTypes {
 
 @ObjectType()
 export class User {
+  @Field(() => String)
+  readonly _id: ObjectId;
+
   @prop({
     required: true,
     minlength: 3,
@@ -51,17 +55,9 @@ export class User {
   @prop({
     required: true,
     trim: true,
-    validate: (email) => {
-      return new Promise((res) => {
-        res(
-          /^[a-zA-Z0-9.!#$%&’*+/=^_`{|}~-]+@[a-zA-Z0-9-]+(:\.[a-zA-Z0-9-]+)*$/.test(
-            email
-          )
-        );
-      });
-    },
   })
   @Field()
+  @IsEmail()
   public email: string;
 
   @prop({

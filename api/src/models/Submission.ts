@@ -1,9 +1,13 @@
+import { ObjectId } from "mongodb";
 import { User } from "./User";
 import { prop, Ref } from "@typegoose/typegoose";
 import { ObjectType, Field } from "type-graphql";
 
 @ObjectType()
 export class Submission {
+  @Field(() => String)
+  readonly _id: ObjectId;
+
   @prop({
     required: true,
   })
@@ -14,7 +18,7 @@ export class Submission {
     ref: User,
     required: true,
   })
-  @Field(() => User, { nullable: true })
+  @Field(() => String, { nullable: true })
   public author: Ref<User>;
 
   @prop({

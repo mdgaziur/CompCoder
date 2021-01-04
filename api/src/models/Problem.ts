@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import { testcaseMetaType } from "./../judging-engine/types";
 import { Submission } from "./Submission";
 import { User } from "./User";
@@ -6,11 +7,8 @@ import { Field, ObjectType } from "type-graphql";
 
 @ObjectType()
 export class Problem {
-  @prop({
-    required: true,
-  })
   @Field(() => String)
-  public problemId: string;
+  readonly _id: ObjectId;
 
   @prop({
     required: true,
