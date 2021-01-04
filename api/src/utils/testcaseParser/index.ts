@@ -4,7 +4,7 @@ import { validateTestcasesFile } from "./utils/validator";
 
 export async function validateAndExtractTestcaseZipFile(
   fileBuffer: Buffer,
-  problemID: string,
+  problemId: string,
   testcaseType: number
 ): Promise<returnType> {
   let { success, reason, meta } = await validateTestcasesFile(fileBuffer);
@@ -17,7 +17,7 @@ export async function validateAndExtractTestcaseZipFile(
   } else {
     let { success, reason } = await extractZip(
       fileBuffer,
-      problemID,
+      problemId,
       testcaseType
     );
     if (!success) {
