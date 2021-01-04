@@ -43,7 +43,7 @@ export class createSubmission {
     }
     let problemModel = getModelForClass(Problem);
     let problem = await problemModel.findOne({
-      problemId: problemId,
+      _id: problemId,
     });
     let submissionModel = getModelForClass(Submission);
     let submission: DocumentType<Submission>;

@@ -5,7 +5,6 @@ import { UserInputError } from "apollo-server";
 import { isUniqueField } from "../../../utils/isUniqueField";
 import { Arg, Ctx, Mutation, Resolver, Authorized } from "type-graphql";
 import { User } from "../../../models/User";
-import { v4 } from "uuid";
 
 @Resolver()
 export class ProblemResolver {
@@ -56,7 +55,6 @@ export class ProblemResolver {
     }
 
     let problem = await problemModel.create({
-      problemId: v4().toString(),
       title: title,
       description: description,
       availableLangs: availableLangs,

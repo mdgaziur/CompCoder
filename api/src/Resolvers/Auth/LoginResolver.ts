@@ -40,7 +40,7 @@ export class Login {
       );
 
       user.accessTokens = [token];
-      user.save();
+      user.update();
 
       return token;
     }
