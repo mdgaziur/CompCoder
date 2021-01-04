@@ -30,7 +30,6 @@ export async function evalTestcases(
   testcaseType: "hidden" | "sample"
 ) {
   for (let idx in testcasesMeta) {
-    console.log(testcasesMeta[idx]);
     let inputFile = testcasesMeta[idx].input;
     let outputFile = testcasesMeta[idx].output;
 
@@ -45,6 +44,10 @@ export async function evalTestcases(
         memL,
         tL
       );
+
+      // trim output and outputData
+      output = output.replace(/^\s+|\s+$/g, "");
+      outputData = outputData.replace(/^\s+|\s+$/g, "");
 
       if (testcaseType === "hidden") {
         if (output === outputData) {
