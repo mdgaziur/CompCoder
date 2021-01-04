@@ -53,7 +53,7 @@ function removeTextFile(
 
 export async function extractZip(
   zip: Buffer,
-  problemID: string,
+  problemId: string,
   testcaseType: number
 ): Promise<returnType> {
   let jszip = new JSZip();
@@ -77,7 +77,7 @@ export async function extractZip(
     // create a file containing an uuid to identify changes to testcases
     await createTextFile(
       "compcoder-testcases",
-      `${problemID}/uuid.txt`,
+      `${problemId}/uuid.txt`,
       v4(),
       cos
     );
@@ -96,7 +96,7 @@ export async function extractZip(
       try {
         await createTextFile(
           "compcoder-testcases",
-          `${problemID}/${prefix}/` + file,
+          `${problemId}/${prefix}/` + file,
           testcaseData,
           cos
         );
@@ -105,7 +105,7 @@ export async function extractZip(
           for (let f of files) {
             await removeTextFile(
               "compcoder-testcases",
-              `${problemID}/${prefix}/` + f,
+              `${problemId}/${prefix}/` + f,
               cos
             );
           }
@@ -120,18 +120,20 @@ export async function extractZip(
     if (!existsSync(`files`)) {
       mkdirSync(`files`);
     }
-    if (!existsSync(`files/${problemID}`)) {
-      mkdirSync(`files/${problemID}/`);
+    if (!existsSync(`files/${problemId}`)) {
+      mkdirSync(`files/${problemId}/`);
     }
-    if (!existsSync(`files/${problemID}/${prefix}`)) {
-      rmdirSync(`files/${problemID}/${prefix}`);
-      mkdirSync(`files/${problemID}/${prefix}`);
+    if (!existsSync(`files/${problemId}/${prefix}`)) {
+      mkdirSync(`files/${problemId}/${prefix}`);
+    } else {
+      rmdirSync(`files/${problemId}/${prefix}`);
+      mkdirSync(`files/${problemId}/${prefix}`);
     }
 
     for (let file of files) {
       let testCaseFile = zipFile.file(file);
       writeFileSync(
-        `files/${problemID}/${prefix}/${file}`,
+        `files/${problemId}/${prefix}/${file}`,
         (await testCaseFile?.async("string")) || ""
       );
     }
