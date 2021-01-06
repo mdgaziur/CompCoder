@@ -35,6 +35,12 @@ export class Submission {
   @prop({
     required: true,
   })
+  @Field()
+  public language: number;
+
+  @prop({
+    required: true,
+  })
   @Field({ nullable: true })
   public verdict: number;
 

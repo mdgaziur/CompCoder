@@ -21,6 +21,14 @@ class paginatedProblems {
   @Field(() => [Problem])
   public items: Problem[];
 }
+@ObjectType()
+class paginatedSubmissions {
+  @Field()
+  public pages: number;
+
+  @Field(() => [Submission])
+  public items: Submission[];
+}
 
 @Resolver()
 export class getters {
@@ -77,7 +85,7 @@ export class getters {
   async getProblems(
     @Arg("page", { nullable: true }) page: number,
     @Arg("itemsPerPage", { nullable: true }) itemsPerPage: number
-  ) {
+  ): Promise<paginatedProblems> {
     if (!page || !itemsPerPage) {
       page = 1;
       itemsPerPage = 5;
@@ -96,4 +104,65 @@ export class getters {
 
     return paginated;
   }
+
+  // get submissions
+  @Query(() => paginatedSubmissions)
+  async getSubmissions(
+    @Arg("page", () => Number, { nullable: true }) page: number,
+    @Arg("itemsPerPage", () => Number, { nullable: true }) itemsPerPage: number
+  ): Promise<paginatedSubmissions> {
+    if (!page || !itemsPerPage) {
+      page = 1;
+      itemsPerPage = 5;
+    }
+    let submissionModel = getModelForClass(Submission);
+    let submissions = await submissionModel.find();
+
+    // paginate
+    let offset = (page - 1) * itemsPerPage;
+    let paginatedItems = submissions.slice(offset).slice(0, itemsPerPage);
+    let totalPages = Math.ceil(paginatedItems.length / itemsPerPage);
+
+    let paginated = new paginatedSubmissions();
+    paginated.items = paginatedItems;
+    paginated.pages = totalPages;
+
+    return paginated;
+  }
+
+  // get submissions with filters
+  @Query(() => paginatedSubmissions)
+  async getFilteredSubmissions(
+    @Arg("page", () => Number, { nullable: true }) page: number,
+    @Arg("itemsPerPage", () => Number, { nullable: true }) itemsPerPage: number,
+    @Arg("author", () => String, { nullable: true }) author: string,
+    @Arg("problem", () => String, { nullable: true }) problem: string,
+    @Arg("verdict", () => Number, { nullable: true }) verdict: number,
+    @Arg("language", () => Number, { nullable: true }) language: number
+  ): Promise<paginatedSubmissions> {
+    if (!page || !itemsPerPage) {
+      page = 1;
+      itemsPerPage = 5;
+    }
+    let query = {};
+    if (author) query["author"] = author;
+    if (problem) query["problem"] = problem;
+    if (verdict) query["verdict"] = verdict;
+    if (language) query["language"] = language;
+
+    let submissions = await getModelForClass(Submission).find(query);
+
+    // paginate
+    let offset = (page - 1) * itemsPerPage;
+    let paginatedItems = submissions.slice(offset).slice(0, itemsPerPage);
+    let totalPages = Math.ceil(paginatedItems.length / itemsPerPage);
+
+    let paginated = new paginatedSubmissions();
+    paginated.items = paginatedItems;
+    paginated.pages = totalPages;
+
+    return paginated;
+  }
+
+  // TODO: make query to get problems with filter
 }

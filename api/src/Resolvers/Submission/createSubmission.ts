@@ -54,6 +54,7 @@ export class createSubmission {
         sourceFileData: code,
         verdict: verdicts.JUDGE_Q,
         isSampleSubmission: true,
+        language: languageId,
       });
     } else {
       submission = await submissionModel.create({
@@ -62,6 +63,7 @@ export class createSubmission {
         sourceFileData: code,
         verdict: verdicts.JUDGE_Q,
         isSampleSubmission: false,
+        language: languageId,
       });
     }
     if (!problem?.testcasesMeta || !problem?.sampleTestcasesMeta) {
