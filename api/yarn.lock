@@ -300,12 +300,20 @@
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
 
-"@types/mongodb@^3.5.27", "@types/mongodb@^3.6.3":
+"@types/mongodb@*", "@types/mongodb@^3.5.27", "@types/mongodb@^3.6.3":
   version "3.6.3"
   resolved "https://registry.npmjs.org/@types/mongodb/-/mongodb-3.6.3.tgz"
   integrity sha512-6YNqGP1hk5bjUFaim+QoFFuI61WjHiHE1BNeB41TA00Xd2K7zG4lcWyLLq/XtIp36uMavvS5hoAUJ+1u/GcX2Q==
   dependencies:
     "@types/bson" "*"
+    "@types/node" "*"
+
+"@types/mongoose@^5.10.3":
+  version "5.10.3"
+  resolved "https://registry.yarnpkg.com/@types/mongoose/-/mongoose-5.10.3.tgz#3bc6787245aa8ebbff4ed61da18f4775e0ec52cd"
+  integrity sha512-VfdnaFImXEJZZiuL2ID/ysZs4inOIjxwrAnUgkr5eum2O2BLhFkiSI0i87AwignVva1qWTJ3H3DyM0Rf4USJ4A==
+  dependencies:
+    "@types/mongodb" "*"
     "@types/node" "*"
 
 "@types/node-fetch@2.5.7":
