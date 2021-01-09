@@ -12,7 +12,7 @@ import { ReturnModelType, DocumentType } from "@typegoose/typegoose";
 export async function isUniqueField(
   fieldData: string,
   fieldName: string,
-  model: ReturnModelType<typeof User | typeof Problem | typeof Submission, {}>,
+  model: ReturnModelType<any>,
   currentDocument?: DocumentType<User | Problem | Submission>
 ): Promise<boolean> {
   let query: any = {};
