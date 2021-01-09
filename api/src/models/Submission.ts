@@ -2,6 +2,7 @@ import { ObjectId } from "mongodb";
 import { User } from "./User";
 import { prop, Ref } from "@typegoose/typegoose";
 import { ObjectType, Field } from "type-graphql";
+import { Problem } from "./Problem";
 
 @ObjectType()
 export class Submission {
@@ -10,15 +11,16 @@ export class Submission {
 
   @prop({
     required: true,
+    ref: Problem,
   })
-  @Field()
-  public problem: string;
+  @Field(() => Problem)
+  public problem: Ref<Problem>;
 
   @prop({
     ref: User,
     required: true,
   })
-  @Field(() => String, { nullable: true })
+  @Field(() => User)
   public author: Ref<User>;
 
   @prop({
@@ -41,7 +43,7 @@ export class Submission {
   @prop({
     required: true,
   })
-  @Field({ nullable: true })
+  @Field()
   public verdict: number;
 
   @prop({
