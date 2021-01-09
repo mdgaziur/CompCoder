@@ -45,11 +45,16 @@ export class createSubmission {
     let problem = await problemModel.findOne({
       _id: problemId,
     });
+    if (!problem) {
+      throw new UserInputError("Problem does not exists", {
+        inputArg: ["problemId"],
+      });
+    }
     let submissionModel = getModelForClass(Submission);
     let submission: DocumentType<Submission>;
     if (testcaseType === "sample") {
       submission = await submissionModel.create({
-        problem: problemId,
+        problem: problem,
         author: context.user,
         sourceFileData: code,
         verdict: verdicts.JUDGE_Q,
@@ -58,7 +63,7 @@ export class createSubmission {
       });
     } else {
       submission = await submissionModel.create({
-        problem: problemId,
+        problem: problem,
         author: context.user,
         sourceFileData: code,
         verdict: verdicts.JUDGE_Q,
@@ -145,6 +150,9 @@ export class createSubmission {
       );
       judger.start();
 
+      if (!problem.Submissions) {
+        problem.Submissions = [];
+      }
       problem.Submissions.push(submission._id);
       await problem.save();
       return submission;

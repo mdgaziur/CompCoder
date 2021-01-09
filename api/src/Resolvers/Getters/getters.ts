@@ -30,6 +30,15 @@ class paginatedSubmissions {
   public items: Submission[];
 }
 
+@ObjectType()
+class SearchResults {
+  @Field(() => [Problem])
+  public problems: Problem[];
+
+  @Field(() => [User])
+  public users: User[];
+}
+
 @Resolver()
 export class getters {
   @Query(() => User)
@@ -164,5 +173,61 @@ export class getters {
     return paginated;
   }
 
-  // TODO: make query to get problems with filter
+  @Query(() => paginatedProblems)
+  async getFilteredProblems(
+    @Arg("page", () => Number, { nullable: true }) page: number,
+    @Arg("itemsPerPage", () => Number, { nullable: true }) itemsPerPage: number,
+    @Arg("author", () => String, { nullable: true }) author: string,
+    @Arg("problemId", () => String, { nullable: true }) problemId: string
+  ) {
+    if (!page || !itemsPerPage) {
+      page = 1;
+      itemsPerPage = 5;
+    }
+
+    let query = {};
+    if (author) query["author"] = author;
+    if (problemId) query["problemId"] = problemId;
+
+    let problems = await getModelForClass(Problem).find(query);
+
+    // paginate
+    let offset = (page - 1) * itemsPerPage;
+    let paginatedItems = problems.slice(offset).slice(0, itemsPerPage);
+    let totalPages = Math.ceil(paginatedItems.length / itemsPerPage);
+
+    let paginated = new paginatedProblems();
+    paginated.items = paginatedItems;
+    paginated.pages = totalPages;
+
+    return paginated;
+  }
+
+  // search
+  @Query(() => SearchResults)
+  async search(@Arg("query", () => String) query: string) {
+    // get all the models
+    let problemModel = getModelForClass(Problem);
+    let userModel = getModelForClass(User);
+
+    let problems = await problemModel.find({
+      $text: {
+        $search: query,
+        $caseSensitive: false,
+        $diacriticSensitive: false,
+      },
+    });
+    let users = await userModel.find({
+      $text: {
+        $search: query,
+        $caseSensitive: false,
+        $diacriticSensitive: false,
+      },
+    });
+
+    return {
+      problems: problems,
+      users: users,
+    };
+  }
 }
