@@ -58,7 +58,7 @@ export const testcaseUpload = expressRouter.post(
               reason,
             } = await validateAndExtractTestcaseZipFile(
               zipFile.data,
-              problem._id,
+              problem._id.toHexString(),
               parseInt(req.body.testcaseType)
             );
             if (!success) {
