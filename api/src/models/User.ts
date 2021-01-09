@@ -1,4 +1,4 @@
-import { prop, Ref } from "@typegoose/typegoose";
+import { Index, prop, Ref } from "@typegoose/typegoose";
 import { Field, ObjectType } from "type-graphql";
 import { Submission } from "./Submission";
 import { Problem } from "./Problem";
@@ -12,6 +12,10 @@ export enum userTypes {
 }
 
 @ObjectType()
+@Index({
+  firstName: "text",
+  lastName: "text",
+})
 export class User {
   @Field(() => String)
   readonly _id: ObjectId;

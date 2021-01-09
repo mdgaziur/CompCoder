@@ -2,10 +2,13 @@ import { ObjectId } from "mongodb";
 import { testcaseMetaType } from "./../judging-engine/types";
 import { Submission } from "./Submission";
 import { User } from "./User";
-import { Ref, prop } from "@typegoose/typegoose";
+import { Ref, prop, Index } from "@typegoose/typegoose";
 import { Field, ObjectType } from "type-graphql";
 
 @ObjectType()
+@Index({
+  title: "text",
+})
 export class Problem {
   @Field(() => String)
   readonly _id: ObjectId;
