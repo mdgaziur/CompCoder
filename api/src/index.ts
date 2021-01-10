@@ -1,3 +1,4 @@
+import { problemResolver } from "./Resolvers/Problem/problemResolver";
 import { ApolloServer } from "apollo-server-express";
 import { config as loadDotEnv } from "dotenv";
 import express from "express";
@@ -44,6 +45,7 @@ loadDotEnv();
         ProblemResolver,
         createSubmission,
         getters,
+        problemResolver,
       ],
       authChecker: ({ context: { user } }) => {
         if (!user) {
