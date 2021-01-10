@@ -13,16 +13,30 @@ export class ProblemResolver {
   async createProblem(
     @Ctx() context: any,
     @Arg("title", () => String) title: string,
-    @Arg("description", () => String) description: String,
+    @Arg("slug", () => String) slug: string,
+    @Arg("description", () => String)
+    description: String,
     @Arg("memoryLimit", () => Number) memoryLimit: number,
     @Arg("timeLimit", () => Number) timeLimit: number,
-    @Arg("availableLangs", () => [Number]) availableLangs: number[]
+    @Arg("availableLangs", () => [Number]) availableLangs: number[],
+    @Arg("overview", () => String) overview: string
   ) {
     let user: DocumentType<User> = context.user;
     let problemModel = getModelForClass(Problem);
 
     let titleIsUnique = await isUniqueField(title, "title", problemModel);
+    let isUniqueSlug = await isUniqueField(slug, "slug", problemModel);
 
+    if (!isUniqueSlug) {
+      throw new UserInputError("Slug must be unique", {
+        inputArgs: ["slug"],
+      });
+    }
+    if (slug.length > 10 || slug.length < 5) {
+      throw new UserInputError("Invalid slug length!", {
+        inputArgs: ["slug"],
+      });
+    }
     if (!titleIsUnique) {
       throw new UserInputError("Problem title must be unique!", {
         inputArgs: ["title"],
@@ -56,6 +70,8 @@ export class ProblemResolver {
 
     let problem = await problemModel.create({
       title: title,
+      slug: slug,
+      overview: overview,
       description: description,
       availableLangs: availableLangs,
       author: user._id,
@@ -67,7 +83,7 @@ export class ProblemResolver {
     } else {
       user.createdProblems.push(problem._id);
     }
-    user.save();
+    await user.save();
     return problem;
   }
 }
