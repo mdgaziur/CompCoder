@@ -10,7 +10,7 @@ import { Field, ObjectType } from "type-graphql";
   title: "text",
 })
 export class Problem {
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   readonly _id: ObjectId;
 
   @prop({
@@ -19,52 +19,64 @@ export class Problem {
     minlength: 3,
     maxlength: 50,
   })
-  @Field()
+  @Field({ nullable: true })
   public title: string;
 
   @prop({
     required: true,
   })
-  @Field(() => String)
+  @Field({ nullable: true })
+  public slug: string;
+
+  @prop({
+    required: true,
+  })
+  @Field({ nullable: true })
+  public overview: string;
+
+  @prop({
+    required: true,
+  })
+  @Field(() => String, { nullable: true })
   public description: String;
 
   @prop({
     ref: "User",
     required: true,
   })
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   public author: Ref<User>;
 
   @prop({
     required: true,
     default: false,
   })
-  @Field()
+  @Field({ nullable: true })
   public approved?: Boolean;
 
   @prop({
     required: true,
   })
-  @Field(() => [Number])
+  @Field(() => [Number], { nullable: true })
   public availableLangs: number[];
 
   @prop({
     required: true,
     default: new Date(),
   })
-  @Field()
+  @Field({ nullable: true })
   public dateCreated?: Date;
 
   @prop({
     required: true,
   })
-  @Field()
+  @Field({ nullable: true })
   public memoryLimit: number;
 
   @prop({
     required: true,
   })
-  @Field()
+  @Field({ nullable: true })
   public timeLimit: number;
 
   @prop({
@@ -78,6 +90,6 @@ export class Problem {
   @prop({
     ref: "Submission",
   })
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   public Submissions?: Ref<Submission>[];
 }

@@ -17,7 +17,7 @@ export enum userTypes {
   lastName: "text",
 })
 export class User {
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   readonly _id: ObjectId;
 
   @prop({
@@ -27,7 +27,7 @@ export class User {
     unique: true,
     trim: true,
   })
-  @Field()
+  @Field({ nullable: true })
   @MaxLength(50)
   @MinLength(3)
   public firstName: string;
@@ -38,7 +38,7 @@ export class User {
     maxlength: 15,
     trim: true,
   })
-  @Field()
+  @Field({ nullable: true })
   @MaxLength(10)
   @MinLength(3)
   public lastName: string;
@@ -47,7 +47,7 @@ export class User {
     required: true,
     trim: true,
   })
-  @Field()
+  @Field({ nullable: true })
   public username: string;
 
   @prop({
@@ -60,7 +60,7 @@ export class User {
     required: true,
     trim: true,
   })
-  @Field()
+  @Field({ nullable: true })
   @IsEmail()
   public email: string;
 
@@ -69,7 +69,7 @@ export class User {
     required: true,
     default: "member",
   })
-  @Field()
+  @Field({ nullable: true })
   public userType?: userTypes;
 
   @prop({
@@ -79,35 +79,35 @@ export class User {
   public address?: string;
 
   @prop()
-  @Field()
+  @Field({ nullable: true })
   public profilePicID?: string;
 
   @prop({
     required: true,
     default: new Date(),
   })
-  @Field()
+  @Field({ nullable: true })
   public dateJoined?: Date;
 
   @prop({
     required: true,
     default: -1,
   })
-  @Field()
+  @Field({ nullable: true })
   public rank?: number;
 
   @prop({
     required: true,
     default: "0 D",
   })
-  @Field()
+  @Field({ nullable: true })
   public rating?: string;
 
   @prop({
     required: true,
     default: 0,
   })
-  @Field()
+  @Field({ nullable: true })
   public contributionPoints?: number;
 
   @prop({

@@ -6,21 +6,21 @@ import { Problem } from "./Problem";
 
 @ObjectType()
 export class Submission {
-  @Field(() => String)
+  @Field(() => String, { nullable: true })
   readonly _id: ObjectId;
 
   @prop({
     required: true,
     ref: Problem,
   })
-  @Field(() => Problem)
+  @Field(() => Problem, { nullable: true })
   public problem: Ref<Problem>;
 
   @prop({
     ref: User,
     required: true,
   })
-  @Field(() => User)
+  @Field(() => User, { nullable: true })
   public author: Ref<User>;
 
   @prop({
@@ -37,19 +37,19 @@ export class Submission {
   @prop({
     required: true,
   })
-  @Field()
+  @Field({ nullable: true })
   public language: number;
 
   @prop({
     required: true,
   })
-  @Field()
+  @Field({ nullable: true })
   public verdict: number;
 
   @prop({
     required: false,
   })
-  @Field(() => [Number])
+  @Field(() => [Number], { nullable: true })
   public testcasesVerdict?: number[];
 
   @prop()
@@ -57,12 +57,12 @@ export class Submission {
   public runtimeOutputs?: string[];
 
   @prop()
-  @Field(() => [Number])
+  @Field(() => [Number], { nullable: true })
   public sampleTestcasesVerdict?: number[];
 
   @prop({
     required: true,
   })
-  @Field(() => Boolean)
+  @Field(() => Boolean, { nullable: true })
   public isSampleSubmission: Boolean;
 }
