@@ -71,6 +71,12 @@ export class createSubmission {
         language: languageId,
       });
     }
+    if (!context.user.Submissions) {
+      context.user.Submissions = [submission];
+    } else {
+      context.user.Submissions.push(submission);
+    }
+    await context.user.save();
     if (!problem?.testcasesMeta || !problem?.sampleTestcasesMeta) {
       throw new UserInputError(
         "Problem does not have sample or hidden testcase!",
@@ -146,7 +152,8 @@ export class createSubmission {
         submission,
         languageId,
         code,
-        testcaseType
+        testcaseType,
+        context.user
       );
       judger.start();
 

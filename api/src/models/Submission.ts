@@ -13,14 +13,14 @@ export class Submission {
     required: true,
     ref: Problem,
   })
-  @Field(() => Problem, { nullable: true })
+  @Field(() => String, { nullable: true })
   public problem: Ref<Problem>;
 
   @prop({
     ref: User,
     required: true,
   })
-  @Field(() => User, { nullable: true })
+  @Field(() => String, { nullable: true })
   public author: Ref<User>;
 
   @prop({

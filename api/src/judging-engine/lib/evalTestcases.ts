@@ -1,4 +1,4 @@
-import { verdicts } from "../verdicts";
+import { verdicts } from "./../verdicts";
 import { join } from "path";
 import { readFileSync } from "fs";
 import { DocumentType } from "@typegoose/typegoose";
@@ -33,8 +33,12 @@ export async function evalTestcases(
     let inputFile = testcasesMeta[idx].input;
     let outputFile = testcasesMeta[idx].output;
 
-    let inputData = readFileSync(join(testcaseDir, inputFile)).toString();
-    let outputData = readFileSync(join(testcaseDir, outputFile)).toString();
+    let inputData = readFileSync(
+      join(testcaseDir, testcaseType, inputFile)
+    ).toString();
+    let outputData = readFileSync(
+      join(testcaseDir, testcaseType, outputFile)
+    ).toString();
 
     try {
       let output = await runContainer(
@@ -93,7 +97,6 @@ export async function evalTestcases(
         }
       }
     }
-
     await submission.save();
   }
 }

@@ -90,6 +90,6 @@ export class Problem {
   @prop({
     ref: "Submission",
   })
-  @Field(() => String, { nullable: true })
+  @Field(() => [String], { nullable: true })
   public Submissions?: Ref<Submission>[];
 }

@@ -37,7 +37,7 @@ export function runContainer(
     let killer = setTimeout(() => {
       proc.kill();
       rej(verdicts.JUDGE_TLE);
-    }, tL);
+    }, tL + 1000); /// docker takes almost 1 seconds to turn off
 
     proc.on("exit", () => {
       clearTimeout(killer);

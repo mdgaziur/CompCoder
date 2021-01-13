@@ -59,6 +59,7 @@ export class Register {
       username: username,
       email: email,
       password: saltedPassword,
+      rank: (await userModel.find()).length + 1,
     });
 
     let token = sign(
