@@ -223,7 +223,7 @@ export class judgeEngine {
         if (
           acSubmissionsFromCurrentUser.length > acSubmissionsFromUser.length
         ) {
-          if (!user.rank) {
+          if (!this.user.rank) {
             continue;
           }
           this.user.rank -= 1;
@@ -233,7 +233,7 @@ export class judgeEngine {
         } else if (
           acSubmissionsFromCurrentUser.length === acSubmissionsFromUser.length
         ) {
-          if (!user.rank) {
+          if (!this.user.rank) {
             continue;
           }
           this.user.rank -= 1;
