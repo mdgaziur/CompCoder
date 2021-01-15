@@ -21,31 +21,12 @@
 
 ## How to start on localhost?
 
-- ### How to generate docs for the api?
+- Run yarn start-api to start the api
+- The api will run on https://localhost:4000
 
-  - Run `yarn doc-api` to generate docs
-  - The docs for api will be at the directory called "api-docs"
-  - To view the docs, open the index.html file in that directory. You'll find all the docs in that webpage.
+## How to start the frontend part?
 
-- ### How to generate docs for the frontend?
-  - Not available at this time
-- ### Create a .env file in /api
-  - Add a variable JWT_SECRET_KEY and set the value to a randomly generated string
-  - Add a variable CC_EMAIL and set an email address as the value of that variable
-  - Add a variable CC_EMAIL_PASSWORD and set the password of that email as the value of that variable
-  - Add a variable IBM_CLOUD_TESTCASES_BUCKET_API_KEY and set api key of the bucket you've created in IBM cloud as the value
-  - Add a variable IBM_CLOUD_INSTANCE_KEY and set the resource instance id of the bucket containing the testcases as the value of that variable
-- Clone this repository
-- ### To start the api:
-  - cd into the api directory
-  - Run `yarn install` to install all dependencies
-  - Run `yarn start` to start the server
-  - To access the GraphQL playground(Not available when in production mode), go to `http://localhost:4000/graphql`.
-- ### To start the frontend server
-  - cd into the frontend directory
-  - Run `npm i` to install all dependecies
-  - Run `npm start` to start the react server
-  - Go to the link displayed in the terminal
+- Lemme first implement something of frontend 😵
 
 ## When it will be released?
 
