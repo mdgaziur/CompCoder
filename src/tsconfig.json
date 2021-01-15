@@ -23,7 +23,9 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
+    "types": [],
+    "skipLibCheck": true
   },
-  "exclude": ["node_modules"],
-  "include": ["src/**/*"]
+  "exclude": ["node_modules", "**/frontend/**"],
+  "include": ["./**/*.ts"]
 }
