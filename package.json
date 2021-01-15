@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-api-dev": "cd api && nodemon --exec ts-node src/index.ts",
-    "doc-api": "cd api && yarn doc"
+    "start-api": "cd src && yarn start",
+    "doc": "cd arc && yarn doc"
   },
   "repository": {
     "type": "git",
