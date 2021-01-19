@@ -5,6 +5,7 @@ import express from "express";
 import "reflect-metadata";
 import { buildSchema } from "type-graphql";
 import fileUpload from "express-fileupload";
+import morgan from "morgan";
 // DB connector
 import connect from "./db_connect";
 // Authentication
@@ -30,6 +31,8 @@ loadDotEnv();
 
 (async () => {
   const app = express();
+  // logging
+  app.use(morgan("dev"));
 
   const server = new ApolloServer({
     schema: await buildSchema({
