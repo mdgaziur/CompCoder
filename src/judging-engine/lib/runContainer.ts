@@ -19,7 +19,7 @@ export function runContainer(
   tL: number
 ): Promise<string> {
   return new Promise<string>((res, rej) => {
-    let command = `docker run -i --memory=${memL}m ${imageId} ${cmd}`;
+    let command = `docker run -i --memory=${memL}m --network none ${imageId} ${cmd}`;
     let proc = exec(command, (err, stdout) => {
       if (err) {
         if (err.code === 137) {
