@@ -19,6 +19,13 @@
 
 #### `Note: Currently the judge is mostly unusable. The online judge is in heavy development. You can make contributions by making a pull request`<br/>
 
+## Requirements
+- Latest version of MongoDB
+- Latest version of Docker
+- Latest version of Yarn
+- Latest version of Node
+- Linux is recommended
+
 ## How to start on localhost?
 
 - Run yarn start-api to start the api
