@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-api": "cd src && yarn start",
-    "doc": "cd src && yarn doc"
+    "start-frontend": "cd src/frontend && yarn start",
+    "api-doc": "cd src && yarn doc"
   },
   "repository": {
     "type": "git",
