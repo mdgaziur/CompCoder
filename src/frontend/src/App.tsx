@@ -1,22 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { client } from "./graphql/client";
+import React from "react";
 import "./Styles/index.scss";
-import { userDBQuery } from "./graphql/queries/userDB";
+import { Register } from "./Components/Register/Register";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 export function App() {
-  let [userDB, setUserDB] = useState({});
-  useEffect(() => {
-    (async () => {
-      let data = await client.query({
-        query: userDBQuery,
-      });
-      setUserDB(data);
-    })();
-  }, []);
   return (
-    <div id="app">
-      <h1>Hello from CompCoder!</h1>
-      <p>{JSON.stringify(userDB)}</p>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/register" exact component={Register}></Route>
+      </Switch>
+    </Router>
   );
 }

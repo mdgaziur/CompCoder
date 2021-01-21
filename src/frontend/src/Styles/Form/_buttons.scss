@@ -1,0 +1,40 @@
+.form-buttons {
+  display: grid;
+  .form-button-bg {
+    background: #2b2b2b;
+    color: white;
+    padding: 10px;
+    margin-top: 5px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 250ms, border 250ms;
+    outline: none;
+    border: 1px solid transparent;
+    &:hover {
+      background: #1d1d1d;
+    }
+    &:active {
+      border: 1px solid #0c0c0c;
+    }
+  }
+  .form-button-nobg {
+    background: linear-gradient(to right, #2b2b2b 50%, transparent 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    color: white;
+    padding: 10px;
+    margin-top: 5px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: 250ms;
+    outline: none;
+    border: none;
+    opacity: .7;
+    &:hover {
+      background-position: left bottom;
+    }
+    &:active {
+      opacity: 1;
+    }
+  }
+}

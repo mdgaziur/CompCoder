@@ -25,5 +25,9 @@
   "bugs": {
     "url": "https://github.com/mdgaziur/CompCoder/issues"
   },
-  "homepage": "https://github.com/mdgaziur/CompCoder#readme"
+  "homepage": "https://github.com/mdgaziur/CompCoder#readme",
+  "dependencies": {
+    "@types/yup": "^0.29.11",
+    "yup": "^0.32.8"
+  }
 }
