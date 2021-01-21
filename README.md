@@ -26,10 +26,10 @@
 - Latest version of Node
 - Linux is recommended
 
-## How to start on localhost?
+## Instructions about the api
 - See [API Readme](src/README.md)
 
-## How to start the frontend part?
+## Instruction about the frontend
 - See [Frontend Readme](src/frontend/README.md)
 
 ## Starting everything without going inside src
