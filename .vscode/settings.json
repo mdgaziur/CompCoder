@@ -8,5 +8,13 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "prettier.tabWidth": 2,
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "VSCodeCounter.exclude": [
+    "**/.gitignore",
+    "**/.vscode/**",
+    "**/node_modules/**",
+    "**/package.json",
+    "**/yarn.lock",
+    "**/*.svg"
+  ]
 }
