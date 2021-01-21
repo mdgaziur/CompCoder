@@ -27,13 +27,22 @@
 - Linux is recommended
 
 ## How to start on localhost?
-
-- Run yarn start-api to start the api
-- The api will run on https://localhost:4000
+- See [API Readme](src/README.md)
 
 ## How to start the frontend part?
+- See [Frontend Readme](src/frontend/README.md)
 
-- Lemme first implement something of frontend 😵
+## Starting everything without going inside src
+- ### Starting api(development only)
+  - Run `yarn start-api`
+- ### Starting the frontend server(development only)
+  - Run `yarn start-frontend`
+
+## Generating Docs
+- ### API
+  - Run `yarn api-doc`
+- ### Frontend
+  - Not available yet
 
 ## When it will be released?
 
