@@ -167,10 +167,10 @@
   dependencies:
     "@types/express" "*"
 
-"@types/dockerode@^3.2.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@types/dockerode/-/dockerode-3.2.1.tgz"
-  integrity sha512-AeZpdQMNqM8dtrEaaP81CbjdRVKNmFIMzgz5IlKIeS5uWEmjlEmENP444AGTEEF71r5TFuY9E4SkzZAO8lOF1A==
+"@types/dockerode@^3.2.2":
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@types/dockerode/-/dockerode-3.2.2.tgz#7184f1bfbbb44d2aaf175b5ee0b35fe4b3e44fd1"
+  integrity sha512-YtdVvc+WmxShwx0iBmn0AtiLL2Zbcak9gXqdeBp0UpiRyOcshZM0eVTOEkUKd4mIjHzSEpA+1P3lXb7ouYvDtQ==
   dependencies:
     "@types/node" "*"
 
