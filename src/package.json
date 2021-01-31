@@ -28,8 +28,6 @@
   "homepage": "https://github.com/mdgaziur/compcoder#readme",
   "dependencies": {
     "@typegoose/typegoose": "^7.4.6",
-    "@types/dockerode": "^3.2.1",
-    "@types/morgan": "^1.9.2",
     "@types/uuid": "^8.3.0",
     "apollo-server": "^2.19.0",
     "bcrypt": "^5.0.0",
