@@ -1,0 +1,66 @@
+/* Primary */
+
+// normal
+$primary: #303030;
+$primary-text-color: #fff;
+$primary-border: 2px solid transparent;
+
+// hover
+$primary-hover: #3f3f3f;
+$primary-hover-text-color: #fff;
+$primary-hover-border: 2px solid transparent;
+
+// pressed
+$primary-active: transparent;
+$primary-active-text-color: #fff;
+$primary-active-border: 2px solid #3f3f3f;
+
+/* Positive */
+
+// normal
+$positive: #0E9195;
+$positive-text-color: #fff;
+$positive-border: 2px solid transparent;
+
+// hover
+$positive-hover: #0C7F83;
+$positive-hover-text-color: #fff;
+$positive-hover-border: 2px solid transparent;
+
+// pressed
+$positive-active: transparent;
+$positive-active-text-color: #0C7F83;
+$positive-active-border: 2px solid #0C7F83;
+
+/* Negative */
+
+// normal
+$negative: #CE3B4F;
+$negative-text-color: #fff;
+$negative-border: 2px solid transparent;
+
+// hover
+$negative-hover: #B42D3F;
+$negative-hover-text-color: #fff;
+$negative-hover-border: 2px solid transparent;
+
+// active
+$negative-active: transparent;
+$negative-active-text-color: #B42D3F;
+$negative-active-border: 2px solid #B42D3F;
+
+/* Disabled */
+$disabled: #dadada;
+$disabled-text-color: #acacac;
+$disabled-border: 2px solid transparent;
+
+/* Header */
+
+// normal
+$header-text-color: #707070;
+
+// hover
+$header-hover-text-color: #909090;
+
+// active
+$header-active-text-color: #B0B0B0;
