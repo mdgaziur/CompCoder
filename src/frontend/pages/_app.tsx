@@ -1,10 +1,9 @@
-import '../styles/index.scss';
-
+import "../styles/index.scss";
 interface propsType {
-    Component: JSX.Element,
-    pageProps: any
+  Component: JSX.Element;
+  pageProps: any;
 }
 
 export default function App(props: propsType) {
-    return <props.Component {...props.pageProps} />
+  return <props.Component {...props.pageProps} />;
 }

@@ -67,7 +67,7 @@ div.header-searchbar {
   border-radius: 5px;
   margin: 0 1rem 0;
   input {
-    min-width: 300px;
+    width: 150px;
     padding: 0.5rem 1rem 0.5rem 1rem;
     font-size: 1rem;
     background: $header-searchbar-input-bg;
@@ -114,6 +114,8 @@ div.header-account-dropdown {
     top: 50px;
     border-radius: 5px;
     transition: 500ms;
+    margin: 0;
+    padding: 0;
     &::before {
       top: -20px;
       right: 5px;
@@ -147,7 +149,7 @@ div.header-account-dropdown {
   .header-contents {
     z-index: 2;
     position: fixed;
-    left: -100%;
+    left: -100vw;
     top: 0;
     bottom: 0;
     display: grid;
@@ -155,6 +157,11 @@ div.header-account-dropdown {
     padding-top: 4rem;
     flex-direction: column-reverse;
     background: $header-mobile-menu-bg;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .header-searchbar {
+    margin: 0 !important;
   }
   .header-contents.active {
     left: 0;
