@@ -1,0 +1,11 @@
+{
+  "git.ignoreLimitWarning": true,
+  "editor.formatOnSave": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "prettier.tabWidth": 2,
+  "editor.tabSize": 2,
+  "editor.detectIndentation": true,
+  "editor.useTabStops": false
+}
