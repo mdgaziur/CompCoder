@@ -1,6 +1,6 @@
 import MonacoEditor from "@monaco-editor/react";
 import React from "react";
-import { Sanitize, sanitizer } from "ts-html-sanitizer";
+import { sanitizer } from "ts-html-sanitizer";
 
 type problemDesc = {
   blocks: Array<any>;
