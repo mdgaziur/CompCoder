@@ -33,9 +33,21 @@
 .problem-desc-embed-container {
   display: grid;
   iframe {
-    max-width: 100%;
-    height: max-content;
-    min-height: 200px;
+    min-height: 300px;
+    width: 100%;
+  }
+}
+
+.problem-desc-image {
+  margin: 1rem;
+  display: grid;
+  img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  span {
+    text-align: center;
+    margin: 5px;
   }
 }
 
@@ -47,4 +59,36 @@
 
 .code-editor {
   height: 100%;
+}
+
+.problem-desc-link-preview {
+  display: flex;
+  padding: 5px;
+  background: $linktool-bg;
+  border-radius: 5px;
+  align-items: center;
+  flex-wrap: wrap;
+  .left {
+    img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 5px;
+    }
+  }
+  .right {
+    margin: 1rem;
+    flex: 1;
+  }
+}
+.quote {
+  width: 100%;
+  padding: 1rem;
+  border-left: 1rem solid;
+  margin-top: 1rem;
+  p {
+    font-size: 2rem;
+  }
+  span {
+    font-size: 1.5rem;
+  }
 }

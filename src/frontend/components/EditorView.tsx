@@ -69,7 +69,7 @@ export function Editor(props: propsType) {
               );
             } else if (type === "image") {
               let url = block.data.file.url;
-              let caption = block.caption;
+              let caption = block.data.caption;
               return (
                 <div className="problem-desc-image">
                   <img src={url} alt={caption} />
@@ -92,6 +92,16 @@ export function Editor(props: propsType) {
                     <span>{description}</span>
                   </div>
                 </a>
+              );
+            } else if (type === "quote") {
+              let text = block.data.text;
+              let caption = block.data.caption;
+
+              return (
+                <div className="quote">
+                  <p>{text}</p>
+                  <span>{caption}</span>
+                </div>
               );
             }
           })}
