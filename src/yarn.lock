@@ -1432,10 +1432,18 @@ express-fileupload@^1.2.1:
   dependencies:
     busboy "^0.3.1"
 
-express-validator@*, express-validator@^6.7.0:
+express-validator@*:
   version "6.9.0"
   resolved "https://registry.yarnpkg.com/express-validator/-/express-validator-6.9.0.tgz"
   integrity sha512-jScWCo5PwzfmgXhD7bXKWoMSMHttrsN1FpCxuuPby5umeIN1cSKaSV2vQkGinmjdWTRDKRPcU2BlWSXZxNmWYg==
+  dependencies:
+    lodash "^4.17.20"
+    validator "^13.5.2"
+
+express-validator@^6.9.1:
+  version "6.9.2"
+  resolved "https://registry.yarnpkg.com/express-validator/-/express-validator-6.9.2.tgz#4de977aa0bb32948240900fd7387f4948399ac64"
+  integrity sha512-Yqlsw2/uBobtBVkP+gnds8OMmVAEb3uTI4uXC93l0Ym5JGHgr8Vd4ws7oSo7GGYpWn5YCq4UePMEppKchURXrw==
   dependencies:
     lodash "^4.17.20"
     validator "^13.5.2"
