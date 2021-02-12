@@ -5,3 +5,4 @@ dist
 .VSCodeCounter
 files/*
 docs
+yarn-error.log
