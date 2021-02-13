@@ -100,10 +100,10 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@typegoose/typegoose@^7.4.6":
-  version "7.4.6"
-  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-7.4.6.tgz"
-  integrity sha512-M2AECNtr4pGByjPG2tEhe2292qX9DJUCX4aP74glMoQQ/YOkCBbwVXokF/ZxnNUwH+5hIAfmTp5xCpDYNtkXWQ==
+"@typegoose/typegoose@^7.4.7":
+  version "7.4.8"
+  resolved "https://registry.yarnpkg.com/@typegoose/typegoose/-/typegoose-7.4.8.tgz#0e117166b9ebcef556c896f2dd9635828dd630a0"
+  integrity sha512-fMd+RfyX9e9cCt2P5arh4q3hJtd/emHkjiES0VEIgtOH/XRF7av7ZuktRIEn/KO51H5MSEo9H+Xok6oK+nT7zw==
   dependencies:
     lodash "^4.17.20"
     loglevel "^1.7.0"
@@ -314,6 +314,13 @@
   integrity sha512-VfdnaFImXEJZZiuL2ID/ysZs4inOIjxwrAnUgkr5eum2O2BLhFkiSI0i87AwignVva1qWTJ3H3DyM0Rf4USJ4A==
   dependencies:
     "@types/mongodb" "*"
+    "@types/node" "*"
+
+"@types/morgan@^1.9.2":
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/@types/morgan/-/morgan-1.9.2.tgz#450f958a4d3fb0694a3ba012b09c8106f9a2885e"
+  integrity sha512-edtGMEdit146JwwIeyQeHHg9yID4WSolQPxpEorHmN3KuytuCHyn2ELNr5Uxy8SerniFbbkmgKMrGM933am5BQ==
+  dependencies:
     "@types/node" "*"
 
 "@types/node-fetch@2.5.7":
@@ -1425,7 +1432,7 @@ evp_bytestokey@^1.0.0, evp_bytestokey@^1.0.3:
     md5.js "^1.3.4"
     safe-buffer "^5.1.1"
 
-express-fileupload@^1.2.1:
+express-fileupload@^1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/express-fileupload/-/express-fileupload-1.2.1.tgz#73ac798bd14247d510adb1e439af2420c8367ded"
   integrity sha512-fWPNAkBj+Azt9Itmcz/Reqdg3LeBfaXptDEev2JM8bCC0yDptglCnlizhf0YZauyU5X/g6v7v4Xxqhg8tmEfEA==
