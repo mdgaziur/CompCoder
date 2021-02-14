@@ -31,7 +31,7 @@
     "@types/dockerode": "^3.2.2",
     "@types/morgan": "^1.9.2",
     "@types/uuid": "^8.3.0",
-    "apollo-server": "^2.19.0",
+    "apollo-server": "^2.19.2",
     "bcrypt": "^5.0.0",
     "class-validator": "^0.13.0",
     "dockerode": "^3.2.1",
