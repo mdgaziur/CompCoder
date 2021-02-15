@@ -1,0 +1,25 @@
+@import url("http://fonts.cdnfonts.com/css/graphik");
+
+* {
+  font-family: "Graphik", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  font-size: 2.5rem;
+  letter-spacing: -1.5px;
+}
+h2 {
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: -1.5px;
+}
