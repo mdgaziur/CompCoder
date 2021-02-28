@@ -16,7 +16,7 @@
     "react-dom": "^16.12.0",
     "react-icons": "^4.2.0",
     "ts-html-sanitizer": "^1.0.5",
-    "webpack": "^5.21.1"
+    "webpack": "^5.21.2"
   },
   "devDependencies": {
     "@types/node": "^12.12.21",
