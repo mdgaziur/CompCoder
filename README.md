@@ -4,6 +4,12 @@
 
 #### The feature rich online judge with better reliability<br/>
 
+## Hold on!
+If you've already seen the "This repository is archived" banner and wondering what's happening, lemme elaborate what happened.
+It has become way too hard to maintain(let alone add a new feature), codes aren't properly written. also nothing is planned so many things are broken and doesn't work. I will not continue and try to make it functional :). The api only works. Although sometimes results in undefined behavior. It has also became much more complex in terms of code format and code readability.
+
+But don't worry, I'll work on another online judge with planning of every feature and every single details.
+
 ## Techonologies Used
 
 ![](https://img.shields.io/badge/Code-Typescript-informational?style=for-the-badge&logo=typescript&color=007ACC&logoColor=007ACC)
